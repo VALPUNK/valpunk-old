@@ -1,0 +1,50 @@
+{  
+  "env": {
+    "development": {
+      "presets": ["next/babel", "@zeit/next-typescript/babel"],
+      "plugins": [
+        [
+          "babel-plugin-root-import",
+          {
+            "rootPathSuffix": ["./"],
+            "rootPathPrefix": ["~"]
+          }
+        ]
+      ]
+    },
+    "production": {
+      "presets": ["next/babel", "@zeit/next-typescript/babel"],
+      "plugins": [
+        [
+          "babel-plugin-root-import",
+          {
+            "rootPathSuffix": ["./"],
+            "rootPathPrefix": ["~"]
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "next/babel",
+          {
+            "preset-env": {
+              "modules": "commonjs"
+            }
+          }
+        ],
+        "@zeit/next-typescript/babel"
+      ],
+      "plugins": [
+        [
+          "babel-plugin-root-import",
+          {
+            "rootPathSuffix": ["./"],
+            "rootPathPrefix": ["~"]
+          }
+        ]
+      ]
+    }
+  }
+}
