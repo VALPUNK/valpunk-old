@@ -2,8 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
+import { ServerStyleSheet } from 'styled-components'
 
 class MyDocument extends Document {
+  static getInitialProps ({ renderPage }) {
+    const sheet = new ServerStyleSheet()
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
+    const styleTags = sheet.getStyleElement()
+    return { ...page, styleTags }
+  }
   render() {
     const { pageContext } = this.props;
 
@@ -11,6 +18,7 @@ class MyDocument extends Document {
       <html lang="en" dir="ltr">
         <Head>
           <title>My page</title>
+          {this.props.styleTags}
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -57,11 +65,15 @@ MyDocument.getInitialProps = ctx => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
+
+
+  const sheet = new ServerStyleSheet()
+
   let pageContext;
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
       pageContext = props.pageContext;
-      return <Component {...props} />;
+      return sheet.collectStyles(<Component {...props} />);
     };
 
     WrappedComponent.propTypes = {
@@ -70,9 +82,11 @@ MyDocument.getInitialProps = ctx => {
 
     return WrappedComponent;
   });
+  const styleTags = sheet.getStyleElement()
 
   return {
     ...page,
+    styleTags,
     pageContext,
     // Styles fragment is rendered after the app and page rendering finish.
     styles: (
