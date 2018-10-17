@@ -18,7 +18,12 @@
     "ordered-imports": [true, {
       "import-sources-order": "any",
       "named-imports-order": "case-insensitive"
-    }]
+    }],
+    "variable-name": false,
+    "max-classes-per-file": false,
+    "no-empty-interface": false,
+    "prefer-object-spread": false,
+    "jsx-no-lambda": false
   },
   "jsRules": {
     "object-literal-sort-keys": false,
