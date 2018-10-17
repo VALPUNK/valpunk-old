@@ -1,4 +1,4 @@
-import { GlobalState } from "~/lib/initStore";
+import { OnBoardingState } from "~/lib/reducers/OnboardingReducer"
 
 export const loadState = () => {
   try {
@@ -12,10 +12,10 @@ export const loadState = () => {
   }
 }
 
-export const saveState = (state: GlobalState) => {
+export const saveState = (state: OnBoardingState) => {
   try {
     const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState) 
+    localStorage.setItem('state', serializedState)
   } catch (err) {
     // ignore
   }

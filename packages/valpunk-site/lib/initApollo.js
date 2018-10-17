@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache } from 'apollo-boost'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import fetch from 'isomorphic-unfetch'
+import { AUTH_TOKEN } from '~/constants/constants';
 
 let apolloClient = null
 
@@ -11,18 +12,23 @@ if (!process.browser) {
 }
 
 function create (initialState, { getToken }) {
+  console.log('db ', process.env.DATABASE)
   const httpLink = createHttpLink({
-    uri: 'https://thenodbeanbagchairs.myshopify.com/api/graphql',
+    uri: process.env.DATABASE,
     // credentials: 'same-origin'
   })
 
   const authLink = setContext((_, { headers }) => {
-    const token = getToken()
+    let token = ""
+    if(process.browser) {
+      token = localStorage.getItem(AUTH_TOKEN)
+    }
+
+    // const token = localStorage.getItem(AUTH_TOKEN)
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-        'X-Shopify-Storefront-Access-Token': '08fbaf9e35f68b45d468da3a79d442b0'
+        Authorization: token ? `Bearer ${token}` : null,
       }
     }
   })
@@ -36,7 +42,7 @@ function create (initialState, { getToken }) {
   })
 }
 
-export default function initApollo (initialState, options) {
+export default function initApollo(initialState, options) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {

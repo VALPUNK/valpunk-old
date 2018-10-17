@@ -17,7 +17,7 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>My page</title>
+          {/* <title>My page</title> */}
           {this.props.styleTags}
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
