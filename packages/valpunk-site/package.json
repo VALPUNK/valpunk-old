@@ -1,13 +1,14 @@
 {
-  "name": "next-mui-apollo-redux-bp",
-  "version": "0.1.0",
+  "name": "valpunk-next-bp",
+  "version": "1.0.0",
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3001",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "generate": "apollo schema:download types/download.json --endpoint=http://localhost:4000 && apollo codegen:generate --queries=**/*.tsx  --schema=types/download.json --target=typescript"
   },
   "dependencies": {
     "@material-ui/core": "^3.2.2",
