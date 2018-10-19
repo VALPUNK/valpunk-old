@@ -1,0 +1,25 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "jsx": "react",
+    "lib": ["es2018"],
+    "declaration": true,
+    "declarationDir": "./dist",
+    "outDir": "./lib/",
+    "moduleResolution": "node",
+    "rootDir": "./src/",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "importHelpers": true
+  }
+}
