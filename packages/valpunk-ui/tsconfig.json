@@ -4,22 +4,37 @@
     "target": "es6",
     "module": "es6",
     "jsx": "react",
-    "lib": ["es2018"],
+    "outDir": "./lib/",
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "baseUrl": "./src",
+    "paths": {
+      "~/components/*": ["./components/*"],
+
+      "~/constants/*": ["./constants/*"]
+    },
     "declaration": true,
     "declarationDir": "./dist",
-    "outDir": "./lib/",
     "moduleResolution": "node",
-    "rootDir": "./src/",
-    "removeComments": true,
+    "rootDirs": ["./src/"],
+
+    "removeComments": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "strict": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
     "strictNullChecks": false,
     "skipLibCheck": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitUseStrict": true,
+
+    "allowJs": false,
+    "sourceMap": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true
   }
 }
