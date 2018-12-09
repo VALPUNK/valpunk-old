@@ -1,7 +1,6 @@
-# VALPUNK UI
+# VP React Stripe Elements
 
-> The beginning of something dope
-
+> Material UI TextFields that work with react-stripe-elements-universal (for the SSR).
 
 ## License
 
