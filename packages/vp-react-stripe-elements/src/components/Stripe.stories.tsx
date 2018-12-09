@@ -19,7 +19,7 @@ import { StripeProvider, Elements } from "react-stripe-elements-universal";
 (storiesOf("Form", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
   .add("Stripe Card Element", () => (
-    <StripeProvider apiKey={"pk_test_jMIY8KQvJKlOkWvYBVMdhAmz"}>
+    <StripeProvider apiKey={"__YOUR_STRIPE_PUBLIC_API_KEY__"}>
       <Elements>
         <CenteredForStories>
           <InjectedStripe />
