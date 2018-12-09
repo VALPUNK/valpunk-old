@@ -1,6 +1,4 @@
-// A Wrapper for the <FormControl>, <InputLabel>, <Error> and the Stripe <*Element>.
-// Similar to Material UI's <TextField>. Handles focused, empty and error state
-// to correctly show the floating label and error messages etc.
+// Wrapper that contains Stripe Element related funtionality
 
 import * as React from "react";
 import { ReactStripeElements } from "react-stripe-elements-universal";

@@ -4,7 +4,7 @@
   "description": "A react-stripe-elements tool that lets you use your own input components in conjunction with *Elements",
   "author": "Enrico Valbuena",
   "license": "MIT",
-  "repository": "https://github.com/Enricopv/valpunk-ui",
+  "repository": "https://github.com/VALPUNK/vp-react-stripe-elements",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
