@@ -9,16 +9,6 @@ import postcss from "rollup-plugin-postcss";
 export default {
   input: "./src/index.ts",
   output: [
-    // {
-    //   globals: {
-    //     react: "React",
-    //     "styled-components": "styled",
-    //     immer: "produce"
-    //   },
-    //   file: pkg.main,
-    //   format: "iife",
-    //   name: "index.js"
-    // },
     {
       globals: {
         react: "React",
@@ -32,8 +22,6 @@ export default {
     {
       globals: {
         react: "React",
-        "styled-components": "styled",
-        immer: "produce",
         "@material-ui": "Paper"
       },
       file: pkg.module,
@@ -61,7 +49,6 @@ export default {
         // The commonjs plugin can't figure out the exports of some modules, so if rollup gives warnings like:
         // ⚠️   'render' is not exported by 'node_modules/react-dom/index.js'
         // Just add the mentioned file / export here
-        "src/index.ts": ["RegularButton"],
         "node_modules/@material-ui/core": ["Paper"],
         "node_modules/react-dom/index.js": ["render"],
         "node_modules/react/index.js": [
