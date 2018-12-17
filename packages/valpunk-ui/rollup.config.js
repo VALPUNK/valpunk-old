@@ -107,9 +107,9 @@ export default {
         [
           "babel-plugin-styled-components",
           { ssr: true, displayName: true, preprocess: true }
-        ],
-        ["import"],
-        ["external-helpers"]
+        ]
+        // ["import"],
+        // ["external-helpers"]
       ]
     })
   ]

@@ -94,5 +94,6 @@
     "react-spring": "^6.1.10",
     "react-table": "^6.8.6",
     "storybook-addon-jsx": "^5.4.0"
-  }
+  },
+  "gitHead": "10e5a30cb498d9bf5c688d1ad48b2dc64fd49093"
 }
