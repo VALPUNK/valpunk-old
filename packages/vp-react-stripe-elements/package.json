@@ -1,5 +1,5 @@
 {
-  "name": "vp-react-stripe-elements",
+  "name": "@valpunk/react-stripe",
   "version": "0.0.1",
   "description": "A react-stripe-elements tool that lets you use your own input components in conjunction with *Elements",
   "author": "Enrico Valbuena",

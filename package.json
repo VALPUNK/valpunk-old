@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "@valpunk/workspace",
   "private": true,
   "devDependencies": {
     "lerna": "^3.6.0"
