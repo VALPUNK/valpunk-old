@@ -1,5 +1,6 @@
 {
   "name": "@valpunk/core",
+  "private": false,
   "version": "0.0.4-alpha.0",
   "description": "VALPUNK UI Library",
   "author": "Enrico Valbuena",
@@ -95,5 +96,5 @@
     "react-table": "^6.8.6",
     "storybook-addon-jsx": "^5.4.0"
   },
-  "gitHead": "795b5b1f1b93c24b4414e0f68c45ab8b82156afd"
+  "gitHead": "7af5b5f3016df70df7cc4cf3c625e06b6b5d7fd6"
 }
