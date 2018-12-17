@@ -8,6 +8,9 @@
   "repository": "https://github.com/VALPUNK/vp-react-stripe-elements",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "typings": "dist/index.d.ts",
   "engines": {
     "node": ">=8",
@@ -89,5 +92,5 @@
     "styled-components": "^4.1.2",
     "yup": "^0.26.6"
   },
-  "gitHead": "6ab1a198aca88c0c47d2e30cf54af031319b83d9"
+  "gitHead": "be6bda115093fe49efb8be033f472410dacef02b"
 }
