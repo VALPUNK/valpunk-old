@@ -1,5 +1,6 @@
 {
   "name": "@valpunk/workspace",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
