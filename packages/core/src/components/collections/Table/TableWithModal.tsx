@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import { createStyles, Theme, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import * as React from "react";
-import ReactTable, { RowInfo } from "react-table";
+import ReactTable, { RowInfo, Column } from "react-table";
 import "react-table/react-table.css";
 import TableCell from "./components/TableCell";
 import TablePagination from "./components/TablePagination";
@@ -29,13 +29,19 @@ const styles = (theme: Theme) =>
     }
   });
 
+  export interface ColumnDataProps {
+    name: string;
+    key: string;
+    options?: Column;
+  }
+
 export interface TableWithModalProps {
   classes?: {
     root?: string;
     table?: string;
     paper?: string;
   };
-  columnData: Array<{ name: string; key: string }>;
+  columnData?: ColumnDataProps[];
   tableTitle: string;
   data: any[];
   children?: (
