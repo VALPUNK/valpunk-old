@@ -1,4 +1,4 @@
-import { ButtonOutline, RegularButton } from "./components/basic/Button";
+import { ButtonOutline, RegularButton } from "./components/basic/Button/index";
 import {
   SimpleTable,
   TableWithModal,
@@ -6,8 +6,8 @@ import {
   TableHeaderCell,
   TablePagination,
   TableToolbar
-} from "./components/collections/";
-import { Navbar } from "./components/compositions/";
+} from "./components/collections/index";
+import { Navbar } from "./components/compositions/index";
 
 export {
   ButtonOutline,
