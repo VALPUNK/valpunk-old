@@ -96,6 +96,8 @@
   "dependencies": {
     "immer": "^1.8.0",
     "react-spring": "^6.1.10",
+    "react-swipeable-views": "^0.13.0",
+    "react-swipeable-views-utils": "^0.13.0",
     "react-table": "^6.8.6",
     "storybook-addon-jsx": "^5.4.0"
   },

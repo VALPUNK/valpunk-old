@@ -1,10 +1,10 @@
-import Grid from "@material-ui/core/Grid"
-import { withInfo } from "@storybook/addon-info"
-import { storiesOf } from "@storybook/react"
-import * as React from "react"
-import { Spring, Transition } from "react-spring"
-import Carousel from "./index"
-;(storiesOf("React Spring", module) as any)
+import Grid from "@material-ui/core/Grid";
+import { withInfo } from "@storybook/addon-info";
+import { storiesOf } from "@storybook/react";
+import * as React from "react";
+import { Spring, Transition } from "react-spring";
+import Carousel from "./index";
+(storiesOf("React Spring", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
   .add("Spring", () => (
     <Grid container={true} justify="center" style={{ padding: 50 }}>
@@ -22,7 +22,7 @@ import Carousel from "./index"
           items={[
             { key: 1, text: "hello" },
             { key: 2, text: "41231" },
-            { key: 3, text: "asdfasdf" },
+            { key: 3, text: "asdfasdf" }
           ]}
           keys={item => item.key}
           from={{ transform: "translate3d(0,-40px,0)" }}
@@ -33,6 +33,5 @@ import Carousel from "./index"
         </Transition>
       </Grid>
     </Grid>
-  ))
-  .add("Carousel", () => <Carousel />)
+  ));
 // .addWithJSX("Error", () => <Button error>1234567</Button>)
