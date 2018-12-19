@@ -5,7 +5,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import CarouselSwipe, { CarouselNav } from "./index";
+import CarouselContainer, { CarouselNav } from "./index";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -29,14 +29,12 @@ const styles = {
   }
 };
 
-(storiesOf("Animated", module) as any)
+(storiesOf("Carousel", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Carousel Swipe", () => (
-    // <Grid container={true} justify="center" style={{ padding: 50 }}>
-    //   <Grid item={true} lg={3} md={6} sm={8} xs={12} style={{ padding: 20 }}>
-    <CarouselSwipe pages={3}>
+  .add("Carousel Container", () => (
+    <CarouselContainer pages={3}>
       {({ index, nextSlide, prevSlide, handleNextPage, handleChangeIndex }) => (
-        <div>
+        <div style={{ position: "relative" }}>
           <AutoPlaySwipeableViews
             interval={5000}
             index={index}
@@ -97,8 +95,5 @@ const styles = {
           </div>
         </div>
       )}
-    </CarouselSwipe>
-
-    //   </Grid>
-    // </Grid>
+    </CarouselContainer>
   ));

@@ -1,10 +1,6 @@
 import React from "react";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-export interface CarouselSwipeProps {
+export interface CarouselContainerProps {
   pages: number;
   children: (
     props: {
@@ -17,8 +13,8 @@ export interface CarouselSwipeProps {
   ) => React.ReactNode;
 }
 
-class CarouselSwipe extends React.Component<
-  CarouselSwipeProps,
+class CarouselContainer extends React.Component<
+  CarouselContainerProps,
   { index: number }
 > {
   constructor(props: any) {
@@ -61,7 +57,7 @@ class CarouselSwipe extends React.Component<
 
   public render() {
     return (
-      <div style={{ position: "relative" }}>
+      <>
         {this.props.children({
           nextSlide: this.nextSlide,
           prevSlide: this.prevSlide,
@@ -69,12 +65,12 @@ class CarouselSwipe extends React.Component<
           handleChangeIndex: this.handleChangeIndex,
           index: this.state.index
         })}
-      </div>
+      </>
     );
   }
 }
 
-export default CarouselSwipe;
+export default CarouselContainer;
 
 interface CarouselNavProps {
   onClick: any;
