@@ -1,12 +1,17 @@
 {
-  "packages": ["packages/*"],
-  "version": "0.0.8-alpha.0",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "0.0.9-alpha.0",
   "useWorkspaces": true,
   "gitRemote": "valpunk",
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "ignoreChanges": ["*.md", "package.json"]
+      "ignoreChanges": [
+        "*.md",
+        "package.json"
+      ]
     }
   }
 }
