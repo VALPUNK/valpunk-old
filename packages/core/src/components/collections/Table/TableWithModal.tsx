@@ -29,11 +29,11 @@ const styles = (theme: Theme) =>
     }
   });
 
-  export interface ColumnDataProps {
-    name: string;
-    key: string;
-    options?: Column;
-  }
+export interface ColumnDataProps {
+  name: string;
+  key: string;
+  options?: Column;
+}
 
 export interface TableWithModalProps {
   classes?: {
@@ -41,7 +41,7 @@ export interface TableWithModalProps {
     table?: string;
     paper?: string;
   };
-  columnData?: ColumnDataProps[];
+  columnData: ColumnDataProps[];
   tableTitle: string;
   data: any[];
   children?: (
@@ -54,75 +54,103 @@ export interface TableWithModalProps {
   ) => React.ReactNode;
 }
 
-const TableWithModal = ({
-  classes,
-  columnData,
-  tableTitle,
-  data,
-  children
-}: TableWithModalProps) => {
-  const [open, setOpen] = React.useState(false);
-  const [modalInfo, setModalinfo] = React.useState<{ data?: any }>({});
+interface State {
+  open: boolean;
+  modalInfo?: { data?: any };
+}
 
-  const handleOpen = () => {
-    setOpen(true);
+export default class TableWithModal extends React.Component<
+  TableWithModalProps,
+  State
+> {
+  // const [open, setOpen] = React.useState(false);
+  // const [modalInfo, setModalinfo] = React.useState<{ data?: any }>({});
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      open: false,
+      modalInfo: { data: "" }
+    };
+  }
+
+  public handleOpen = () => {
+    this.setState({
+      open: true
+    });
+    // setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  public handleClose = () => {
+    this.setState({
+      open: false
+    });
+    // setOpen(false);
   };
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <ReactTable
-          data={data}
-          PadRowComponent={() => <TableCell />}
-          columns={[
-            {
-              Header: <TableToolbar tableName={tableTitle} />,
-              columns: makeColumns(columnData)
-            }
-          ]}
-          PaginationComponent={TablePagination}
-          defaultPageSize={10}
-          className="-striped -highlight"
-          getTdProps={(_state: any, _rowInfo: RowInfo) => {
-            return {
-              onClick: (_e: any, _handleOriginal: any) => {
-                setModalinfo({ data: _rowInfo.original });
-                handleOpen();
-                if (_handleOriginal) {
-                  _handleOriginal();
-                }
-              }
-            };
-          }}
-        />
-      </Table>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
+  public render() {
+    return (
+      <Paper
+      // className={this.props.classes.root}
       >
-        {children({
-          clickedData: modalInfo,
-          handleOpen,
-          handleClose,
-          modalStyle: {
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(-50%, -50%)`,
-            maxWidth: "80%",
-            padding: 16,
-            wordWrap: "normal"
-          }
-        })}
-      </Modal>
-    </Paper>
-  );
-};
+        <Table
+        // className={this.props.classes.table}
+        >
+          <ReactTable
+            data={this.props.data}
+            PadRowComponent={() => <TableCell />}
+            columns={[
+              {
+                Header: <TableToolbar tableName={this.props.tableTitle} />,
+                columns: makeColumns(this.props.columnData)
+              }
+            ]}
+            filterable={
+              this.props.columnData.some(prop => (prop.options ? true : false))
+                ? true
+                : false
+            }
+            PaginationComponent={TablePagination}
+            defaultPageSize={10}
+            className="-striped -highlight"
+            getTdProps={(_state: any, _rowInfo: RowInfo) => {
+              return {
+                onClick: (_e: any, _handleOriginal: any) => {
+                  this.setState({ modalInfo: { data: _rowInfo.original } });
+                  // setModalinfo({ data: _rowInfo.original });
+                  this.handleOpen();
+                  if (_handleOriginal) {
+                    _handleOriginal();
+                  }
+                }
+              };
+            }}
+          />
+        </Table>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+        >
+          {this.props.children({
+            clickedData: this.state.modalInfo,
+            handleOpen: this.handleOpen,
+            handleClose: this.handleClose,
+            modalStyle: {
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: `translate(-50%, -50%)`,
+              maxWidth: "80%",
+              padding: 16,
+              wordWrap: "normal"
+            }
+          })}
+        </Modal>
+      </Paper>
+    );
+  }
+}
 
-export default withStyles(styles)(TableWithModal);
+// export default withStyles(styles)(TableWithModal);

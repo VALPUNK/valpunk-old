@@ -3,10 +3,10 @@ import { RowRenderProps } from "react-table";
 import "react-table/react-table.css";
 import TableCell from "./components/TableCell";
 import TableHeaderCell from "./components/TableHeaderCell";
-import { ColumnDataProps } from './TableWithModal';
+import { ColumnDataProps } from "./TableWithModal";
 
 export const makeColumns = (columnData: ColumnDataProps[]) => {
-  console.log(columnData);
+  // console.log(columnData);
   let columns: any[] = [];
   columnData.forEach(data => {
     columns.push({

@@ -33,6 +33,7 @@
     "styled-components": "^4.1.1"
   },
   "devDependencies": {
+    "@types/match-sorter": "^2.2.0",
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
@@ -95,7 +96,9 @@
     "dist"
   ],
   "dependencies": {
+
     "immer": "^1.8.0",
+    "match-sorter": "^2.3.0",
     "react-spring": "^6.1.10",
     "react-swipeable-views": "^0.13.0",
     "react-swipeable-views-utils": "^0.13.0",

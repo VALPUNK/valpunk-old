@@ -2,7 +2,7 @@ import Paper from "@material-ui/core/Paper";
 import { createStyles, Theme, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import * as React from "react";
-import ReactTable from "react-table";
+import ReactTable, { Column } from "react-table";
 import "react-table/react-table.css";
 import TableCell from "./components/TableCell";
 import TablePagination from "./components/TablePagination";
@@ -21,6 +21,12 @@ const styles = (theme: Theme) =>
     }
   });
 
+  export interface ColumnDataProps {
+    name: string;
+    key: string;
+    options?: Column;
+  }
+
 export interface SimpleTableProps {
   classes?: {
     root?: string;
@@ -28,8 +34,10 @@ export interface SimpleTableProps {
   };
   tableTitle: string;
   data: any[];
-  columnData: Array<{ name: string; key: string }>;
+  columnData: ColumnDataProps[];
 }
+
+
 
 const SimpleTable = ({
   classes,
@@ -49,6 +57,11 @@ const SimpleTable = ({
               columns: makeColumns(columnData)
             }
           ]}
+          filterable={
+            columnData.some(prop => (prop.options ? true : false))
+              ? true
+              : false
+          }
           PaginationComponent={TablePagination}
           defaultPageSize={10}
           className="-striped -highlight"
