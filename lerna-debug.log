@@ -2,21 +2,21 @@
 0 silly argv   composed: 'publish',
 0 silly argv   lernaVersion: '3.6.0',
 0 silly argv   '$0':
-0 silly argv    '..\\..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js' }
+0 silly argv    'C:\\Users\\Enric\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js' }
 1 notice cli v3.6.0
-2 verbose rootPath C:\Users\Enric\Documents\projects\learn\valpunk-lerna
+2 verbose rootPath C:\Users\Enric\Documents\projects\valpunk
 3 info Verifying npm credentials
 4 verbose Retrieving npm user profile
-5 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 482ms
+5 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 385ms
 6 silly npm profile get received {"tfa":{"pending":false,"mode":"auth-only"},"name":"valpunk","email":"enrico@valpunk.com","email_verified":true,"created":"2018-10-19T21:09:50.402Z","updated":"2018-12-14T03:01:47.542Z","cidr_whitelist":null,"fullname":"Enrico Valbuena","twitter":"","github":"Enricopv"}
 7 silly npm whoami received {"username":"valpunk"}
 8 silly argv { _: [ 'publish' ],
 8 silly argv   composed: 'publish',
 8 silly argv   lernaVersion: '3.6.0',
 8 silly argv   '$0':
-8 silly argv    '..\\..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js' }
-9 verbose rootPath C:\Users\Enric\Documents\projects\learn\valpunk-lerna
-10 info current version 0.0.1
+8 silly argv    'C:\\Users\\Enric\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js' }
+9 verbose rootPath C:\Users\Enric\Documents\projects\valpunk
+10 info current version 0.0.11-alpha.0
 11 silly isAnythingCommitted
 12 verbose isAnythingCommitted 1
 13 silly currentBranch
@@ -25,217 +25,222 @@
 16 silly isBehindUpstream
 17 silly isBehindUpstream master is behind valpunk/master by 0 commit(s) and ahead by 1
 18 silly hasTags
-19 verbose hasTags false
-20 info Looking for changed packages since initial commit.
-21 verbose updated @valpunk/core
-22 verbose updated @valpunk/react-stripe
-23 verbose git-describe undefined => "be832ec"
-24 silly git-describe parsed => {"refCount":"22","sha":"be832ec","isDirty":false}
-25 silly batched [ PackageGraphNode {
-25 silly batched     name: '@valpunk/core',
-25 silly batched     externalDependencies:
-25 silly batched      Map {
-25 silly batched        '@babel/core' => [Object],
-25 silly batched        '@babel/preset-env' => [Object],
-25 silly batched        '@babel/preset-react' => [Object],
-25 silly batched        '@material-ui/core' => [Object],
-25 silly batched        '@material-ui/icons' => [Object],
-25 silly batched        '@storybook/addon-actions' => [Object],
-25 silly batched        '@storybook/addon-info' => [Object],
-25 silly batched        '@storybook/addon-knobs' => [Object],
-25 silly batched        '@storybook/addons' => [Object],
-25 silly batched        '@storybook/react' => [Object],
-25 silly batched        '@types/classnames' => [Object],
-25 silly batched        '@types/jest' => [Object],
-25 silly batched        '@types/material-ui' => [Object],
-25 silly batched        '@types/react' => [Object],
-25 silly batched        '@types/react-dom' => [Object],
-25 silly batched        '@types/react-swipeable-views' => [Object],
-25 silly batched        '@types/react-table' => [Object],
-25 silly batched        '@types/storybook__addon-info' => [Object],
-25 silly batched        '@types/storybook__addon-knobs' => [Object],
-25 silly batched        '@types/storybook__react' => [Object],
-25 silly batched        '@types/styled-components' => [Object],
-25 silly batched        '@types/styled-jsx' => [Object],
-25 silly batched        'awesome-typescript-loader' => [Object],
-25 silly batched        'babel-loader' => [Object],
-25 silly batched        'babel-plugin-external-helpers' => [Object],
-25 silly batched        'babel-plugin-import' => [Object],
-25 silly batched        'babel-plugin-module-resolver' => [Object],
-25 silly batched        'babel-plugin-styled-components' => [Object],
-25 silly batched        'babel-preset-stage-0' => [Object],
-25 silly batched        'comment-json' => [Object],
-25 silly batched        'cross-env' => [Object],
-25 silly batched        'gh-pages' => [Object],
-25 silly batched        'git-cz' => [Object],
-25 silly batched        'husky' => [Object],
-25 silly batched        'jest' => [Object],
-25 silly batched        'parcel-bundler' => [Object],
-25 silly batched        'prettier' => [Object],
-25 silly batched        'react' => [Object],
-25 silly batched        'react-docgen-typescript-webpack-plugin' => [Object],
-25 silly batched        'react-dom' => [Object],
-25 silly batched        'react-final-form' => [Object],
-25 silly batched        'react-scripts' => [Object],
-25 silly batched        'react-swipeable-views' => [Object],
-25 silly batched        'rimraf' => [Object],
-25 silly batched        'rollup' => [Object],
-25 silly batched        'rollup-plugin-babel' => [Object],
-25 silly batched        'rollup-plugin-commonjs' => [Object],
-25 silly batched        'rollup-plugin-node-resolve' => [Object],
-25 silly batched        'rollup-plugin-peer-deps-external' => [Object],
-25 silly batched        'rollup-plugin-postcss' => [Object],
-25 silly batched        'rollup-plugin-typescript3' => [Object],
-25 silly batched        'semantic-release' => [Object],
-25 silly batched        'styled-components' => [Object],
-25 silly batched        'ts-jest' => [Object],
-25 silly batched        'typescript' => [Object],
-25 silly batched        'webpack' => [Object],
-25 silly batched        'immer' => [Object],
-25 silly batched        'react-spring' => [Object],
-25 silly batched        'react-table' => [Object],
-25 silly batched        'storybook-addon-jsx' => [Object] },
-25 silly batched     localDependencies: Map {},
-25 silly batched     localDependents: Map {} },
-25 silly batched   PackageGraphNode {
-25 silly batched     name: '@valpunk/react-stripe',
-25 silly batched     externalDependencies:
-25 silly batched      Map {
-25 silly batched        '@babel/core' => [Object],
-25 silly batched        '@babel/preset-env' => [Object],
-25 silly batched        '@babel/preset-react' => [Object],
-25 silly batched        '@storybook/addon-actions' => [Object],
-25 silly batched        '@storybook/addon-info' => [Object],
-25 silly batched        '@storybook/addon-knobs' => [Object],
-25 silly batched        '@storybook/addons' => [Object],
-25 silly batched        '@storybook/react' => [Object],
-25 silly batched        '@types/classnames' => [Object],
-25 silly batched        '@types/jest' => [Object],
-25 silly batched        '@types/material-ui' => [Object],
-25 silly batched        '@types/react' => [Object],
-25 silly batched        '@types/react-dom' => [Object],
-25 silly batched        '@types/react-stripe-elements-universal' => [Object],
-25 silly batched        '@types/storybook__addon-info' => [Object],
-25 silly batched        '@types/storybook__addon-knobs' => [Object],
-25 silly batched        '@types/storybook__react' => [Object],
-25 silly batched        '@types/styled-jsx' => [Object],
-25 silly batched        'awesome-typescript-loader' => [Object],
-25 silly batched        'babel-loader' => [Object],
-25 silly batched        'babel-plugin-external-helpers' => [Object],
-25 silly batched        'babel-plugin-import' => [Object],
-25 silly batched        'babel-plugin-module-resolver' => [Object],
-25 silly batched        'babel-plugin-styled-components' => [Object],
-25 silly batched        'babel-preset-stage-0' => [Object],
-25 silly batched        'comment-json' => [Object],
-25 silly batched        'cross-env' => [Object],
-25 silly batched        'gh-pages' => [Object],
-25 silly batched        'git-cz' => [Object],
-25 silly batched        'husky' => [Object],
-25 silly batched        'jest' => [Object],
-25 silly batched        'parcel-bundler' => [Object],
-25 silly batched        'prettier' => [Object],
-25 silly batched        'react' => [Object],
-25 silly batched        'react-docgen-typescript-webpack-plugin' => [Object],
-25 silly batched        'react-dom' => [Object],
-25 silly batched        'react-scripts' => [Object],
-25 silly batched        'rimraf' => [Object],
-25 silly batched        'rollup' => [Object],
-25 silly batched        'rollup-plugin-babel' => [Object],
-25 silly batched        'rollup-plugin-commonjs' => [Object],
-25 silly batched        'rollup-plugin-node-resolve' => [Object],
-25 silly batched        'rollup-plugin-peer-deps-external' => [Object],
-25 silly batched        'rollup-plugin-postcss' => [Object],
-25 silly batched        'rollup-plugin-typescript3' => [Object],
-25 silly batched        'semantic-release' => [Object],
-25 silly batched        'storybook-addon-jsx' => [Object],
-25 silly batched        'ts-jest' => [Object],
-25 silly batched        'typescript' => [Object],
-25 silly batched        'webpack' => [Object],
-25 silly batched        '@material-ui/core' => [Object],
-25 silly batched        '@material-ui/icons' => [Object],
-25 silly batched        'formik' => [Object],
-25 silly batched        'react-stripe-elements-universal' => [Object],
-25 silly batched        'styled-components' => [Object],
-25 silly batched        'yup' => [Object] },
-25 silly batched     localDependencies: Map {},
-25 silly batched     localDependents: Map {} } ]
-26 silly gitAdd [ 'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna\\packages\\valpunk-ui\\package.json',
-26 silly gitAdd   'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna\\packages\\vp-react-stripe-elements\\package.json',
-26 silly gitAdd   'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna\\lerna.json' ]
-27 silly gitCommit v0.0.2
-28 verbose git [ 'commit', '-m', 'v0.0.2' ]
-29 silly gitTag v0.0.2
-30 verbose git [ 'tag', 'v0.0.2', '-m', 'v0.0.2' ]
-31 info git Pushing tags...
-32 silly gitPush valpunk master
-33 silly batched [ PackageGraphNode {
-33 silly batched     name: '@valpunk/core',
-33 silly batched     externalDependencies:
-33 silly batched      Map {
-33 silly batched        'immer' => [Object],
-33 silly batched        'react-spring' => [Object],
-33 silly batched        'react-table' => [Object],
-33 silly batched        'storybook-addon-jsx' => [Object] },
-33 silly batched     localDependencies: Map {},
-33 silly batched     localDependents: Map {} },
-33 silly batched   PackageGraphNode {
-33 silly batched     name: '@valpunk/react-stripe',
-33 silly batched     externalDependencies:
-33 silly batched      Map {
-33 silly batched        '@material-ui/core' => [Object],
-33 silly batched        '@material-ui/icons' => [Object],
-33 silly batched        'formik' => [Object],
-33 silly batched        'react-stripe-elements-universal' => [Object],
-33 silly batched        'styled-components' => [Object],
-33 silly batched        'yup' => [Object] },
-33 silly batched     localDependencies: Map {},
-33 silly batched     localDependents: Map {} } ]
-34 info publish Publishing packages to npm...
-35 silly verifyNpmPackageAccess
-36 http fetch GET 200 https://registry.npmjs.org/-/org/valpunk/package?format=cli 233ms
-37 warn ENOLICENSE Packages @valpunk/core, @valpunk/react-stripe are missing a license
-38 silly getCurrentSHA
-39 verbose getCurrentSHA 10e5a30cb498d9bf5c688d1ad48b2dc64fd49093
-40 silly getExecOpts C:\Users\Enric\Documents\projects\learn\valpunk-lerna undefined
-41 silly exec npm options { cwd:
-41 silly exec    'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna',
-41 silly exec   env: { npm_config_json: true },
-41 silly exec   stdio: [ 'ignore', 'pipe', 'inherit' ] }
-42 verbose pack [ '@valpunk/core', '@valpunk/react-stripe' ]
-43 silly exec npm [ 'pack',
-43 silly exec   'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna\\packages\\valpunk-ui',
-43 silly exec   'C:\\Users\\Enric\\Documents\\projects\\learn\\valpunk-lerna\\packages\\vp-react-stripe-elements' ]
-44 error Error: Command failed: npm pack C:\Users\Enric\Documents\projects\learn\valpunk-lerna\packages\valpunk-ui C:\Users\Enric\Documents\projects\learn\valpunk-lerna\packages\vp-react-stripe-elements
-44 error
-44 error > @valpunk/core@0.0.2 prepublish C:/Users/Enric/Documents/projects/learn/valpunk-lerna/packages/valpunk-ui
-44 error > npm run build
-44 error
-44 error
-44 error > @valpunk/core@0.0.2 build C:\Users\Enric\Documents\projects\learn\valpunk-lerna\packages\valpunk-ui
-44 error > rimraf ./dist/ && rollup -c && tsc
-44 error
-44 error {
-44 error   "error": {
-44 error     "code": "ELIFECYCLE",
-44 error     "summary": "@valpunk/core@0.0.2 build: `rimraf ./dist/ && rollup -c && tsc`\nExit status 1",
-44 error     "detail": "\nFailed at the @valpunk/core@0.0.2 build script.\nThis is probably not a problem with npm. There is likely additional logging output above."
-44 error   }
-44 error }
-44 error
-44 error > @valpunk/react-stripe@0.0.2 prepublish C:/Users/Enric/Documents/projects/learn/valpunk-lerna/packages/vp-react-stripe-elements
-44 error > npm run build
-44 error
-44 error {
-44 error   "error": {
-44 error     "code": "ELIFECYCLE",
-44 error     "summary": "@valpunk/core@0.0.2 prepublish: `npm run build`\nExit status 1",
-44 error     "detail": "\nFailed at the @valpunk/core@0.0.2 prepublish script.\nThis is probably not a problem with npm. There is likely additional logging output above."
-44 error   }
-44 error }
-44 error
-44 error > @valpunk/react-stripe@0.0.2 build C:\Users\Enric\Documents\projects\learn\valpunk-lerna\packages\vp-react-stripe-elements
-44 error > rimraf ./dist/ && rollup -c && tsc
-44 error
-44 error
-44 error     at makeError (C:\Users\Enric\Documents\projects\learn\valpunk-lerna\node_modules\execa\index.js:174:9)
-44 error     at Promise.all.then.arr (C:\Users\Enric\Documents\projects\learn\valpunk-lerna\node_modules\execa\index.js:278:16)
+19 verbose hasTags true
+20 silly git-describe.sync "v0.0.11-alpha.0-1-gaa0d74c" => {"lastTagName":"v0.0.11-alpha.0","lastVersion":"v0.0.11-alpha.0","refCount":"1","sha":"aa0d74c","isDirty":false}
+21 info Looking for changed packages since v0.0.11-alpha.0
+22 verbose updated @valpunk/core
+23 verbose updated @valpunk/react-stripe
+24 verbose git-describe undefined => "v0.0.11-alpha.0-1-gaa0d74c"
+25 silly git-describe parsed => {"lastTagName":"v0.0.11-alpha.0","lastVersion":"v0.0.11-alpha.0","refCount":"1","sha":"aa0d74c","isDirty":false}
+26 silly batched [ PackageGraphNode {
+26 silly batched     name: '@valpunk/core',
+26 silly batched     externalDependencies:
+26 silly batched      Map {
+26 silly batched        '@babel/core' => [Object],
+26 silly batched        '@babel/preset-env' => [Object],
+26 silly batched        '@babel/preset-react' => [Object],
+26 silly batched        '@material-ui/core' => [Object],
+26 silly batched        '@material-ui/icons' => [Object],
+26 silly batched        '@storybook/addon-actions' => [Object],
+26 silly batched        '@storybook/addon-info' => [Object],
+26 silly batched        '@storybook/addon-knobs' => [Object],
+26 silly batched        '@storybook/addons' => [Object],
+26 silly batched        '@storybook/react' => [Object],
+26 silly batched        '@types/classnames' => [Object],
+26 silly batched        '@types/jest' => [Object],
+26 silly batched        '@types/material-ui' => [Object],
+26 silly batched        '@types/react' => [Object],
+26 silly batched        '@types/react-dom' => [Object],
+26 silly batched        '@types/react-swipeable-views' => [Object],
+26 silly batched        '@types/react-table' => [Object],
+26 silly batched        '@types/storybook__addon-info' => [Object],
+26 silly batched        '@types/storybook__addon-knobs' => [Object],
+26 silly batched        '@types/storybook__react' => [Object],
+26 silly batched        '@types/styled-components' => [Object],
+26 silly batched        '@types/styled-jsx' => [Object],
+26 silly batched        'awesome-typescript-loader' => [Object],
+26 silly batched        'babel-loader' => [Object],
+26 silly batched        'babel-plugin-external-helpers' => [Object],
+26 silly batched        'babel-plugin-import' => [Object],
+26 silly batched        'babel-plugin-module-resolver' => [Object],
+26 silly batched        'babel-plugin-styled-components' => [Object],
+26 silly batched        'babel-preset-stage-0' => [Object],
+26 silly batched        'comment-json' => [Object],
+26 silly batched        'cross-env' => [Object],
+26 silly batched        'gh-pages' => [Object],
+26 silly batched        'git-cz' => [Object],
+26 silly batched        'husky' => [Object],
+26 silly batched        'jest' => [Object],
+26 silly batched        'parcel-bundler' => [Object],
+26 silly batched        'prettier' => [Object],
+26 silly batched        'react' => [Object],
+26 silly batched        'react-docgen-typescript-webpack-plugin' => [Object],
+26 silly batched        'react-dom' => [Object],
+26 silly batched        'react-final-form' => [Object],
+26 silly batched        'react-scripts' => [Object],
+26 silly batched        'react-swipeable-views' => [Object],
+26 silly batched        'rimraf' => [Object],
+26 silly batched        'rollup' => [Object],
+26 silly batched        'rollup-plugin-babel' => [Object],
+26 silly batched        'rollup-plugin-commonjs' => [Object],
+26 silly batched        'rollup-plugin-node-resolve' => [Object],
+26 silly batched        'rollup-plugin-peer-deps-external' => [Object],
+26 silly batched        'rollup-plugin-postcss' => [Object],
+26 silly batched        'rollup-plugin-typescript3' => [Object],
+26 silly batched        'semantic-release' => [Object],
+26 silly batched        'styled-components' => [Object],
+26 silly batched        'ts-jest' => [Object],
+26 silly batched        'typescript' => [Object],
+26 silly batched        'webpack' => [Object],
+26 silly batched        'immer' => [Object],
+26 silly batched        'react-spring' => [Object],
+26 silly batched        'react-swipeable-views-utils' => [Object],
+26 silly batched        'react-table' => [Object],
+26 silly batched        'storybook-addon-jsx' => [Object] },
+26 silly batched     localDependencies: Map {},
+26 silly batched     localDependents: Map {} },
+26 silly batched   PackageGraphNode {
+26 silly batched     name: '@valpunk/react-stripe',
+26 silly batched     externalDependencies:
+26 silly batched      Map {
+26 silly batched        '@babel/core' => [Object],
+26 silly batched        '@babel/preset-env' => [Object],
+26 silly batched        '@babel/preset-react' => [Object],
+26 silly batched        '@storybook/addon-actions' => [Object],
+26 silly batched        '@storybook/addon-info' => [Object],
+26 silly batched        '@storybook/addon-knobs' => [Object],
+26 silly batched        '@storybook/addons' => [Object],
+26 silly batched        '@storybook/react' => [Object],
+26 silly batched        '@types/classnames' => [Object],
+26 silly batched        '@types/jest' => [Object],
+26 silly batched        '@types/material-ui' => [Object],
+26 silly batched        '@types/react' => [Object],
+26 silly batched        '@types/react-dom' => [Object],
+26 silly batched        '@types/react-stripe-elements-universal' => [Object],
+26 silly batched        '@types/storybook__addon-info' => [Object],
+26 silly batched        '@types/storybook__addon-knobs' => [Object],
+26 silly batched        '@types/storybook__react' => [Object],
+26 silly batched        '@types/styled-jsx' => [Object],
+26 silly batched        'awesome-typescript-loader' => [Object],
+26 silly batched        'babel-loader' => [Object],
+26 silly batched        'babel-plugin-external-helpers' => [Object],
+26 silly batched        'babel-plugin-import' => [Object],
+26 silly batched        'babel-plugin-module-resolver' => [Object],
+26 silly batched        'babel-plugin-styled-components' => [Object],
+26 silly batched        'babel-preset-stage-0' => [Object],
+26 silly batched        'comment-json' => [Object],
+26 silly batched        'cross-env' => [Object],
+26 silly batched        'gh-pages' => [Object],
+26 silly batched        'git-cz' => [Object],
+26 silly batched        'husky' => [Object],
+26 silly batched        'jest' => [Object],
+26 silly batched        'parcel-bundler' => [Object],
+26 silly batched        'prettier' => [Object],
+26 silly batched        'react' => [Object],
+26 silly batched        'react-docgen-typescript-webpack-plugin' => [Object],
+26 silly batched        'react-dom' => [Object],
+26 silly batched        'react-scripts' => [Object],
+26 silly batched        'rimraf' => [Object],
+26 silly batched        'rollup' => [Object],
+26 silly batched        'rollup-plugin-babel' => [Object],
+26 silly batched        'rollup-plugin-commonjs' => [Object],
+26 silly batched        'rollup-plugin-node-resolve' => [Object],
+26 silly batched        'rollup-plugin-peer-deps-external' => [Object],
+26 silly batched        'rollup-plugin-postcss' => [Object],
+26 silly batched        'rollup-plugin-typescript3' => [Object],
+26 silly batched        'semantic-release' => [Object],
+26 silly batched        'storybook-addon-jsx' => [Object],
+26 silly batched        'ts-jest' => [Object],
+26 silly batched        'typescript' => [Object],
+26 silly batched        'webpack' => [Object],
+26 silly batched        '@material-ui/core' => [Object],
+26 silly batched        '@material-ui/icons' => [Object],
+26 silly batched        'formik' => [Object],
+26 silly batched        'react-stripe-elements-universal' => [Object],
+26 silly batched        'styled-components' => [Object],
+26 silly batched        'yup' => [Object] },
+26 silly batched     localDependencies: Map {},
+26 silly batched     localDependents: Map {} } ]
+27 silly gitAdd [ 'C:\\Users\\Enric\\Documents\\projects\\valpunk\\packages\\core\\package.json',
+27 silly gitAdd   'C:\\Users\\Enric\\Documents\\projects\\valpunk\\packages\\react-stripe\\package.json',
+27 silly gitAdd   'C:\\Users\\Enric\\Documents\\projects\\valpunk\\lerna.json' ]
+28 silly gitCommit v0.0.12-alpha.0
+29 verbose git [ 'commit', '-m', 'v0.0.12-alpha.0' ]
+30 silly gitTag v0.0.12-alpha.0
+31 verbose git [ 'tag', 'v0.0.12-alpha.0', '-m', 'v0.0.12-alpha.0' ]
+32 info git Pushing tags...
+33 silly gitPush valpunk master
+34 silly batched [ PackageGraphNode {
+34 silly batched     name: '@valpunk/core',
+34 silly batched     externalDependencies:
+34 silly batched      Map {
+34 silly batched        'immer' => [Object],
+34 silly batched        'react-spring' => [Object],
+34 silly batched        'react-swipeable-views' => [Object],
+34 silly batched        'react-swipeable-views-utils' => [Object],
+34 silly batched        'react-table' => [Object],
+34 silly batched        'storybook-addon-jsx' => [Object] },
+34 silly batched     localDependencies: Map {},
+34 silly batched     localDependents: Map {} },
+34 silly batched   PackageGraphNode {
+34 silly batched     name: '@valpunk/react-stripe',
+34 silly batched     externalDependencies:
+34 silly batched      Map {
+34 silly batched        '@material-ui/core' => [Object],
+34 silly batched        '@material-ui/icons' => [Object],
+34 silly batched        'formik' => [Object],
+34 silly batched        'react-stripe-elements-universal' => [Object],
+34 silly batched        'styled-components' => [Object],
+34 silly batched        'yup' => [Object] },
+34 silly batched     localDependencies: Map {},
+34 silly batched     localDependents: Map {} } ]
+35 info publish Publishing packages to npm...
+36 silly verifyNpmPackageAccess
+37 http fetch GET 200 https://registry.npmjs.org/-/org/valpunk/package?format=cli 106ms
+38 warn ENOLICENSE Packages @valpunk/core, @valpunk/react-stripe are missing a license
+39 silly getCurrentSHA
+40 verbose getCurrentSHA 5f7dff7be9bdd8d9e00ecc2304deb56033b87c9d
+41 silly getExecOpts C:\Users\Enric\Documents\projects\valpunk undefined
+42 silly exec npm options { cwd: 'C:\\Users\\Enric\\Documents\\projects\\valpunk',
+42 silly exec   env: { npm_config_json: true },
+42 silly exec   stdio: [ 'ignore', 'pipe', 'inherit' ] }
+43 verbose pack [ '@valpunk/core', '@valpunk/react-stripe' ]
+44 silly exec npm [ 'pack',
+44 silly exec   'C:\\Users\\Enric\\Documents\\projects\\valpunk\\packages\\core',
+44 silly exec   'C:\\Users\\Enric\\Documents\\projects\\valpunk\\packages\\react-stripe' ]
+45 error Error: Command failed: npm pack C:\Users\Enric\Documents\projects\valpunk\packages\core C:\Users\Enric\Documents\projects\valpunk\packages\react-stripe
+45 error
+45 error > @valpunk/react-stripe@0.0.12-alpha.0 prepublish C:/Users/Enric/Documents/projects/valpunk/packages/react-stripe
+45 error > npm run build
+45 error
+45 error
+45 error > @valpunk/react-stripe@0.0.12-alpha.0 build C:\Users\Enric\Documents\projects\valpunk\packages\react-stripe
+45 error > rimraf ./dist/ && rollup -c && tsc
+45 error
+45 error
+45 error > @valpunk/core@0.0.12-alpha.0 prepublish C:/Users/Enric/Documents/projects/valpunk/packages/core
+45 error > npm run build
+45 error
+45 error
+45 error > @valpunk/core@0.0.12-alpha.0 build C:\Users\Enric\Documents\projects\valpunk\packages\core
+45 error > rimraf ./dist/ && rollup -c && tsc
+45 error
+45 error error TS1149: File name 'C:/Users/Enric/Documents/projects/valpunk/packages/core/src/components/templates/Carousel/index.tsx' differs from already included file name 'C:/Users/Enric/Documents/projects/valpunk/packages/core/src/components/Templates/Carousel/index.tsx' only in casing.
+45 error error TS1149: File name 'C:/Users/Enric/Documents/projects/valpunk/packages/core/src/components/templates/index.tsx' differs from already included file name 'C:/Users/Enric/Documents/projects/valpunk/packages/core/src/components/Templates/index.tsx' only in casing.
+45 error {
+45 error   "error": {
+45 error     "code": "ELIFECYCLE",
+45 error     "summary": "@valpunk/core@0.0.12-alpha.0 build: `rimraf ./dist/ && rollup -c && tsc`\nExit status 2",
+45 error     "detail": "\nFailed at the @valpunk/core@0.0.12-alpha.0 build script.\nThis is probably not a problem with npm. There is likely additional logging output above."
+45 error   }
+45 error }
+45 error {
+45 error   "error": {
+45 error     "code": "ELIFECYCLE",
+45 error     "summary": "@valpunk/core@0.0.12-alpha.0 prepublish: `npm run build`\nExit status 2",
+45 error     "detail": "\nFailed at the @valpunk/core@0.0.12-alpha.0 prepublish script.\nThis is probably not a problem with npm. There is likely additional logging output above."
+45 error   }
+45 error }
+45 error
+45 error     at makeError (C:\Users\Enric\Documents\projects\valpunk\node_modules\execa\index.js:174:9)
+45 error     at Promise.all.then.arr (C:\Users\Enric\Documents\projects\valpunk\node_modules\execa\index.js:278:16)

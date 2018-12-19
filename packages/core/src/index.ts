@@ -8,7 +8,7 @@ import {
   TableWithModal
 } from "./components/collections/index";
 import { Navbar } from "./components/compositions/index";
-import { Carousel } from "./components/Templates";
+import { Carousel } from "./components/templates";
 
 export {
   ButtonOutline,
