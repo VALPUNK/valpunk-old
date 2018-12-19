@@ -57,7 +57,7 @@ class CarouselContainer extends React.Component<
 
   public render() {
     return (
-      <>
+      <div>
         {this.props.children({
           nextSlide: this.nextSlide,
           prevSlide: this.prevSlide,
@@ -65,7 +65,7 @@ class CarouselContainer extends React.Component<
           handleChangeIndex: this.handleChangeIndex,
           index: this.state.index
         })}
-      </>
+      </div>
     );
   }
 }

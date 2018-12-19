@@ -34,6 +34,7 @@ export default class Carousel extends React.Component<CarouselProps> {
           for (let i = 0; i < this.props.pages; i++) {
             Buttons.push(
               <CarouselNav
+                key={i}
                 onClick={() => handleNextPage(i)}
                 selected={index === i}
               />
