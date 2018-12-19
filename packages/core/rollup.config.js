@@ -47,8 +47,8 @@ export default {
   ],
   plugins: [
     alias({
-      "~/components/*": ["./components/*"],
-      "~/constants/*": ["./constants/*"]
+      "~/components/*": "./components/*",
+      "~/constants/*": "./constants/*"
     }),
     resolve({
       jsnext: true,

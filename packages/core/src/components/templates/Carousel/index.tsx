@@ -3,7 +3,10 @@ import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-import { CarouselContainer, CarouselNav } from "~/components/compositions";
+import {
+  CarouselContainer,
+  CarouselNav
+} from "../../../components/compositions";
 
 export interface CarouselProps {
   pages: number;
