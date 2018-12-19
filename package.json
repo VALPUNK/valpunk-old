@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "storybook": "cd packages/core && yarn storybook"
+    "storybook": "cd packages/core && yarn storybook",
+    "publish": "yarn && lerna publish"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
