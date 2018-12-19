@@ -5,7 +5,7 @@
   "description": "VALPUNK UI Library",
   "author": "Enrico Valbuena",
   "license": "MIT",
-  "repository": "https://github.com/Enricopv/valpunk-ui",
+  "repository": "https://github.com/VALPUNK/valpunk",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "publishConfig": {
@@ -104,5 +104,5 @@
     "react-table": "^6.8.6",
     "storybook-addon-jsx": "^5.4.0"
   },
-  "gitHead": "23d5c0faca80b1af74aa82a4935ff2eb1605b64e"
+  "gitHead": "6803b90659f79cfb989143760938aef80ec64a0e"
 }
