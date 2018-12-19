@@ -30,7 +30,15 @@ const styles = {
 (storiesOf("Carousel", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
   .add("Simple Carousel", () => (
-    <Carousel pages={3} interval={5000}>
+    <Carousel
+      pages={3}
+      interval={5000}
+      springConfig={{
+        duration: "1s",
+        easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+        delay: "0s"
+      }}
+    >
       <div style={Object.assign({}, styles.slide, styles.slide1)}>
         slide n°1
       </div>

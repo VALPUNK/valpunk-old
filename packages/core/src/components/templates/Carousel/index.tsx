@@ -1,7 +1,7 @@
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import * as React from "react";
-import SwipeableViews from "react-swipeable-views";
+import SwipeableViews, { SpringConfig } from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import {
   CarouselContainer,
@@ -11,6 +11,7 @@ import {
 export interface CarouselProps {
   pages: number;
   interval?: number;
+  springConfig?: SpringConfig;
 }
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -47,6 +48,13 @@ export default class Carousel extends React.Component<CarouselProps> {
                 interval={this.props.interval || 5000}
                 index={index}
                 onChangeIndex={handleChangeIndex}
+                springConfig={
+                  this.props.springConfig || {
+                    duration: "1s",
+                    easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
+                    delay: "0s"
+                  }
+                }
               >
                 {this.props.children}
               </AutoPlaySwipeableViews>
