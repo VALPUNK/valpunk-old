@@ -1,13 +1,14 @@
 import { ButtonOutline, RegularButton } from "./components/basic/Button/index";
 import {
   SimpleTable,
-  TableWithModal,
   TableCell,
   TableHeaderCell,
   TablePagination,
-  TableToolbar
+  TableToolbar,
+  TableWithModal
 } from "./components/collections/index";
 import { Navbar } from "./components/compositions/index";
+import { Carousel } from "./components/Templates";
 
 export {
   ButtonOutline,
@@ -18,5 +19,6 @@ export {
   TableCell,
   TableHeaderCell,
   TablePagination,
-  TableToolbar
+  TableToolbar,
+  Carousel
 };
