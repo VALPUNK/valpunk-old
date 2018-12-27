@@ -5,6 +5,7 @@ import typescriptPlugin from "rollup-plugin-typescript3";
 import pkg from "./package.json";
 import babel from "rollup-plugin-babel";
 import postcss from "rollup-plugin-postcss";
+import alias from "rollup-plugin-alias";
 
 export default {
   input: "./src/index.ts",
@@ -45,6 +46,10 @@ export default {
     ...Object.keys(pkg.peerDependencies || {})
   ],
   plugins: [
+    alias({
+      "~/components/*": "./components/*",
+      "~/constants/*": "./constants/*"
+    }),
     resolve({
       jsnext: true,
       extensions: [".ts", ".tsx"],

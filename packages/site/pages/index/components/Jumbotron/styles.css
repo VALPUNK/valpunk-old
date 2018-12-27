@@ -7,12 +7,14 @@
 .text {
   pointer-events: none;
   justify-content: start !important;
-  font-family: 'Kanit', sans-serif;
-  line-height: 0px;
+  font-family: "Kanit", sans-serif;
+  /* line-height: 0px; */
+  line-height: 3rem;
   text-transform: uppercase;
 }
 
 .number {
+  margin-left: 2%;
   font-size: 450px;
   color: #373c4c;
 }
@@ -24,8 +26,10 @@
 }
 
 .header {
-  margin-left: 350px;
-  font-size: 70px;
+  margin-left: 6%;
+  /* margin-left: 350px; */
+  /* font-size: 45px; */
+  font-size: 3rem;
   color: white;
 }
 
@@ -40,7 +44,12 @@
 }
 
 .slopeEnd {
-  clip-path: polygon(70% 0, 100% 0, calc(100% - 20vw) 100%, calc(70% - 20vw) 100%);
+  clip-path: polygon(
+    70% 0,
+    100% 0,
+    calc(100% - 20vw) 100%,
+    calc(70% - 20vw) 100%
+  );
 }
 
 .slopeBegin,

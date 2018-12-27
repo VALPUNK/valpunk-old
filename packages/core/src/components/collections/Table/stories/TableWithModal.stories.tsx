@@ -8,25 +8,44 @@ import { TableCellRenderer } from "react-table";
 import TableToolbar from "../components/TableToolbar";
 import { data } from "../mock";
 import TableWithModal from "../TableWithModal";
+import matchSorter from "match-sorter"
 
 const columnData = [
   {
     name: "First Name",
-    key: "firstName"
+    key: "firstName",
+    options: {
+      filterMethod: (filter: any, rows: any) =>
+        matchSorter(rows, filter.value, { keys: ["firstName"] }),
+      filterAll: true
+    }
+
   },
   {
     name: "Last Name",
-    key: "firstName"
+    key: "lastName",
+    options: {
+      filterable: false
+    }
   },
   {
     name: "Profile Progress",
-    key: "progress"
+    key: "progress",
+    options: {
+      filterable: false
+    }
   },
   {
     name: "Status",
-    key: "status"
+    key: "status",
+    options: {
+      filterable: false
+    }
   }
 ];
+
+
+// test
 
 const Example = () => (
   <Grid container={true} justify="center" style={{ padding: 50 }}>
@@ -36,6 +55,7 @@ const Example = () => (
         tableTitle={"Table with Modal"}
         data={data}
       >
+
         {({ clickedData, modalStyle }) => {
           if (!clickedData.data) {
             return <div>Loading...</div>;

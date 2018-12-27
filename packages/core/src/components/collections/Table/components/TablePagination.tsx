@@ -25,18 +25,18 @@ export default class TablePagination extends React.Component<
   }
 
   public componentDidUpdate() {
-    console.log("pagination props", this.props)
+    // console.log("pagination props", this.props)
   }
 
   public changePage(_event: React.MouseEvent<HTMLButtonElement>, page: number) {
-    console.log(this.props)
+    // console.log(this.props)
     this.props.onPageChange(page)
   }
 
   public changeRowsPerPageHandler(
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) {
-    console.log(this.props)
+    // console.log(this.props)
     this.props.onPageSizeChange(Number(event.target.value), this.props.page)
   }
 

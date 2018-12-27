@@ -1,11 +1,11 @@
 {
   "name": "@valpunk/react-stripe",
   "private": false,
-  "version": "0.0.7-alpha.0",
+  "version": "0.1.1",
   "description": "A react-stripe-elements tool that lets you use your own input components in conjunction with *Elements",
   "author": "Enrico Valbuena",
   "license": "MIT",
-  "repository": "https://github.com/VALPUNK/vp-react-stripe-elements",
+  "repository": "https://github.com/VALPUNK/valpunk",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "publishConfig": {
@@ -92,5 +92,5 @@
     "styled-components": "^4.1.2",
     "yup": "^0.26.6"
   },
-  "gitHead": "be6bda115093fe49efb8be033f472410dacef02b"
+  "gitHead": "22580132db407e10cf0b7b6b94bd9f9ec7dc023e"
 }

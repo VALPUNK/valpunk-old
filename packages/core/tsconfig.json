@@ -9,14 +9,12 @@
     "baseUrl": "./src",
     "paths": {
       "~/components/*": ["./components/*"],
-
       "~/constants/*": ["./constants/*"]
     },
     "declaration": true,
     "declarationDir": "./dist",
     "moduleResolution": "node",
     "rootDirs": ["./src/"],
-
     "removeComments": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
