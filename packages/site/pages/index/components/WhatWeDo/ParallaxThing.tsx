@@ -64,7 +64,8 @@ export default class ParallaxThing extends React.Component<Props> {
             width: "40%",
             height: this.props.height * 0.8,
             backgroundColor: "white",
-            transform: "translate(0%, 60%)"
+            transform: "translate(0%, 60%)",
+            boxShadow: "2px 2px 5px rgba(0,0,0,0.5)"
           }}
           // innerStyle={{ width: "75%" }}
           scrolling={false}

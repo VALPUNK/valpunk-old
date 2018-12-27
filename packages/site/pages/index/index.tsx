@@ -38,15 +38,13 @@ export default class Index extends React.Component<{}, State> {
             <WhatWeDo />
             <Mobile />
             <Grid
-              item
-              xs={12}
-              xl={8}
-              lg={9}
-              md={10}
-              sm={11}
-              style={{ height: 1000 }}
+              container
+              style={{ backgroundColor: "#CFD8DC" }}
+              justify="center"
             >
-              <Analytics />
+              <Grid item xs={12} xl={8} lg={9} md={10} sm={11}>
+                <Analytics />
+              </Grid>
             </Grid>
           </Grid>
 

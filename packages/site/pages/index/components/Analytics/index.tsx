@@ -6,6 +6,8 @@ import PeopleIcon from "@material-ui/icons/People"
 import ReferrIcon from "@material-ui/icons/RecordVoiceOver"
 import * as React from "react"
 import { StatsCard } from "~/components/collections"
+import AppUsage from "./components/AppUsage/AppUsage"
+import OfferPageClicks from "./components/OfferPageClicks/OfferPageClicks"
 import RecentActivity from "./components/RecentActivity/RecentActivity"
 import ReferralConversion from "./components/ReferralConversion/ReferralConversion"
 
@@ -24,7 +26,7 @@ export default class Analytics extends React.Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ textAlign: "center", margin: "60px 0px" }}
+            style={{ textAlign: "center", margin: "30px 0px" }}
           >
             We believe in the scientific method. We get data based off of the
             assumptions made and pivot or double down on a great feature.
@@ -57,10 +59,18 @@ export default class Analytics extends React.Component {
           />
         </Grid>
         <Grid container>
-          <Grid item xs={8}>
+          <Grid item xs={12} xl={8}>
             <ReferralConversion />
+            <Grid container>
+              <Grid item xs container>
+                <AppUsage />
+              </Grid>
+              <Grid item xs container>
+                <OfferPageClicks />
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} xl={4}>
             <RecentActivity />
           </Grid>
         </Grid>

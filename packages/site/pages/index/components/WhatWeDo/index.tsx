@@ -34,7 +34,7 @@ export default class Fun extends React.Component<{}, State> {
             variant="h3"
             style={{ textAlign: "center", margin: "60px 0px" }}
           >
-            Your Idea Out There
+            It Starts With Your Vision
           </Typography>
         </Grid>
         <Grid item xs={12} xl={6}>
