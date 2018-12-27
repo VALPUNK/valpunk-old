@@ -12,7 +12,6 @@ import {
   CarouselNav,
   Navbar
 } from "./components/compositions"
-import { UpCount } from "./components/special"
 import { Carousel } from "./components/templates"
 
 export {
@@ -27,6 +26,5 @@ export {
   TableToolbar,
   Carousel,
   CarouselContainer,
-  CarouselNav,
-  UpCount
+  CarouselNav
 }

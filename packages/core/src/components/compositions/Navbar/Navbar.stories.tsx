@@ -15,7 +15,6 @@ const navButtons = [
     link: "/tryfree"
   }
 ]
-
 ;(storiesOf("Navbar", module) as any)
   .add(
     "Responsive",
@@ -26,7 +25,10 @@ const navButtons = [
       <Navbar
         logo={{
           src:
-            "https://s3.us-east-2.amazonaws.com/valpunk-cdn/happily/happily_logo.png"
+            "https://s3.us-east-2.amazonaws.com/valpunk-cdn/happily/happily_logo.png",
+          style: {
+            height: 20
+          }
         }}
         navButtons={navButtons}
       />

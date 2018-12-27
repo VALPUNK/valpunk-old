@@ -12,16 +12,23 @@ export interface NavButtonProps {
 
 export interface NavbarProps extends WithWidth {
   onClick?: (_event: React.MouseEvent<HTMLElement>) => void
-  logo?: { src?: string; onClick?: () => void }
+  logo?: { src?: string; onClick?: () => void; style?: React.CSSProperties }
   navButtons?: NavButtonProps[]
+  barStyle?: React.CSSProperties
 }
 
-const Navbar = ({ width, onClick, logo, navButtons }: NavbarProps) => {
+const Navbar = ({
+  width,
+  onClick,
+  logo,
+  navButtons,
+  barStyle
+}: NavbarProps) => {
   const NavComponent =
     width === "xs" || width === "sm" ? MobileTopBar : DesktopNavbar
 
   return (
-    <NavComponent logo={logo}>
+    <NavComponent logo={logo} barStyle={barStyle}>
       {navButtons.map(item => (
         <MenuItem key={item.text} onClick={onClick}>
           {item.text}
