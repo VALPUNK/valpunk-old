@@ -77,6 +77,9 @@ class ImageCompareSlider extends React.Component<
     // this.autoReloadTasks = []
 
     // this.retryCount = 0
+    this.onError.bind(this)
+    this.onRightImageLoaded.bind(this)
+    this.onLeftImageLoaded.bind(this)
   }
 
   public componentDidMount = () => {
@@ -89,6 +92,7 @@ class ImageCompareSlider extends React.Component<
 
     // for mobile
     containerElement.addEventListener("touchstart", this.startSliding)
+    // containerElement.addEventListener("touchmove", this.startSliding)
     window.addEventListener("touchend", this.finishSliding)
 
     // for desktop
@@ -100,6 +104,13 @@ class ImageCompareSlider extends React.Component<
       window.addEventListener("mouseup", this.finishSliding)
     }
   }
+
+  // public shouldComponentUpdate(
+  //   _prevProps: ImageCompareSliderProps,
+  //   _prevState: State
+  // ) {
+  //   return true
+  // }
 
   public componentDidUpdate = (
     prevProps: ImageCompareSliderProps,
@@ -121,11 +132,11 @@ class ImageCompareSlider extends React.Component<
       this.underImageRef.current.src = null
       this.overImageRef.current.src = null
 
-      this.setState({
-        isLoadingLeftImg: true,
-        isLoadingRightImg: true,
-        isImgFullyLoaded: true
-      })
+      // this.setState({
+      //   isLoadingLeftImg: true,
+      //   isLoadingRightImg: true,
+      //   isImgFullyLoaded: true
+      // })
 
       // this.isLoadingRightImg = true
       // this.isLoadingLeftImg = true
@@ -171,6 +182,9 @@ class ImageCompareSlider extends React.Component<
     // Slide the image even if you just click or tap (not drag)
     this.handleSliding(e)
 
+    // if (!("touches" in e)) {
+    //   window.addEventListener("mousemove", this.handleSliding)
+    // }
     window.addEventListener("mousemove", this.handleSliding)
     window.addEventListener("touchmove", this.handleSliding)
   }
@@ -184,42 +198,40 @@ class ImageCompareSlider extends React.Component<
     const e = event || window.event
 
     // Calc Cursor Position from the left edge of the viewport
-    let cursorXfromViewport = null
-    if (e.touches) {
-      cursorXfromViewport = e.touches[0].pageX
-    } else {
-      cursorXfromViewport = e.pageX
+    // let cursorXfromViewport = null
+    // if (e.touches) {
+    //   console.log("hi")
+    //   cursorXfromViewport = e.touches[0].pageX
+    // } else {
+    //   cursorXfromViewport = e.pageX
+    // console.log("render")
 
-      // if (e.touches) {
-      // const cursorXfromViewport = e.touches ? e.touches[0].pageX : e.pageX
+    const cursorXfromViewport = e.touches ? e.touches[0].pageX : e.pageX
 
-      // }
+    // Calc Cursor Position from the left edge of the window (consider any page scrolling)
+    const cursorXfromWindow = cursorXfromViewport - window.pageXOffset
 
-      // Calc Cursor Position from the left edge of the window (consider any page scrolling)
-      const cursorXfromWindow = cursorXfromViewport - window.pageXOffset
+    // Calc Cursor Position from the left edge of the image
+    const imagePosition = this.underImageRef.current.getBoundingClientRect()
+    let pos = cursorXfromWindow - imagePosition.left
 
-      // Calc Cursor Position from the left edge of the image
-      const imagePosition = this.underImageRef.current.getBoundingClientRect()
-      let pos = cursorXfromWindow - imagePosition.left
+    // Set minimum and maximum values ​​to prevent the slider from overflowing
+    const minPos = 0 + this.props.sliderLineWidth / 2
+    const maxPos = this.state.imageWidth - this.props.sliderLineWidth / 2
 
-      // Set minimum and maximum values ​​to prevent the slider from overflowing
-      const minPos = 0 + this.props.sliderLineWidth / 2
-      const maxPos = this.state.imageWidth - this.props.sliderLineWidth / 2
+    if (pos < minPos) {
+      pos = minPos
+    }
+    if (pos > maxPos) {
+      pos = maxPos
+    }
 
-      if (pos < minPos) {
-        pos = minPos
-      }
-      if (pos > maxPos) {
-        pos = maxPos
-      }
-
-      this.setState({
-        sliderPositionPercentage: pos / this.state.imageWidth
-      })
-      // If there's a callback function, invoke it everytime the slider changes
-      if (this.props.onSliderPositionChange) {
-        this.props.onSliderPositionChange(pos / this.state.imageWidth)
-      }
+    this.setState({
+      sliderPositionPercentage: pos / this.state.imageWidth
+    })
+    // If there's a callback function, invoke it everytime the slider changes
+    if (this.props.onSliderPositionChange) {
+      this.props.onSliderPositionChange(pos / this.state.imageWidth)
     }
   }
 
@@ -242,7 +254,9 @@ class ImageCompareSlider extends React.Component<
     }
   }
 
-  public onError = (ref: React.RefObject<HTMLImageElement>, src: string) => {
+  public onError = (ref: React.RefObject<HTMLImageElement>, src: string) => (
+    _event: React.SyntheticEvent<HTMLImageElement>
+  ) => {
     const { autoReloadSpan, autoReloadLimit } = this.props
 
     if (!autoReloadSpan) {
@@ -264,18 +278,19 @@ class ImageCompareSlider extends React.Component<
   }
 
   public render = () => {
+    console.log("pants")
     const styles: StyleProps = {
-      container: {
-        boxSizing: "border-box",
-        position: "relative",
-        width: "100%",
-        overflow: "hidden"
-      },
-      underImage: {
-        display: "block",
-        height: "auto", // Respect the aspect ratio
-        width: "100%"
-      },
+      // container: {
+      //   boxSizing: "border-box",
+      //   position: "relative",
+      //   width: "100%",
+      //   overflow: "hidden"
+      // },
+      // underImage: {
+      //   display: "block",
+      //   height: "auto", // Respect the aspect ratio
+      //   width: "100%"
+      // },
       overImage: {
         clip: `rect(auto, ${this.state.imageWidth *
           this.state.sliderPositionPercentage}px, auto, auto)`,
@@ -342,12 +357,12 @@ class ImageCompareSlider extends React.Component<
     return (
       <React.Fragment>
         {this.props.skeleton && !this.state.isImgFullyLoaded && (
-          <div style={{ ...styles.container }}>{this.props.skeleton}</div>
+          <div style={{ ...staticStyles.container }}>{this.props.skeleton}</div>
         )}
 
         <div
           style={{
-            ...styles.container,
+            ...staticStyles.container,
             display: this.state.isImgFullyLoaded ? "block" : "none"
           }}
           ref={this.containerRef}
@@ -355,20 +370,16 @@ class ImageCompareSlider extends React.Component<
         >
           <img
             onLoad={this.onLeftImageLoaded}
-            onError={() =>
-              this.onError(this.underImageRef, this.props.rightImage)
-            }
+            onError={this.onError(this.underImageRef, this.props.rightImage)}
             alt="left"
             className="img-comp-under"
             ref={this.underImageRef}
             src={this.props.rightImage}
-            style={styles.underImage}
+            style={staticStyles.underImage}
           />
           <img
             onLoad={this.onRightImageLoaded}
-            onError={() =>
-              this.onError(this.overImageRef, this.props.leftImage)
-            }
+            onError={this.onError(this.overImageRef, this.props.leftImage)}
             alt="right"
             className="img-comp-over"
             ref={this.overImageRef}
@@ -391,9 +402,26 @@ class ImageCompareSlider extends React.Component<
 
 export default ImageCompareSlider
 
-interface StyleProps {
+const staticStyles: {
   container: React.CSSProperties
   underImage: React.CSSProperties
+} = {
+  container: {
+    boxSizing: "border-box",
+    position: "relative",
+    width: "100%",
+    overflow: "hidden"
+  },
+  underImage: {
+    display: "block",
+    height: "auto", // Respect the aspect ratio
+    width: "100%"
+  }
+}
+
+interface StyleProps {
+  // container: React.CSSProperties
+  // underImage: React.CSSProperties
   overImage: React.CSSProperties
   slider: React.CSSProperties
   line: React.CSSProperties

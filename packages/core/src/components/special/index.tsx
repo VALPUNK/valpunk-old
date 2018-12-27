@@ -1,3 +1,3 @@
-import Form from "./Form/index"
+import ImageCompareSlider from "./ImageCompareSlider/index"
 
-export { Form }
+export { ImageCompareSlider }

@@ -13,6 +13,7 @@ import {
   Navbar
 } from "./components/compositions"
 import { Carousel } from "./components/templates"
+import { ImageCompareSlider } from "./components/special"
 
 export {
   ButtonOutline,
@@ -26,5 +27,6 @@ export {
   TableToolbar,
   Carousel,
   CarouselContainer,
-  CarouselNav
+  CarouselNav,
+  ImageCompareSlider
 }
