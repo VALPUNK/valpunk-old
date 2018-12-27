@@ -46,6 +46,7 @@ export default class Index extends React.Component<{}, State> {
                 <Analytics />
               </Grid>
             </Grid>
+            <div style={{ height: 500 }}>Integrations boi</div>
           </Grid>
 
           <div style={{ height: 500 }}>Footer</div>

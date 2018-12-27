@@ -96,6 +96,7 @@
     "dist"
   ],
   "dependencies": {
+    "css-element-queries": "^1.1.1",
     "immer": "^1.8.0",
     "match-sorter": "^2.3.0",
     "react-spring": "^7.2.5",

@@ -45,13 +45,8 @@ export default class Fun extends React.Component<{}, State> {
             height={SectionHeight}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-          xl={6}
-          style={{ height: SectionHeight, padding: 60 }}
-        >
-          <AppBar position="static" color="default">
+        <Grid item xs={12} xl={6} style={{ height: SectionHeight }}>
+          <AppBar position="static" color="default" style={{ width: "80%" }}>
             <Tabs
               value={this.state.value}
               onChange={this.handleChange}
