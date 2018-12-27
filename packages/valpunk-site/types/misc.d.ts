@@ -1,5 +1,7 @@
 declare module "react-magnifier"
 
+declare module "react-spring/addons.cjs"
+
 declare module "react-jss" {
   import * as React from "react"
 

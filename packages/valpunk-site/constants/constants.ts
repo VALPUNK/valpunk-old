@@ -1,4 +1,4 @@
-export const AUTH_TOKEN = 'saf-auth-token'
+export const AUTH_TOKEN = "saf-auth-token"
 export const HAPPY_GREEN = "#11AB51"
 export const NOD_GREEN = "#33848D"
 export const DARK_GREEN = "#286F77"
@@ -12,4 +12,4 @@ export const CART_GREY = "#F2F0F5"
 export const PINK = "#BD2A65"
 export const DARK_PURPLE = "#403150"
 
-export const cdn = "https://s3.us-east-2.amazonaws.com/nod-cdn"
+export const cdn = "https://s3.us-east-2.amazonaws.com/saf-cdn"

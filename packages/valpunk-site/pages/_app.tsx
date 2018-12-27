@@ -74,21 +74,7 @@ class MyApp extends App<Props> {
                 sheetsManager={this.pageContext.sheetsManager}
               >
                 <CssBaseline>
-                  {
-                    // @ts-ignore
-                  Component.Layout ? (
-                    // @ts-ignore
-                    <Component.Layout>
-                      <Component
-                        pageContext={this.pageContext}
-                        {...pageProps}
-                      />
-                      {/*
-                      // @ts-ignore */}
-                    </Component.Layout>
-                  ) : (
-                    <Component pageContext={this.pageContext} {...pageProps} />
-                  )}
+                  <Component pageContext={this.pageContext} {...pageProps} />
                 </CssBaseline>
               </MuiThemeProvider>
             </JssProvider>
