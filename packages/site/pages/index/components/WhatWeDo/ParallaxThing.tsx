@@ -19,7 +19,7 @@ interface Props {
 
 const standardHeight = "100%"
 
-const pWidth = "50%"
+const pWidth = "100%"
 
 export default class ParallaxThing extends React.Component<Props> {
   public handleChange = (_event: any, value: number) => {
@@ -48,15 +48,23 @@ export default class ParallaxThing extends React.Component<Props> {
 
   public render() {
     return (
-      <div style={{ width: "50%", backgroundColor: "white" }}>
+      <div
+        style={{
+          backgroundColor: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <Parallax
           // @ts-ignore
           ref={ref => (this.parallax = ref)}
           pages={3}
           style={{
-            width: "100%",
-            height: this.props.height,
-            backgroundColor: "white"
+            width: "40%",
+            height: this.props.height * 0.8,
+            backgroundColor: "white",
+            transform: "translate(0%, 60%)"
           }}
           // innerStyle={{ width: "75%" }}
           scrolling={false}
