@@ -1,5 +1,6 @@
 {
-  "name": "valpunk-site",
+  "name": "@valpunk/site",
+  "private": true,
   "version": "0.1.0",
   "author": "",
   "license": "ISC",
