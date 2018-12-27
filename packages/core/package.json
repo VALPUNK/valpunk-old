@@ -98,7 +98,7 @@
   "dependencies": {
     "immer": "^1.8.0",
     "match-sorter": "^2.3.0",
-    "react-spring": "^6.1.10",
+    "react-spring": "^7.2.5",
     "react-swipeable-views": "^0.13.0",
     "react-swipeable-views-utils": "^0.13.0",
     "react-table": "^6.8.6",

@@ -1,3 +1,4 @@
-import Form from "./Form/index";
+import Form from "./Form/index"
+import UpCount from "./UpCount"
 
-export { Form };
+export { Form, UpCount }
