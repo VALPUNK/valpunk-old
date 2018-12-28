@@ -1,0 +1,17 @@
+declare module "css-element-queries" {
+  export declare type ResizeSensorCallback = (
+    size: { width: number; height: number }
+  ) => void
+
+  export declare class ResizeSensor {
+    constructor(element: Element | Element[], callback: ResizeSensorCallback)
+    detach(callback?: ResizeSensorCallback): void
+    reset(): void
+
+    static detach(
+      element: Element | Element[],
+      callback?: ResizeSensorCallback
+    ): void
+    static reset(element: Element | Element[]): void
+  }
+}

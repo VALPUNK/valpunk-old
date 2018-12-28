@@ -1,22 +1,23 @@
-import AppBar from "@material-ui/core/AppBar";
-import IconButton from "@material-ui/core/IconButton";
-import Toolbar from "@material-ui/core/Toolbar";
-import * as React from "react";
+import AppBar from "@material-ui/core/AppBar"
+import IconButton from "@material-ui/core/IconButton"
+import Toolbar from "@material-ui/core/Toolbar"
+import * as React from "react"
 
 interface Props {
-  children?: React.ReactNode;
-  onClick?: (_event: React.MouseEvent<HTMLElement>) => void;
-  logo?: { src?: string; onClick?: () => void };
+  children?: React.ReactNode
+  onClick?: (_event: React.MouseEvent<HTMLElement>) => void
+  logo?: { src?: string; onClick?: () => void; style?: React.CSSProperties }
+  barStyle?: React.CSSProperties
 }
 
 interface State {
-  auth: boolean;
-  anchorEl: EventTarget & HTMLElement;
+  auth: boolean
+  anchorEl: EventTarget & HTMLElement
 }
 
-const MobileNavbar = ({ logo, children }: Props) => {
+const DesktopNavbar = ({ logo, children, barStyle }: Props) => {
   return (
-    <div style={{ position: "sticky", top: 0, zIndex: 5 }}>
+    <div style={{ position: "sticky", top: 0, zIndex: 5, ...barStyle }}>
       <AppBar
         position="sticky"
         style={{
@@ -34,7 +35,7 @@ const MobileNavbar = ({ logo, children }: Props) => {
           <IconButton color="inherit" aria-label="Menu">
             <img
               src={logo.src}
-              style={{ width: 100, height: "auto" }}
+              style={{ width: 100, height: "auto", ...logo.style }}
               onClick={logo.onClick}
             />
           </IconButton>
@@ -44,7 +45,7 @@ const MobileNavbar = ({ logo, children }: Props) => {
         </Toolbar>
       </AppBar>
     </div>
-  );
-};
+  )
+}
 
-export default MobileNavbar;
+export default DesktopNavbar

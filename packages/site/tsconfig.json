@@ -21,6 +21,9 @@
       "~/lib/*": ["./lib/*"],
       "~/types/*": ["./types/*"],
       "~/utils/*": ["./utils/*"],
+      "~/theme/*": ["./theme/*"],
+      "~/pages/*": ["./pages/*"],
+      "~/__generated__/*": ["../__generated__/*"]
     },
     "lib": ["dom", "es2015", "es2016"],
     "outDir": "build/dist",
@@ -34,10 +37,10 @@
     "noImplicitUseStrict": true
   },
   "exclude": [
-      "node_modules",
-      "**/*.spec.ts",
-      "**/*.spec.tsx",
-      "**/*.test.ts",
-      "**/*.test.tsx",
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
   ]
 }
