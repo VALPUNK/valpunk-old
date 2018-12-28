@@ -7,7 +7,9 @@
   "scripts": {
     "storybook": "cd packages/core && yarn storybook",
     "publish": "yarn && lerna publish",
-    "site": "cd packages/site && yarn dev"
+    "site": "cd packages/site && yarn dev",
+    "corebuild": "cd packages/core && yarn build",
+    "coresite": "yarn corebuild && yarn site"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
