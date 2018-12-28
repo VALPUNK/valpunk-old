@@ -11,7 +11,6 @@ const Counter = (props: {
 }) => {
   return (
     <Spring
-      // @ts-ignore
       config={{ duration: 10000 }}
       from={{ number: 0 }}
       to={{ number: props.endNumber }}

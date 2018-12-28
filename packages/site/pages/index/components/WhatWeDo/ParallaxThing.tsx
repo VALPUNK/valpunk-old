@@ -1,5 +1,6 @@
-import { AppBar, Tab, Tabs } from "@material-ui/core"
 import * as React from "react"
+
+// @ts-ignore
 import { Parallax, ParallaxLayer } from "react-spring/addons.cjs"
 
 // Little helpers ...

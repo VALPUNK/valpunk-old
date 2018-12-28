@@ -35,14 +35,22 @@ export default class Index extends React.Component<{}, State> {
             <Jumbotron />
           </div>
           <Grid container justify="center">
-            <WhatWeDo />
+            <Grid
+              container
+              style={{ backgroundColor: "#EEEEEE" }}
+              justify="center"
+            >
+              <Grid item xs={12} xl={8} lg={9} md={10} sm={11}>
+                <WhatWeDo />
+              </Grid>
+            </Grid>
             <Mobile />
             <Grid
               container
               style={{ backgroundColor: "#CFD8DC" }}
               justify="center"
             >
-              <Grid item xs={12} xl={8} lg={9} md={10} sm={11}>
+              <Grid item xs={12} xl={7} lg={8} md={10} sm={11}>
                 <Analytics />
               </Grid>
             </Grid>

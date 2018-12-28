@@ -1,6 +1,48 @@
 declare module "react-magnifier"
 
-declare module "react-spring/addons.cjs"
+import "react"
+declare module "react" {
+  // custom.d.ts
+  interface StyleHTMLAttributes<T> extends React.HTMLAttributes<T> {
+    jsx?: boolean
+    global?: boolean
+  }
+}
+
+declare module "react-spring/addons.cjs" {
+  import { Ref, PureComponent } from "react"
+
+  interface ParallaxProps {
+    pages: number
+
+    config?: SpringConfig | ((key: string) => SpringConfig)
+
+    scrolling?: boolean
+
+    horizontal?: boolean
+
+    ref?: Ref<Parallax>
+    style?: React.CSSProperties
+    className?: string
+  }
+
+  export class Parallax extends PureComponent<ParallaxProps> {
+    scrollTo: (offset: number) => void
+  }
+
+  interface ParallaxLayerProps {
+    factor?: number
+
+    offset?: number
+
+    speed?: number
+    style?: React.CSSProperties
+    onClick?: () => void
+    className?: string
+  }
+
+  export class ParallaxLayer extends PureComponent<ParallaxLayerProps> {}
+}
 
 declare module "react-jss" {
   import * as React from "react"

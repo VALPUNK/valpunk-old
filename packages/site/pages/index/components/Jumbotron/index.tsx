@@ -3,6 +3,7 @@
 
 import React from "react"
 import ReactDOM from "react-dom"
+// @ts-ignore
 import { Parallax, ParallaxLayer } from "react-spring/addons.cjs"
 import "./styles.css"
 
