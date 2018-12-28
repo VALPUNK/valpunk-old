@@ -9,8 +9,8 @@ import ImageCompareSlider from "."
     <CenteredForStories>
       <div style={{ width: "50%" }}>
         <ImageCompareSlider
-          leftImage="https://github.com/junkboy0315/react-compare-image/blob/master/public/cat1.jpg?raw=true"
-          rightImage="https://github.com/junkboy0315/react-compare-image/blob/master/public/cat2.jpg?raw=true"
+          leftImage="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/kush_home.png"
+          rightImage="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/nod_home.png"
           sliderLineWidth={5}
           handleSize={80}
           sliderPositionPercentage={0.5}

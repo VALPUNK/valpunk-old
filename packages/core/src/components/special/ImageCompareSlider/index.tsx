@@ -40,9 +40,9 @@ interface ImageCompareSliderProps {
 interface State {
   sliderPositionPercentage: number // 0 to 1
   imageWidth: number
-  // isImgFullyLoaded: boolean
-  // isLoadingRightImg?: boolean
-  // isLoadingLeftImg?: boolean
+  isImgFullyLoaded: boolean
+  isLoadingRightImg?: boolean
+  isLoadingLeftImg?: boolean
   autoReloadTasks?: any[]
   retryCount?: number
 }
@@ -60,16 +60,16 @@ class ImageCompareSlider extends React.Component<
     this.state = {
       sliderPositionPercentage: this.props.sliderPositionPercentage, // 0 to 1
       imageWidth: 0,
-      // isImgFullyLoaded: false,
-      // isLoadingLeftImg: true,
-      // isLoadingRightImg: true,
+      isImgFullyLoaded: false,
+      isLoadingLeftImg: true,
+      isLoadingRightImg: true,
       autoReloadTasks: [],
       retryCount: 0
     }
 
-    // this.containerRef = React.createRef()
-    // this.underImageRef = React.createRef()
-    // this.overImageRef = React.createRef()
+    this.containerRef = React.createRef()
+    this.underImageRef = React.createRef()
+    this.overImageRef = React.createRef()
 
     // this.isLoadingRightImg = true
     // this.isLoadingLeftImg = true
@@ -78,8 +78,8 @@ class ImageCompareSlider extends React.Component<
 
     // this.retryCount = 0
     this.onError.bind(this)
-    // this.onRightImageLoaded.bind(this)
-    // this.onLeftImageLoaded.bind(this)
+    this.onRightImageLoaded.bind(this)
+    this.onLeftImageLoaded.bind(this)
   }
 
   public componentDidMount = () => {
@@ -92,7 +92,6 @@ class ImageCompareSlider extends React.Component<
 
     // for mobile
     containerElement.addEventListener("touchstart", this.startSliding)
-    // containerElement.addEventListener("touchmove", this.startSliding)
     window.addEventListener("touchend", this.finishSliding)
 
     // for desktop
@@ -112,19 +111,53 @@ class ImageCompareSlider extends React.Component<
   //   return true
   // }
 
-  // public componentDidUpdate = (
-  //   prevProps: ImageCompareSliderProps,
-  //   prevState: State
-  // ) => {
-  //   // do initial setup if loading images and DOM constructing are fully done
-  //   if (
-  //     prevState.isImgFullyLoaded === false &&
-  //     this.state.isImgFullyLoaded === true
-  //   ) {
-  //     this.setImagesSize()
-  //   }
+  public componentDidUpdate = (
+    prevProps: ImageCompareSliderProps,
+    prevState: State
+  ) => {
+    // do initial setup if loading images and DOM constructing are fully done
+    if (
+      prevState.isImgFullyLoaded === false &&
+      this.state.isImgFullyLoaded === true
+    ) {
+      this.setImagesSize()
+    }
 
-  //   // show skeleton again if given images are changed
+    // show skeleton again if given images are changed
+    if (
+      this.props.leftImage !== prevProps.leftImage ||
+      this.props.rightImage !== prevProps.rightImage
+    ) {
+      this.underImageRef.current.src = null
+      this.overImageRef.current.src = null
+
+      this.setState({
+        isLoadingLeftImg: true,
+        isLoadingRightImg: true,
+        isImgFullyLoaded: true
+      })
+
+      // this.isLoadingRightImg = true
+      // this.isLoadingLeftImg = true
+      // this.setState({
+      //   isImgFullyLoaded: false
+      // })
+
+      this.underImageRef.current.src = this.props.rightImage
+      this.overImageRef.current.src = this.props.leftImage
+    }
+  }
+
+  public shouldComponentUpdate(
+    _prevProps: ImageCompareSliderProps,
+    _prevState: State
+  ) {
+    return true
+  }
+
+  // public componentDidUpdate = (prevProps: ImageCompareSliderProps) => {
+  //   // do initial setup if loading images and DOM constructing are fully done
+
   //   if (
   //     this.props.leftImage !== prevProps.leftImage ||
   //     this.props.rightImage !== prevProps.rightImage
@@ -148,40 +181,6 @@ class ImageCompareSlider extends React.Component<
   //     this.overImageRef.current.src = this.props.leftImage
   //   }
   // }
-
-  public shouldComponentUpdate(
-    _prevProps: ImageCompareSliderProps,
-    _prevState: State
-  ) {
-    return true
-  }
-
-  public componentDidUpdate = (prevProps: ImageCompareSliderProps) => {
-    // do initial setup if loading images and DOM constructing are fully done
-
-    if (
-      this.props.leftImage !== prevProps.leftImage ||
-      this.props.rightImage !== prevProps.rightImage
-    ) {
-      this.underImageRef.current.src = null
-      this.overImageRef.current.src = null
-
-      // this.setState({
-      //   isLoadingLeftImg: true,
-      //   isLoadingRightImg: true,
-      //   isImgFullyLoaded: true
-      // })
-
-      // this.isLoadingRightImg = true
-      // this.isLoadingLeftImg = true
-      // this.setState({
-      //   isImgFullyLoaded: false
-      // })
-
-      this.underImageRef.current.src = this.props.rightImage
-      this.overImageRef.current.src = this.props.leftImage
-    }
-  }
 
   public componentWillUnmount = () => {
     this.finishSliding()
@@ -213,6 +212,7 @@ class ImageCompareSlider extends React.Component<
       e.preventDefault()
     }
 
+    console.log("start")
     // Slide the image even if you just click or tap (not drag)
     this.handleSliding(e)
 
@@ -231,6 +231,7 @@ class ImageCompareSlider extends React.Component<
   public handleSliding = (event: any) => {
     const e = event || window.event
 
+    console.log("handle")
     // Calc Cursor Position from the left edge of the viewport
     // let cursorXfromViewport = null
     // if (e.touches) {
@@ -269,24 +270,24 @@ class ImageCompareSlider extends React.Component<
     }
   }
 
-  // public onRightImageLoaded = async () => {
-  //   await this.setState({
-  //     isLoadingRightImg: false
-  //   })
+  public onRightImageLoaded = async () => {
+    await this.setState({
+      isLoadingRightImg: false
+    })
 
-  //   if (!this.state.isLoadingRightImg && !this.state.isLoadingLeftImg) {
-  //     this.setState({ isImgFullyLoaded: true })
-  //   }
-  // }
+    if (!this.state.isLoadingRightImg && !this.state.isLoadingLeftImg) {
+      this.setState({ isImgFullyLoaded: true })
+    }
+  }
 
-  // public onLeftImageLoaded = async () => {
-  //   await this.setState({
-  //     isLoadingLeftImg: false
-  //   })
-  //   if (!this.state.isLoadingRightImg && !this.state.isLoadingLeftImg) {
-  //     this.setState({ isImgFullyLoaded: true })
-  //   }
-  // }
+  public onLeftImageLoaded = async () => {
+    await this.setState({
+      isLoadingLeftImg: false
+    })
+    if (!this.state.isLoadingRightImg && !this.state.isLoadingLeftImg) {
+      this.setState({ isImgFullyLoaded: true })
+    }
+  }
 
   public onError = (ref: React.RefObject<HTMLImageElement>, src: string) => (
     _event: React.SyntheticEvent<HTMLImageElement>
@@ -312,7 +313,6 @@ class ImageCompareSlider extends React.Component<
   }
 
   public render = () => {
-    console.log("pants")
     const styles: StyleProps = {
       // container: {
       //   boxSizing: "border-box",
@@ -390,7 +390,7 @@ class ImageCompareSlider extends React.Component<
 
     return (
       <React.Fragment>
-        {this.props.skeleton && (
+        {this.props.skeleton && this.state.isImgFullyLoaded && (
           <div style={{ ...staticStyles.container }}>{this.props.skeleton}</div>
         )}
 
@@ -403,7 +403,7 @@ class ImageCompareSlider extends React.Component<
           // dataenzyme="container"
         >
           <img
-            // onLoad={this.onLeftImageLoaded}
+            onLoad={this.onLeftImageLoaded}
             onError={this.onError(this.underImageRef, this.props.rightImage)}
             alt="left"
             className="img-comp-under"
@@ -412,7 +412,7 @@ class ImageCompareSlider extends React.Component<
             style={staticStyles.underImage}
           />
           <img
-            // onLoad={this.onRightImageLoaded}
+            onLoad={this.onRightImageLoaded}
             onError={this.onError(this.overImageRef, this.props.leftImage)}
             alt="right"
             className="img-comp-over"
