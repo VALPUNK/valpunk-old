@@ -7,30 +7,23 @@ import MobileTopBar from "./MobileNavbar"
 
 export interface NavButtonProps {
   text?: string
-  link?: string
+  onClick?: () => void
 }
 
 export interface NavbarProps extends WithWidth {
-  onClick?: (_event: React.MouseEvent<HTMLElement>) => void
   logo?: { src?: string; onClick?: () => void; style?: React.CSSProperties }
   navButtons?: NavButtonProps[]
   barStyle?: React.CSSProperties
 }
 
-const Navbar = ({
-  width,
-  onClick,
-  logo,
-  navButtons,
-  barStyle
-}: NavbarProps) => {
+const Navbar = ({ width, logo, navButtons, barStyle }: NavbarProps) => {
   const NavComponent =
     width === "xs" || width === "sm" ? MobileTopBar : DesktopNavbar
 
   return (
     <NavComponent logo={logo} barStyle={barStyle}>
       {navButtons.map(item => (
-        <MenuItem key={item.text} onClick={onClick}>
+        <MenuItem key={item.text} onClick={item.onClick}>
           {item.text}
         </MenuItem>
       ))}

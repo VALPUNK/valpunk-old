@@ -85,6 +85,7 @@ class ImageCompareSlider extends React.Component<
   public componentDidMount = () => {
     const containerElement = this.containerRef.current
 
+    this.setImagesSize()
     // Re-set images size when container size is changed
     const b = new ResizeSensor(containerElement, () => {
       this.setImagesSize()

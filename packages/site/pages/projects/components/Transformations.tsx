@@ -19,7 +19,7 @@ export default class Transformations extends React.Component {
             />
           </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{ padding: 24 }}>
           <Typography variant="h3">The Nod</Typography>
           <Typography variant="h5">A lengthy description</Typography>
         </Grid>

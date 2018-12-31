@@ -26,13 +26,13 @@ const Page = ({
     </ParallaxLayer>
 
     <ParallaxLayer className="text number" offset={offset} speed={0.3}>
-      <span>0{offset + 1}</span>
+      {/* <span>0{offset + 1}</span> */}
     </ParallaxLayer>
 
     <ParallaxLayer className="text header" offset={offset} speed={0.4}>
       <span>
-        <p style={{ fontSize: 20 }}>{caption}</p>
-        <div className={`stripe ${gradient}`} />
+        <div style={{}}>{caption}</div>
+        <div className={`stripe ${gradient}`} style={{ margin: "10px 0px" }} />
         <div>{first}</div>
         <div>{second}</div>
         <div>{third}</div>
@@ -69,7 +69,7 @@ export default class extends React.Component {
           offset={1}
           gradient="teal"
           caption="what we do"
-          first="Reinvent Brands"
+          first="Revitalize Brands"
           second="Increase Sales"
           third="Develop Solutions"
           onClick={() => this.scroll(2)}
@@ -78,8 +78,9 @@ export default class extends React.Component {
           offset={2}
           gradient="tomato"
           caption="what we want"
-          first="Ambitious Ideas"
-          second="est dignissim"
+          first="To Make"
+          second="Your Vision"
+          third="Happen"
           onClick={() => this.scroll(0)}
         />
       </Parallax>

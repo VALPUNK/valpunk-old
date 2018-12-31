@@ -1,27 +1,39 @@
 import * as React from "react"
 import { Footer } from "~/components/templates"
 import { Navbar } from "@valpunk/core"
+import Router from "next/router"
 
 const navButtons = [
   {
     text: "Dev Blog",
-    link: "/blog"
+    onClick: () => {
+      Router.push("/blog")
+    }
   },
   {
     text: "Projects",
-    link: "/projects"
+    onClick: () => {
+      Router.push("/projects")
+    }
   },
   {
     text: "A La Carte",
-    link: "/carte"
+    onClick: () => {
+      Router.push("/carte")
+    }
   },
   {
     text: "Contact",
-    link: "/contact"
+    onClick: () => {
+      Router.push("/contact")
+    }
   }
 ]
 
 export default class Layout extends React.Component {
+  public handleClick = () => {
+    Router.push("")
+  }
   public render() {
     return (
       <div>
@@ -32,6 +44,9 @@ export default class Layout extends React.Component {
             style: {
               height: 50,
               width: 50
+            },
+            onClick: () => {
+              Router.push("/")
             }
           }}
           navButtons={navButtons}

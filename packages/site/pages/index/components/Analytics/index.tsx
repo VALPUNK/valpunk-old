@@ -17,7 +17,7 @@ export default class Analytics extends React.Component {
   public render() {
     return (
       <Grid container>
-        <Grid item xs={12}>
+        <Grid item xs={12} container justify="center">
           <Typography
             variant="h3"
             style={{ textAlign: "center", margin: "60px 0px" }}
@@ -26,10 +26,12 @@ export default class Analytics extends React.Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ textAlign: "center", margin: "30px 0px" }}
+            style={{ textAlign: "center", marginBottom: "30px", width: "80%" }}
           >
-            We believe in the scientific method. We get data based off of the
-            assumptions made and pivot or double down on a great feature.
+            We believe in the scientific method. As your users use your product,
+            we'll capture data about their usage and see how they stack up
+            against the assumptions we made. We can then double down on features
+            they love or pivot in a direction that makes more sense!
           </Typography>
         </Grid>
         <Grid container justify="space-between">

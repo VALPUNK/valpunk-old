@@ -32,11 +32,11 @@ const DesktopNavbar = ({ logo, children, barStyle }: Props) => {
             paddingRight: "10%"
           }}
         >
-          <IconButton color="inherit" aria-label="Menu">
+          <IconButton color="inherit" aria-label="Menu" onClick={logo.onClick}>
             <img
               src={logo.src}
               style={{ width: 100, height: "auto", ...logo.style }}
-              onClick={logo.onClick}
+              // onClick={logo.onClick}
             />
           </IconButton>
           <div style={{ flexGrow: 1 }} />
