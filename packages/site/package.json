@@ -26,6 +26,7 @@
     "fork-ts-checker-webpack-plugin": "^0.4.10",
     "graphql": "^14.0.2",
     "hoist-non-react-statics": "^3.0.1",
+    "immer": "^1.9.3",
     "isomorphic-unfetch": "^3.0.0",
     "jss": "^9.8.7",
     "next": "^7.0.2",

@@ -32,64 +32,77 @@ export default class Fun extends React.Component<{}, State> {
     this.setState({ value: index })
   }
   public render() {
-    const SectionHeight = 800
+    const SectionHeight = 700
     return (
-      <Grid container direction="row" style={{ backgroundColor: "#EEEEEE" }}>
-        <Grid item xs={12}>
-          <Typography
-            variant="h3"
-            style={{ textAlign: "center", margin: "60px 0px" }}
-          >
-            It Starts With Your Vision
-          </Typography>
-        </Grid>
-        <Grid item xs={12} xl={6}>
-          <div style={{ height: 48 }}>{/* Spacer */}</div>
-          <ParallaxThing
-            handleChange={this.handleChange}
-            value={this.state.value}
-            handleChangeIndex={this.handleChangeIndex}
-            height={SectionHeight}
-          />
-        </Grid>
-        <Grid item xs={12} xl={6} style={{ height: SectionHeight }}>
-          <AppBar position="static" color="default">
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              fullWidth
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        style={{ backgroundColor: "#EEEEEE" }}
+      >
+        <Grid item xs={12} xl={10} container direction="row">
+          <Grid item xs={12}>
+            <Typography
+              variant="h3"
+              style={{ textAlign: "center", margin: "60px 0px" }}
             >
-              <Tab label="Your Idea" />
-              <Tab label="Our Experience" />
-              <Tab label="A Complete Vision" />
-            </Tabs>
-          </AppBar>
-          <div style={{}}>
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                height: SectionHeight * 0.8,
-                overflow: "hidden"
-              }}
-            >
-              <div style={{}} className="main">
-                <Transition
-                  native
-                  reset
-                  unique
-                  items={this.state.value}
-                  from={{ opacity: 0, transform: "translate3d(0%,100%,0)" }}
-                  enter={{ opacity: 1, transform: "translate3d(0%,0,0)" }}
-                  leave={{ opacity: 0, transform: "translate3d(0%,-100%,0)" }}
+              It Starts With Your Vision
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <AppBar position="static" color="default">
+              <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                fullWidth
+              >
+                <Tab label="Your Idea" />
+                <Tab label="Our Experience" />
+                <Tab label="A Complete Vision" />
+              </Tabs>
+            </AppBar>
+          </Grid>
+          <Grid container style={{ padding: 24 }}>
+            <Grid item xs={12} md={6}>
+              <ParallaxThing
+                handleChange={this.handleChange}
+                value={this.state.value}
+                handleChangeIndex={this.handleChangeIndex}
+                height={SectionHeight}
+              />
+            </Grid>
+            <Grid item xs={12} md={6} style={{ height: SectionHeight }}>
+              <div style={{}}>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    height: SectionHeight * 0.8,
+                    overflow: "hidden"
+                  }}
                 >
-                  {index => pages[index]}
-                </Transition>
+                  <div style={{}} className="main">
+                    <Transition
+                      native
+                      reset
+                      unique
+                      items={this.state.value}
+                      from={{ opacity: 0, transform: "translate3d(0%,100%,0)" }}
+                      enter={{ opacity: 1, transform: "translate3d(0%,0,0)" }}
+                      leave={{
+                        opacity: 0,
+                        transform: "translate3d(0%,-100%,0)"
+                      }}
+                    >
+                      {index => pages[index]}
+                    </Transition>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     )
@@ -97,25 +110,21 @@ export default class Fun extends React.Component<{}, State> {
 }
 const pages = [
   (style: React.CSSProperties) => (
-    <animated.div style={{ ...style, ...pageStyle }}>
+    <animated.div style={{ ...style }}>
       Whether it's a new app or web service, or doing more with your site than
       what was possible at the time, we love collaborating with motivated people
     </animated.div>
   ),
   (style: React.CSSProperties) => (
-    <animated.div style={{ ...style, ...pageStyle }}>
+    <animated.div style={{ ...style }}>
       With your vision and our experience in developing useful products, we'll
       hlep you define your MVP (Minimum Viable Product) to get your idea out to
       your audience!
     </animated.div>
   ),
   (style: React.CSSProperties) => (
-    <animated.div style={{ ...style, ...pageStyle }}>
+    <animated.div style={{ ...style }}>
       Together we set a plan to get you to market, launched, and ready to evolve
     </animated.div>
   )
 ]
-
-const pageStyle = {
-  padding: 24
-}

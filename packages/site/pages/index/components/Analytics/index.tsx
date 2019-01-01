@@ -16,7 +16,7 @@ const purpleColor = "#7B60E6"
 export default class Analytics extends React.Component {
   public render() {
     return (
-      <Grid container>
+      <Grid container justify="center" style={{ paddingBottom: 60 }}>
         <Grid item xs={12} container justify="center">
           <Typography
             variant="h3"
@@ -26,7 +26,11 @@ export default class Analytics extends React.Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ textAlign: "center", marginBottom: "30px", width: "80%" }}
+            style={{
+              textAlign: "center",
+              marginBottom: "30px",
+              width: "80%"
+            }}
           >
             We believe in the scientific method. As your users use your product,
             we'll capture data about their usage and see how they stack up
@@ -61,15 +65,13 @@ export default class Analytics extends React.Component {
           />
         </Grid>
         <Grid container>
-          <Grid item xs={12} xl={8}>
+          <Grid item xs={12} xl={8} container justify="center">
             <ReferralConversion />
-            <Grid container>
-              <Grid item xs container>
-                <AppUsage />
-              </Grid>
-              <Grid item xs container>
-                <OfferPageClicks />
-              </Grid>
+            <Grid item xs={6} container justify="center">
+              <AppUsage />
+            </Grid>
+            <Grid item xs={6} container justify="center">
+              <OfferPageClicks />
             </Grid>
           </Grid>
           <Grid item xs={12} xl={4}>
