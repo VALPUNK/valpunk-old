@@ -23,10 +23,10 @@ export default class Mobile extends React.PureComponent<Props, State> {
       <Grid container>
         <InstructionStep
           img={cdn + "/img/Step1_draw.png"}
-          backgroundColor="white"
+          backgroundImage="https://images.unsplash.com/photo-1519895173443-d259e1fc4962?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2022&q=80"
         >
           <Grid item xs={12}>
-            <Typography variant="h4">Step 1: Mock it up</Typography>
+            <Typography variant="h4">We Mock</Typography>
           </Grid>
           <Grid item xs={12} md={10} style={{ marginTop: 10 }}>
             <Typography variant="h6">
@@ -35,9 +35,12 @@ export default class Mobile extends React.PureComponent<Props, State> {
             </Typography>
           </Grid>
         </InstructionStep>
-        <InstructionStep img={cdn + "/img/Step1.png"} backgroundColor="#FBFBFB">
+        <InstructionStep
+          img={cdn + "/img/Step1.png"}
+          backgroundImage="https://images.unsplash.com/photo-1519895173443-d259e1fc4962?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2022&q=80"
+        >
           <Grid item xs={12}>
-            <Typography variant="h4">Step 2: Design</Typography>
+            <Typography variant="h4">We Design</Typography>
           </Grid>
           <Grid item xs={12} md={10} style={{ marginTop: 10 }}>
             <Typography variant="h6">
@@ -46,9 +49,12 @@ export default class Mobile extends React.PureComponent<Props, State> {
             </Typography>
           </Grid>
         </InstructionStep>
-        <InstructionStep img={cdn + "/img/Step3.png"} backgroundColor="white">
+        <InstructionStep
+          img={cdn + "/img/Step3.png"}
+          backgroundImage="https://images.unsplash.com/photo-1519895173443-d259e1fc4962?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2022&q=80"
+        >
           <Grid item xs={12}>
-            <Typography variant="h4">Step 3: Coding</Typography>
+            <Typography variant="h4">We Code</Typography>
           </Grid>
           <Grid item xs={12} md={8} style={{ marginTop: 10 }}>
             <Typography variant="h6">
@@ -58,9 +64,12 @@ export default class Mobile extends React.PureComponent<Props, State> {
             </Typography>
           </Grid>
         </InstructionStep>
-        <InstructionStep img={cdn + "/img/Step4.png"} backgroundColor="#FBFBFB">
+        <InstructionStep
+          img={cdn + "/img/Step4.png"}
+          backgroundImage="https://images.unsplash.com/photo-1519895173443-d259e1fc4962?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2022&q=80"
+        >
           <Grid item xs={12}>
-            <Typography variant="h4">Step 4: Woohoo!</Typography>
+            <Typography variant="h4">We Launch!!!</Typography>
           </Grid>
           <Grid item xs={12} md={10} style={{ marginTop: 10 }}>
             <Typography variant="h6">

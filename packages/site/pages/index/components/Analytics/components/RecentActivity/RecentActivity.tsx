@@ -40,25 +40,18 @@ export default class RecentActivity extends React.Component<Props, State> {
     this.add.bind(this)
   }
 
-  public add = async () => {
+  public add = () => {
     if (this.state.current === mock.length) {
       this.setState({
         current: 0
       })
     }
 
-    // const nextDraft = await produce(this.state.data, draft => {
-    //   draft.
-    //   console.log("sliced", draft)
-    // })
-
-    // console.log("nextd", nextDraft)
-
-    const sliced = this.state.data.slice(0, 2)
-
-    const d = [{ ...mock[this.state.current], id: new Date() }, ...sliced]
     this.setState({
-      data: d,
+      data: [
+        { ...mock[this.state.current], id: new Date() },
+        ...this.state.data.slice(0, 3)
+      ],
 
       current: this.state.current + 1
     })
@@ -81,16 +74,6 @@ export default class RecentActivity extends React.Component<Props, State> {
           <Typography variant="subtitle1">Recent Activity</Typography>
         </Grid>
         <Grid container style={{ marginTop: 10 }}>
-          {/* {this.state.data.map((activity: any) => (
-            <RecentActivityItem
-              key={activity.id}
-              img={activity.img}
-              name={activity.name}
-              note={activity.note}
-              activityDescription={activity.activityDescription}
-              date={activity.date}
-            />
-          ))} */}
           <Transition
             items={this.state.data}
             keys={item => item.id}

@@ -53,7 +53,8 @@ export default class ParallaxThing extends React.Component<Props> {
         style={{
           position: "relative",
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
         <Parallax
@@ -61,12 +62,12 @@ export default class ParallaxThing extends React.Component<Props> {
           ref={ref => (this.parallax = ref)}
           pages={3}
           style={{
-            width: "80%",
+            width: this.props.height * 0.8,
             height: this.props.height * 0.8,
             backgroundColor: "white",
             // top: "50%",
             // left: "50%",
-            // transform: "translate(50%, 50%)",
+            transform: "translate(0%, 50%)",
             boxShadow: "2px 2px 5px rgba(0,0,0,0.5)"
           }}
           // innerStyle={{ width: "75%" }}

@@ -2,7 +2,6 @@
 // https://dribbble.com/shots/4138489-Screeners
 
 import React from "react"
-import ReactDOM from "react-dom"
 // @ts-ignore
 import { Parallax, ParallaxLayer } from "react-spring/addons.cjs"
 import "./styles.css"
@@ -14,11 +13,14 @@ const Page = ({
   second,
   third,
   gradient,
-  onClick
+  onClick,
+  height
 }: any) => (
   <>
     <ParallaxLayer offset={offset} speed={0.2} onClick={onClick}>
-      <div className="slopeBegin" />
+      <div className={`image${offset} overlay`} style={{ height }}>
+        <div className="slopeBegin" />
+      </div>
     </ParallaxLayer>
 
     <ParallaxLayer offset={offset} speed={-0.2} onClick={onClick}>
@@ -41,49 +43,68 @@ const Page = ({
   </>
 )
 
-export default class extends React.Component {
+export default class extends React.Component<
+  { height?: number },
+  { index?: number }
+> {
   public parallax = React.createRef()
-  // @ts-ignore
-  public scroll = (to: any) => this.parallax.scrollTo(to)
+
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      index: 0
+    }
+  }
+
+  public scroll = (to: any) => {
+    this.setState({ index: to })
+    // @ts-ignore
+    this.parallax.scrollTo(to)
+  }
   public render() {
     return (
-      <Parallax
-        className="container"
-        // @ts-ignore
-        ref={ref => (this.parallax = ref)}
-        pages={3}
-        horizontal
-        scrolling={false}
-        style={{ height: 1000 }}
-      >
-        <Page
-          offset={0}
-          gradient="pink"
-          caption="who we are"
-          first="Ambitious Developers"
-          second="Looking for"
-          third="Ambitious Ideas"
-          onClick={() => this.scroll(1)}
-        />
-        <Page
-          offset={1}
-          gradient="teal"
-          caption="what we do"
-          first="Revitalize Brands"
-          second="Increase Sales"
-          third="Develop Solutions"
-          onClick={() => this.scroll(2)}
-        />
-        <Page
-          offset={2}
-          gradient="tomato"
-          caption="what we want"
-          first="To Make"
-          second="Your Vision"
-          third="Happen"
-          onClick={() => this.scroll(0)}
-        />
-      </Parallax>
+      <div style={{ height: this.props.height }}>
+        <Parallax
+          className="container"
+          // @ts-ignore
+          ref={ref => (this.parallax = ref)}
+          pages={3}
+          horizontal
+          scrolling={false}
+          style={{ height: this.props.height }}
+        >
+          <Page
+            height={this.props.height}
+            offset={0}
+            gradient="pink"
+            caption="who we are"
+            first="Ambitious Developers"
+            second="Looking for"
+            third="Ambitious Ideas"
+            onClick={() => this.scroll(1)}
+          />
+          <Page
+            height={this.props.height}
+            offset={1}
+            gradient="teal"
+            caption="what we do"
+            first="Revitalize Brands"
+            second="Increase Sales"
+            third="Develop Solutions"
+            onClick={() => this.scroll(2)}
+          />
+          <Page
+            height={this.props.height}
+            offset={2}
+            gradient="tomato"
+            caption="what we want"
+            first="To Make"
+            second="Your Vision"
+            third="Happen"
+            onClick={() => this.scroll(0)}
+          />
+        </Parallax>
+      </div>
     )
   }
 }

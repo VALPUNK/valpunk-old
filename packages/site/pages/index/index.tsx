@@ -31,9 +31,7 @@ export default class Index extends React.Component<{}, State> {
       <div>
         <Meta />
         <Layout>
-          <div style={{ height: 1000 }}>
-            <Jumbotron />
-          </div>
+          <Jumbotron height={800} />
           <Grid container justify="center">
             <Grid
               container

@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid"
 
 interface Props {
   img?: string
-  backgroundColor?: string
+  backgroundImage?: string
 }
 
 interface State {
@@ -22,8 +22,15 @@ export default class InstructionStep extends React.PureComponent<Props, State> {
         container
         justify="center"
         alignItems="center"
+        // style={{
+        //   backgroundColor: this.props.backgroundColor,
+        //   height: 1000
+        // }}
         style={{
-          backgroundColor: this.props.backgroundColor,
+          backgroundImage: `url("${this.props.backgroundImage}")`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
           height: 1000
         }}
         direction="row-reverse"
