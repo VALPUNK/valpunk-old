@@ -47,7 +47,7 @@ export default class Fun extends React.Component<{}, State> {
         container
         direction="row"
         justify="center"
-        style={{ backgroundColor: "#EEEEEE" }}
+        style={{ backgroundColor: "#EEEEEE", margin: "60px 0px" }}
       >
         <Grid item xs={12} xl={10} container direction="row">
           <Grid item xs={12}>

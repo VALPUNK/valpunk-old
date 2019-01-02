@@ -20,12 +20,12 @@ export default class Analytics extends React.Component {
         <Grid item xs={12} container justify="center">
           <Typography
             variant="h3"
-            style={{ textAlign: "center", margin: "60px 0px" }}
+            style={{ textAlign: "center", marginTop: 60, marginBottom: 20 }}
           >
             Capture Useful Data and Make Judgements
           </Typography>
           <Typography
-            variant="h5"
+            variant="h6"
             style={{
               textAlign: "center",
               marginBottom: "30px",
@@ -65,7 +65,7 @@ export default class Analytics extends React.Component {
           />
         </Grid>
         <Grid container>
-          <Grid item xs={12} xl={8} container justify="center">
+          <Grid item xs={12} lg={8} xl={8} container justify="center">
             <ReferralConversion />
             <Grid item xs={6} container justify="center">
               <AppUsage />
@@ -74,7 +74,7 @@ export default class Analytics extends React.Component {
               <OfferPageClicks />
             </Grid>
           </Grid>
-          <Grid item xs={12} xl={4}>
+          <Grid item xs={12} lg={4}>
             <RecentActivity />
           </Grid>
         </Grid>
