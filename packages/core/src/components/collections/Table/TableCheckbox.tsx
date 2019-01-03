@@ -247,7 +247,11 @@ export default class TableCheckbox extends React.Component<
             getTrProps={(_finalState: any, row: any) => {
               // someone asked for an example of a background color change
               // here it is...
-              const selected = this.isSelected(row.original.id)
+              let selected: boolean
+              if (row.original) {
+                selected = this.isSelected(row.original.id)
+              }
+              // const selected = this.isSelected(row.original.id)
               return {
                 style: {
                   backgroundColor: selected ? "#00C853" : "inherit",
