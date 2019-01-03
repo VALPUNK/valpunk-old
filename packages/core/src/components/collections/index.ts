@@ -4,7 +4,7 @@ import TableCell from "./Table/components/TableCell"
 import TableHeaderCell from "./Table/components/TableHeaderCell"
 import TablePagination from "./Table/components/TablePagination"
 import TableToolbar from "./Table/components/TableToolbar"
-import TableCheckboxModal from "./Table/TableCheckbox"
+import TableCheckbox from "./Table/TableCheckbox"
 
 export {
   SimpleTable,
@@ -13,5 +13,5 @@ export {
   TableHeaderCell,
   TablePagination,
   TableToolbar,
-  TableCheckboxModal
+  TableCheckbox
 }
