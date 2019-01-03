@@ -10,6 +10,7 @@ interface Props {
   note: string
   activityDescription: string
   date: string
+  style: React.CSSProperties
 }
 
 interface State {
@@ -27,7 +28,7 @@ export default class RecentActivityItem extends React.PureComponent<
 
   public render() {
     return (
-      <Grid container item xs={12}>
+      <Grid container item xs={12} style={this.props.style}>
         <Grid container item xs={2} justify="center" alignItems="center">
           <Avatar alt="Remy Sharp" src={this.props.img} />
         </Grid>

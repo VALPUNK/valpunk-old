@@ -1,14 +1,14 @@
-import Modal from "@material-ui/core/Modal";
-import Paper from "@material-ui/core/Paper";
-import { createStyles, Theme, withStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import * as React from "react";
-import ReactTable, { RowInfo, Column } from "react-table";
-import "react-table/react-table.css";
-import TableCell from "./components/TableCell";
-import TablePagination from "./components/TablePagination";
-import TableToolbar from "./components/TableToolbar";
-import { makeColumns } from "./utils";
+import Modal from "@material-ui/core/Modal"
+import Paper from "@material-ui/core/Paper"
+import { createStyles, Theme } from "@material-ui/core/styles"
+import Table from "@material-ui/core/Table"
+import * as React from "react"
+import ReactTable, { Column, RowInfo } from "react-table"
+import "react-table/react-table.css"
+import TableCell from "./components/TableCell"
+import TablePagination from "./components/TablePagination"
+import TableToolbar from "./components/TableToolbar"
+import { makeColumns } from "./utils"
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -27,36 +27,36 @@ const styles = (theme: Theme) =>
       boxShadow: theme.shadows[5],
       padding: theme.spacing.unit * 4
     }
-  });
+  })
 
 export interface ColumnDataProps {
-  name: string;
-  key: string;
-  options?: Column;
+  name: string
+  key: string
+  options?: Column
 }
 
 export interface TableWithModalProps {
   classes?: {
-    root?: string;
-    table?: string;
-    paper?: string;
-  };
-  columnData: ColumnDataProps[];
-  tableTitle: string;
-  data: any[];
+    root?: string
+    table?: string
+    paper?: string
+  }
+  columnData: ColumnDataProps[]
+  tableTitle: string
+  data: any[]
   children?: (
     props: {
-      clickedData: { data?: any };
-      handleOpen: () => void;
-      handleClose: () => void;
-      modalStyle: React.CSSProperties;
+      clickedData: { data?: any }
+      handleOpen: () => void
+      handleClose: () => void
+      modalStyle: React.CSSProperties
     }
-  ) => React.ReactNode;
+  ) => React.ReactNode
 }
 
 interface State {
-  open: boolean;
-  modalInfo?: { data?: any };
+  open: boolean
+  modalInfo?: { data?: any }
 }
 
 export default class TableWithModal extends React.Component<
@@ -67,26 +67,26 @@ export default class TableWithModal extends React.Component<
   // const [modalInfo, setModalinfo] = React.useState<{ data?: any }>({});
 
   constructor(props: any) {
-    super(props);
+    super(props)
     this.state = {
       open: false,
       modalInfo: { data: "" }
-    };
+    }
   }
 
   public handleOpen = () => {
     this.setState({
       open: true
-    });
+    })
     // setOpen(true);
-  };
+  }
 
   public handleClose = () => {
     this.setState({
       open: false
-    });
+    })
     // setOpen(false);
-  };
+  }
 
   public render() {
     return (
@@ -116,14 +116,14 @@ export default class TableWithModal extends React.Component<
             getTdProps={(_state: any, _rowInfo: RowInfo) => {
               return {
                 onClick: (_e: any, _handleOriginal: any) => {
-                  this.setState({ modalInfo: { data: _rowInfo.original } });
+                  this.setState({ modalInfo: { data: _rowInfo.original } })
                   // setModalinfo({ data: _rowInfo.original });
-                  this.handleOpen();
+                  this.handleOpen()
                   if (_handleOriginal) {
-                    _handleOriginal();
+                    _handleOriginal()
                   }
                 }
-              };
+              }
             }}
           />
         </Table>
@@ -149,7 +149,7 @@ export default class TableWithModal extends React.Component<
           })}
         </Modal>
       </Paper>
-    );
+    )
   }
 }
 

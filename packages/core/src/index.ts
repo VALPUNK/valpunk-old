@@ -2,6 +2,7 @@ import { ButtonOutline, RegularButton } from "./components/basic/Button"
 import {
   SimpleTable,
   TableCell,
+  TableCheckboxModal,
   TableHeaderCell,
   TablePagination,
   TableToolbar,
@@ -12,8 +13,8 @@ import {
   CarouselNav,
   Navbar
 } from "./components/compositions"
-import { Carousel } from "./components/templates"
 import { ImageCompareSlider } from "./components/special"
+import { Carousel } from "./components/templates"
 
 export {
   ButtonOutline,
@@ -28,5 +29,6 @@ export {
   Carousel,
   CarouselContainer,
   CarouselNav,
-  ImageCompareSlider
+  ImageCompareSlider,
+  TableCheckboxModal
 }
