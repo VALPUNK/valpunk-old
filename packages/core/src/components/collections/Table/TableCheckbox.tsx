@@ -248,7 +248,7 @@ export default class TableCheckbox extends React.Component<
               // someone asked for an example of a background color change
               // here it is...
               let selected: boolean
-              if (row.original) {
+              if (row) {
                 selected = this.isSelected(row.original.id)
               }
               // const selected = this.isSelected(row.original.id)
