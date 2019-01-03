@@ -10,7 +10,7 @@ import checkboxHOC, {
   SelectInputComponentProps,
   SelectTableAdditionalProps
 } from "react-table/lib/hoc/selectTable"
-// import "react-table/react-table.css"
+import "react-table/react-table.css"
 import TableCell from "./components/TableCell"
 import TablePagination from "./components/TablePagination"
 import TableToolbar from "./components/TableToolbar"
