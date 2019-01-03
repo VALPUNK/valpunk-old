@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper"
 import { createStyles, Theme } from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import * as React from "react"
-import ReactTable, { Column, RowInfo } from "react-table"
+import ReactTable, { Column, RowInfo, TableProps } from "react-table"
 import checkboxHOC, {
   SelectAllInputComponentProps,
   SelectInputComponentProps,
@@ -99,7 +99,12 @@ export default class TableCheckbox extends React.Component<
   // const [open, setOpen] = React.useState(false);
   // const [modalInfo, setModalinfo] = React.useState<{ data?: any }>({});
 
-  public checkboxRef: any = React.createRef()
+  public checkboxRef: any = React.createRef<
+    React.ComponentClass<
+      Partial<TableProps<{}, {}>> & SelectTableAdditionalProps,
+      any
+    >
+  >()
 
   constructor(props: any) {
     super(props)
@@ -142,7 +147,7 @@ export default class TableCheckbox extends React.Component<
     const selection: any[] = []
     if (selectAll) {
       // we need to get at the internals of ReactTable
-      const wrappedInstance = this.checkboxRef.getWrappedInstance()
+      const wrappedInstance = this.checkboxRef
       // the 'sortedData' property contains the currently accessible records based on the filter and sort
       const currentRecords = wrappedInstance.getResolvedState().sortedData
       // we just push all the IDs onto the selection array
@@ -199,7 +204,7 @@ export default class TableCheckbox extends React.Component<
         // className={this.props.classes.table}
         >
           <CheckboxTable
-            ref={this.checkboxRef}
+            ref={ref => (this.checkboxRef = ref)}
             data={this.props.data}
             PadRowComponent={() => <TableCell />}
             columns={[
