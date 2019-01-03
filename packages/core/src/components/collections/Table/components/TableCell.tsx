@@ -4,11 +4,14 @@ import * as React from "react"
 
 interface TableCellProps {
   children?: React.ReactNode
+  style?: React.CSSProperties
 }
-const TableCell = ({ children }: TableCellProps) => {
+const TableCell = ({ children, style }: TableCellProps) => {
   return (
     <TableRow>
-      <MuiTableCell style={{ borderBottomWidth: 0 }}>{children}</MuiTableCell>
+      <MuiTableCell style={{ borderBottomWidth: 0, ...style }}>
+        {children}
+      </MuiTableCell>
     </TableRow>
   )
 }

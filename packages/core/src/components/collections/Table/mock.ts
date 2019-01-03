@@ -6,7 +6,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "2",
@@ -15,7 +15,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "3",
@@ -24,7 +24,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "4",
@@ -33,7 +33,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "5",
@@ -42,7 +42,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "6",
@@ -51,7 +51,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "7",
@@ -60,7 +60,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "8",
@@ -69,7 +69,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "9",
@@ -78,7 +78,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "10",
@@ -87,7 +87,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "11",
@@ -96,7 +96,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "12",
@@ -105,7 +105,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "13",
@@ -114,7 +114,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "14",
@@ -123,7 +123,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "15",
@@ -132,7 +132,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "16",
@@ -141,7 +141,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "21",
@@ -150,7 +150,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "22",
@@ -159,7 +159,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "23",
@@ -168,7 +168,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "24",
@@ -177,7 +177,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "25",
@@ -186,7 +186,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "26",
@@ -195,7 +195,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "27",
@@ -204,7 +204,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "31",
@@ -213,7 +213,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "32",
@@ -222,7 +222,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "33",
@@ -231,7 +231,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "34",
@@ -240,7 +240,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "35",
@@ -249,7 +249,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "36",
@@ -258,7 +258,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "37",
@@ -267,7 +267,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "38",
@@ -276,7 +276,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "41",
@@ -285,7 +285,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "42",
@@ -294,7 +294,7 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
+    status: "Complicated"
   },
   {
     id: "43",
@@ -303,7 +303,7 @@ export const data = [
     age: 51,
     visits: 12,
     progress: 0.42,
-    status: "124123123",
+    status: "124123123"
   },
   {
     id: "44",
@@ -312,7 +312,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "45",
@@ -321,7 +321,7 @@ export const data = [
     age: 555,
     visits: 51,
     progress: 2.3,
-    status: "123",
+    status: "123"
   },
   {
     id: "46",
@@ -330,6 +330,6 @@ export const data = [
     age: 14,
     visits: 5,
     progress: 0.3,
-    status: "Complicated",
-  },
+    status: "Complicated"
+  }
 ]
