@@ -45,6 +45,7 @@
   /* clip-path: polygon(100vw 0, 70% 0, 100%, 100%, 0 100%); */
   z-index: 8;
   background-color: rgba(0, 0, 0);
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
 
 .image0 {
@@ -64,9 +65,11 @@
 }
 
 .slopeBegin {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   /* clip-path: polygon(20vw 0, 70% 0, calc(70% - 20vw) 100%, 0 100%); */
   /* clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%); */
+  /* clip-path: polygon(20vw 0, 70% 0, calc(70% - 20vw) 100%, 0 100%); */
+  clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
 }
 
 .slopeEnd {
@@ -84,6 +87,10 @@
   width: 140%;
   height: 100%;
   cursor: pointer;
+}
+
+.green {
+  background: linear-gradient(to right, #1a237e 0%, #64ffda 100%);
   z-index: 5;
 }
 

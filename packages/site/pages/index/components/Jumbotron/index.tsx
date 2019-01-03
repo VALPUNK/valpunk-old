@@ -63,7 +63,7 @@ export default class extends React.Component<
   }
   public render() {
     return (
-      <div style={{ height: this.props.height }}>
+      <div style={{ height: this.props.height, backgroundColor: "black" }}>
         <Parallax
           className="container"
           // @ts-ignore
@@ -73,6 +73,16 @@ export default class extends React.Component<
           scrolling={false}
           style={{ height: this.props.height }}
         >
+          <Page
+            height={this.props.height}
+            offset={-1}
+            gradient="green"
+            caption="who we are"
+            first="Ambitious Developers"
+            second="Looking for"
+            third="Ambitious Ideas"
+            onClick={() => this.scroll(1)}
+          />
           <Page
             height={this.props.height}
             offset={0}
