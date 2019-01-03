@@ -1,6 +1,6 @@
 import * as React from "react"
 import Grid from "@material-ui/core/Grid"
-import InstructionStep from "./InstructionStep"
+import InstructionStep, { InstructionStepProps } from "./InstructionStep"
 import Typography from "@material-ui/core/Typography"
 import { cdn } from "~/constants/constants"
 
@@ -18,7 +18,7 @@ const Code = require("./lottie/code.json")
 const Design = require("./lottie/design.json")
 const Rocket = require("./lottie/rocket.json")
 
-const instructions = [
+const instructions: InstructionStepProps[] = [
   {
     id: 0,
     img: cdn + "/img/Step1_draw.png",
@@ -37,7 +37,9 @@ const instructions = [
       backgroundColor: "#EEEEEE",
       width: "100%",
       boxShadow: "0px 5px 4px rgba(0,0,0,.6)",
-      zIndex: 1000
+      zIndex: 100
+      // position: "sticky",
+      // top: 0
     }
   },
   {
@@ -58,7 +60,9 @@ const instructions = [
       backgroundColor: "white",
       width: "100%",
       boxShadow: "0px 0px 5px black",
-      zIndex: 1000
+      zIndex: 100
+      // position: "sticky",
+      // top: 0
     }
   },
   {
@@ -79,7 +83,9 @@ const instructions = [
       backgroundColor: "white",
       width: "100%",
       boxShadow: "0px 0px 5px black",
-      zIndex: 1000
+      zIndex: 100
+      // position: "sticky",
+      // top: 0
     }
   },
   {
@@ -101,7 +107,9 @@ const instructions = [
       backgroundColor: "white",
       width: "100%",
       boxShadow: "0px 0px 5px black",
-      zIndex: 1000
+      zIndex: 100
+      // position: "sticky",
+      // top: 0
     }
   }
 ]

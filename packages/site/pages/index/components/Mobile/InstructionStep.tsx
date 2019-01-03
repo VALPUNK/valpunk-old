@@ -6,7 +6,8 @@ import Lottie from "react-lottie"
 const Draw = require("./lottie/draw.json")
 // import Draw from './lottie/draw.json'
 
-interface Props {
+export interface InstructionStepProps {
+  id?: number
   img?: string
   backgroundImage?: string
   overlayColor?: string
@@ -26,9 +27,12 @@ interface State {
   test?: string
 }
 
-const size = 100
+const size = 80
 
-export default class InstructionStep extends React.PureComponent<Props, State> {
+export default class InstructionStep extends React.PureComponent<
+  InstructionStepProps,
+  State
+> {
   constructor(props: any) {
     super(props)
     this.state = {}
