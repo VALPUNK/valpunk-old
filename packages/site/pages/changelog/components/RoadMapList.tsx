@@ -29,6 +29,30 @@ export default class RoadMapList extends React.Component<Props> {
     }
   }
 
+  public nestedListing = (log: any) => {
+    log.nestedLog &&
+      log.nestedLog.map((nestedLog: any) => (
+        <React.Fragment key={nestedLog.log}>
+          <div
+            key={nestedLog.log}
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              fontSize: "1.25em",
+              padding: "5px",
+              marginLeft: "1em"
+            }}
+          >
+            {this.bulletType(nestedLog.type)}
+            {nestedLog.log}
+          </div>
+          {nestedLog.nestedLog && (
+            <>{this.nestedListing(nestedLog.nestedLog)}</>
+          )}
+        </React.Fragment>
+      ))
+  }
+
   public render() {
     return (
       <div>
@@ -40,21 +64,23 @@ export default class RoadMapList extends React.Component<Props> {
               Road Map:
             </div>
             <Divider />
-            <div style={{ padding: "15px" }} >
-            {this.props.changeLogList.map(log => (
-              <div
-                key={log.log}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  fontSize: "1.25em",
-                  padding: "5px"
-                }}
-              >
-                {this.bulletType(log.type)}
-                {log.log}
-              </div>
-            ))}
+            <div style={{ padding: "15px" }}>
+              {this.props.changeLogList.map(log => (
+                <React.Fragment key={log.log}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      fontSize: "1.25em",
+                      padding: "5px"
+                    }}
+                  >
+                    {this.bulletType(log.type)}
+                    {log.log}
+                  </div>
+                  {log.nestedLog && <>{this.nestedListing(log.nestedLog)}</>}
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>

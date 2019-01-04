@@ -78,7 +78,7 @@ export default class ProductPreview extends React.Component<Props, State> {
               </SwipeableViews>
             </div>
 
-            <Hidden smDown={true}>
+            <Hidden xsDown={true}>
               <NavigationArrows
                 onClick={this.ImageSelectorHandler}
                 index={this.state.imageSelector}

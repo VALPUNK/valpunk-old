@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Grid } from "@material-ui/core"
-import { Carousel } from "@valpunk/core"
 import ThumbnailCarousel from "~/components/widgets/ThumbnailCarousel"
 
 interface Props {
@@ -14,8 +13,11 @@ interface ChangeLogItemProps {
   images: string[]
 }
 
-const salmonColor = "#ff4347"
-const greenColor = "#59d4c6"
+// linear-gradient(rgba(185, 79, 7, 0.5), rgba(0, 0, 0, 0), rgba(8, 48, 70, 0.5)),
+
+// linear-gradient(rgba(8, 48, 70, 0.5), rgba(185, 79, 7, 0.5), rgba(185, 79, 7, 0.5), rgba(8, 48, 70, 0.5)),
+// linear-gradient(rgba(185, 79, 7, 0.5), rgba(8, 48, 70, 0.5), rgba(8, 48, 70, 0.5), rgba(185, 79, 7, 0.5)),
+
 
 const darkBlue = "#224070"
 const lightBlue = "#285091"
@@ -27,6 +29,13 @@ export default class ChangeLogItem extends React.Component<Props> {
         style={{
           padding: "25px",
           backgroundColor: this.props.ltr ? lightBlue : darkBlue,
+          backgroundImage:
+            this.props.ltr
+              ? `url(https://images.unsplash.com/photo-1462332420958-a05d1e002413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1940&q=80)`
+              : " url(https://images.unsplash.com/photo-1492232093388-4d9d123d362d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover"
           // boxShadow: "0 5px 10px 0 black"
         }}
       >
@@ -40,27 +49,6 @@ export default class ChangeLogItem extends React.Component<Props> {
             >
               <Grid item xs={12} sm={6}>
                 <ThumbnailCarousel images={this.props.data.images} />
-                {/* <Carousel
-              pages={this.props.data.images.length}
-              interval={5000}
-              springConfig={{
-                duration: "1s",
-                easeFunction: "cubic-bezier(0.15, 0.3, 0.25, 1)",
-                delay: "0s"
-              }}
-            >
-              {this.props.data.images.map(image => (
-                <div
-                  key={image}
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "none",
-                    paddingTop: "100%"
-                  }}
-                />
-              ))}
-            </Carousel> */}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div style={{ fontSize: "2em", color: "white" }}>
