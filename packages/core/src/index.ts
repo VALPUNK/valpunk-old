@@ -13,7 +13,7 @@ import {
   CarouselNav,
   Navbar
 } from "./components/compositions"
-import { ImageCompareSlider } from "./components/special"
+import { ImageCompareSlider, RichTextEditor } from "./components/special"
 import { Carousel } from "./components/templates"
 
 export {
@@ -30,5 +30,6 @@ export {
   CarouselContainer,
   CarouselNav,
   ImageCompareSlider,
-  TableCheckbox
+  TableCheckbox,
+  RichTextEditor
 }
