@@ -1,14 +1,10 @@
-import AppBar from "@material-ui/core/AppBar"
+import { Button } from "@material-ui/core"
 import Grid from "@material-ui/core/Grid"
-import Tab from "@material-ui/core/Tab"
-import Tabs from "@material-ui/core/Tabs"
 import Typography from "@material-ui/core/Typography"
 import * as React from "react"
 import { animated, Transition } from "react-spring"
 import ParallaxThing from "./ParallaxThing"
 import "./style.css"
-import { RegularButton } from "@valpunk/core"
-import { Button } from "@material-ui/core"
 
 interface State {
   value?: number

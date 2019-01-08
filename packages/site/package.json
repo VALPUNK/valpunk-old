@@ -74,6 +74,7 @@
     "@zeit/next-typescript": "^1.1.1",
     "babel-jest": "^23.6.0",
     "babel-plugin-root-import": "^6.1.0",
+    "babel-plugin-styled-components": "^1.10.0",
     "chai": "^4.2.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
