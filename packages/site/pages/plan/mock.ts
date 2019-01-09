@@ -31,7 +31,7 @@ export const joinme: Project = {
         }
       ],
       overview:
-        "In this first stage we will prepare a basic framework for the app. There will be no functionality, but we set up foundation from which to build the rest of the app"
+        "In this first stage we will prepare a basic framework for the app. There will be no true functionality, but we'll set up foundation from which to build the rest of the app."
     },
     {
       id: "1",
@@ -84,8 +84,8 @@ export const joinme: Project = {
         "In this stage we build tools to manage new accounts we create to making building and testing easier. We also develop location proximity searching functionality so that users can search for others near them."
     },
     {
-      id: "2",
-      weekNumber: 3,
+      id: "3",
+      weekNumber: 4,
       title: "Put together tools and add aditional basic functionality",
       subtasks: [
         {
@@ -113,8 +113,8 @@ export const joinme: Project = {
         "In this stage we build tools to manage new accounts we create to making building and testing easier. We also develop location proximity searching functionality so that users can search for others near them."
     },
     {
-      id: "3",
-      weekNumber: 4,
+      id: "4",
+      weekNumber: 5,
       title: "Chat Support & Notifications",
       subtasks: [
         {
@@ -137,11 +137,11 @@ export const joinme: Project = {
         }
       ],
       overview:
-        "In this week we develop real time chat between users. We also set up notifications to be recevied in the app. Notifications will be on matching with a user as well as receiving a new chat message."
+        "In this week we develop real time chat between users. We also set up notifications to be recevied in the app. Notifications will be happen when matching with a user as well as receiving a new chat message."
     },
     {
-      id: "4",
-      weekNumber: 5,
+      id: "5",
+      weekNumber: 6,
       title: "Calendar Support",
       subtasks: [
         {
@@ -159,11 +159,11 @@ export const joinme: Project = {
         }
       ],
       overview:
-        "In this week we build a basic calendar and appointmetn setting feature. Successfully matched users can view each other's calendars and propose dates to each other. Users will then be able to accept or decline dates."
+        "In this week we build a basic calendar and appointment setting feature. Successfully matched users can view each other's calendars and propose dates to each other. Users will then be able to accept or decline dates."
     },
     {
-      id: "5",
-      weekNumber: 6,
+      id: "6",
+      weekNumber: 7,
       title: "Questionnaires and Tags",
       subtasks: [
         {
@@ -183,8 +183,8 @@ export const joinme: Project = {
         "In this week we will develop a questionnaire / survery system along with tags users can select for their profile. "
     },
     {
-      id: "6",
-      weekNumber: 7,
+      id: "7",
+      weekNumber: 8,
       title: "Payment Handling",
       subtasks: [
         {
@@ -201,8 +201,8 @@ export const joinme: Project = {
         "In this week we begin developing and testing a monthly subscription system."
     },
     {
-      id: "7",
-      weekNumber: 8,
+      id: "8",
+      weekNumber: 9,
       title: "Uber Integration",
       subtasks: [
         {
@@ -219,8 +219,8 @@ export const joinme: Project = {
         "In this week we explore and add Uber API integration where users can send an Uber to another user. Alternatively, users can also fund other user accounts so they can request their own Uber rides."
     },
     {
-      id: "8",
-      weekNumber: 9,
+      id: "9",
+      weekNumber: 10,
       title: "Tooling",
       subtasks: [
         {
@@ -237,11 +237,11 @@ export const joinme: Project = {
         }
       ],
       overview:
-        "As we get closer to launch we make sure that we have the correct tools in place to handle any unforseen issues that are users come across."
+        "As we get closer to launch we make sure that we have the correct tools in place to handle any unforseen issues that our users come across."
     },
     {
-      id: "9",
-      weekNumber: 10,
+      id: "10",
+      weekNumber: 11,
       title: "Public facing website",
       subtasks: [
         {
@@ -258,11 +258,11 @@ export const joinme: Project = {
         }
       ],
       overview:
-        "We put together a simple webpage for the public to see that describe the app. We will also have a contact and FAQ page to address any questions and issues."
+        "We put together a simple webpage for the public to see that describes the app. We will also have a contact and FAQ page to address any questions and issues."
     },
     {
-      id: "10",
-      weekNumber: 11,
+      id: "11",
+      weekNumber: 12,
       title: "Launch Prep",
       subtasks: [
         {
@@ -278,8 +278,8 @@ export const joinme: Project = {
         "We run through final tests and make sure we have production specific features of the app turned on. We will keep a separate database for our tests and the other for live users."
     },
     {
-      id: "11",
-      weekNumber: 12,
+      id: "12",
+      weekNumber: 13,
       title: "Submission",
       subtasks: [
         {
@@ -314,6 +314,7 @@ export interface WeekProps {
 }
 
 export interface SubtaskProps {
-  id: string
+  id?: string
   name: string
+  subtask?: boolean
 }
