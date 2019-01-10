@@ -3,6 +3,8 @@ export const joinme: Project = {
   projectTitle: "JOIN ME",
   stakeholders: ["Maria"],
   developers: ["VAL PUNK, LLC"],
+  devPeriod: "Week",
+  date: "January 8, 2019",
   weeks: [
     {
       id: "0",
@@ -298,16 +300,18 @@ export const joinme: Project = {
 }
 
 export interface Project {
-  id: string
-  projectTitle: string
-  stakeholders: string[]
-  developers: string[]
-  weeks: WeekProps[]
+  id?: string
+  projectTitle?: string
+  stakeholders?: string[]
+  developers?: string[]
+  date?: string
+  devPeriod?: string
+  weeks?: WeekProps[]
 }
 
 export interface WeekProps {
-  id: string
-  weekNumber: number
+  id?: string
+  weekNumber?: number
   title: string
   subtasks: SubtaskProps[]
   overview: string
