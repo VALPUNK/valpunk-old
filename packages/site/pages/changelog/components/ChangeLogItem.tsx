@@ -29,10 +29,10 @@ export default class ChangeLogItem extends React.Component<Props> {
         style={{
           padding: "25px",
           backgroundColor: this.props.ltr ? lightBlue : darkBlue,
-          backgroundImage:
-            this.props.ltr
-              ? `url(https://images.unsplash.com/photo-1462332420958-a05d1e002413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1940&q=80)`
-              : " url(https://images.unsplash.com/photo-1492232093388-4d9d123d362d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+          // backgroundImage:
+          //   this.props.ltr
+          //     ? `url(https://images.unsplash.com/photo-1462332420958-a05d1e002413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1940&q=80)`
+          //     : " url(https://images.unsplash.com/photo-1492232093388-4d9d123d362d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
           backgroundSize: "cover"
@@ -51,10 +51,10 @@ export default class ChangeLogItem extends React.Component<Props> {
                 <ThumbnailCarousel images={this.props.data.images} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <div style={{ fontSize: "2em", color: "white" }}>
+                <div style={{ fontSize: "2.25em", color: "white" }}>
                   {this.props.data.title}
                 </div>
-                <div style={{ fontSize: "0.9em", color: "white" }}>
+                <div style={{ fontSize: "1.25em", fontWeight: 100, color: "white" }}>
                   {this.props.data.description}
                 </div>
               </Grid>

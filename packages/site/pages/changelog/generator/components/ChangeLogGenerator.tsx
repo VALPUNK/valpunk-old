@@ -1,7 +1,6 @@
 import * as React from "react"
 import ChangeLogListGen from "./ChangeLogListGen"
 import FeaturedChangesGen from "./FeaturedChangesGen"
-import RoadMapListGen from "./RoadMapListGen"
 import { FeaturedChange, ChangeListing } from "../../components/ChangeLog";
 
 interface Props {}
@@ -49,7 +48,7 @@ export default class ChangeLogGenerator extends React.Component<Props, State> {
 
         <ChangeLogListGen previewData={this.state.changeLogList} addListing={this.handleAddListing} />
 
-        <RoadMapListGen previewData={this.state.roadMapList} addListing={this.handleAddListing} />
+        <ChangeLogListGen previewData={this.state.roadMapList} addListing={this.handleAddListing} />
 
       </div>
     )

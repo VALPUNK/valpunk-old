@@ -44,6 +44,19 @@ export default class ChangeLogListGen extends React.Component<Props, State> {
     console.log(event.target.name, ": ", event.target.value)
   }
 
+  public handleMultilineChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    let tempStringArray = event.target.value.split('\n')
+    this.setState({
+      [event.target.name]: tempStringArray
+    })
+
+    console.log(event.target.name, ": ", event.target.value)
+  }
+
   public handleAddListing = (data: any) => (
     _event: React.MouseEvent<HTMLButtonElement>
   ) => {

@@ -58,9 +58,11 @@ export default class ChangeLogList extends React.Component<Props> {
           style={{
             display: "flex",
             justifyContent: "center",
-            backgroundColor: "#474747",
+            backgroundColor: "#282828",
             backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 1), rgba(20,20,20, 0.3)), url(https://images.unsplash.com/photo-1467646208740-18124b37eb58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+              `linear-gradient(rgba(0, 0, 0, 1), rgba(40,40,40, 0.3)),
+              // url(https://images.unsplash.com/photo-1467646208740-18124b37eb58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
+              `,
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
             backgroundSize: "cover"
