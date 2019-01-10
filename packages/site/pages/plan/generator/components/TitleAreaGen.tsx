@@ -19,8 +19,10 @@ interface State {
   projectTitle?: string
   stakeholders?: string[]
   developers?: string[]
-  date?: string
+  dateOfQuote?: string
+  expirationOfQuote?: string
   devPeriod?: string
+  costPerPeriod?: number
 }
 
 export default class TitleAreaGen extends React.Component<Props, State> {
@@ -30,7 +32,9 @@ export default class TitleAreaGen extends React.Component<Props, State> {
       projectTitle: "",
       stakeholders: [],
       developers: [],
-      date: "",
+      dateOfQuote: "",
+      expirationOfQuote: "",
+      costPerPeriod: 0,
       devPeriod: "",
     }
   }
@@ -76,10 +80,16 @@ export default class TitleAreaGen extends React.Component<Props, State> {
             <TextField multiline label="Developers" name="developers" onChange={this.handleMultilineChange} />
           </div>
           <div>
-            <TextField label="Date of Quote" name="date" onChange={this.handleChange} />
+            <TextField label="Date of Quote" name="dateOfQuote" onChange={this.handleChange} />
+          </div>
+          <div>
+            <TextField label="Expiration of Quote" name="expirationOfQuote" onChange={this.handleChange} />
           </div>
           <div>
             <TextField label="Development Period" name="devPeriod" onChange={this.handleChange} />
+          </div>
+          <div>
+            <TextField label="Cost Per Period" name="costPerPeriod" type="number" onChange={this.handleChange} />
           </div>
           <Button
             onClick={this.props.submit(this.state)}

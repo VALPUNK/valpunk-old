@@ -38,12 +38,12 @@ export default class PlanComponent extends React.Component<Props> {
           >
             <div style={{ width: "80%", borderBottom: "1px solid black" }} />
           </div>
-          <Estimates />
-          <PaymentOptions />
+          <Estimates devPeriod={data.devPeriod} numberPeriods={data.weeks.length} costPerPeriod={data.costPerPeriod} />
+          <PaymentOptions data={data} />
         </div>
 
-        <PaymentAgreement />
-        <Signature />
+        <PaymentAgreement data={data}/>
+        <Signature expiration={data.expirationOfQuote} />
         <TermsAndConditions />
         <div style={{ height: 400 }} />
       </div>

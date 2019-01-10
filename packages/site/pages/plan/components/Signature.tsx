@@ -1,8 +1,11 @@
 import Grid from "@material-ui/core/Grid"
 import * as React from "react"
 import Center from "./Center"
+import { Project } from "../mock";
 
-interface Props {}
+interface Props {
+  expiration: string
+}
 
 export default class Signature extends React.Component<Props> {
   public render() {
@@ -40,7 +43,7 @@ export default class Signature extends React.Component<Props> {
         <div style={{ marginTop: 80 }}>
           <Center size={8}>
             <div style={{ fontSize: 26, fontWeight: "bold" }}>
-              This quote expires on February 5, 2019
+              This quote expires on {this.props.expiration}
             </div>
           </Center>
         </div>

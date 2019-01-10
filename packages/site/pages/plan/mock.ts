@@ -4,7 +4,9 @@ export const joinme: Project = {
   stakeholders: ["Maria"],
   developers: ["VAL PUNK, LLC"],
   devPeriod: "Week",
-  date: "January 8, 2019",
+  costPerPeriod: 1500,
+  dateOfQuote: "January 8, 2019",
+  expirationOfQuote: "February 5, 2019",
   weeks: [
     {
       id: "0",
@@ -304,8 +306,10 @@ export interface Project {
   projectTitle?: string
   stakeholders?: string[]
   developers?: string[]
-  date?: string
+  dateOfQuote?: string
+  expirationOfQuote?: string
   devPeriod?: string
+  costPerPeriod?: number
   weeks?: WeekProps[]
 }
 

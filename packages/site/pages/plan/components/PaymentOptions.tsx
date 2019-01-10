@@ -2,8 +2,11 @@ import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import * as React from "react"
 import Center from "./Center"
+import { Project } from "../mock";
 
-interface Props {}
+interface Props {
+  data: Project
+}
 
 export default class PaymentOptions extends React.Component<Props> {
   public render() {
@@ -39,27 +42,24 @@ export default class PaymentOptions extends React.Component<Props> {
           <Grid container spacing={40} style={{ marginTop: 30 }}>
             <Grid item xs={4}>
               <MonthlyCard
-                percentOff={"10"}
-                monthlyFee={"5,850"}
-                months={"3"}
-                savings={"17,550"}
+                percentOff={10}
+                weeklyFee={this.props.data.costPerPeriod}
+                months={3}
               />
             </Grid>
             <Grid item xs={4}>
               <MonthlyCard
-                percentOff={"20"}
-                monthlyFee={"2762"}
-                months={"6"}
-                savings={"15,600"}
+                percentOff={20}
+                weeklyFee={this.props.data.costPerPeriod}
+                months={6}
                 big
               />
             </Grid>
             <Grid item xs={4}>
               <MonthlyCard
-                percentOff={"10"}
-                monthlyFee={"1950"}
-                months={"9"}
-                savings={"17,550"}
+                percentOff={10}
+                weeklyFee={this.props.data.costPerPeriod}
+                months={9}
               />
             </Grid>
           </Grid>
@@ -81,7 +81,7 @@ export default class PaymentOptions extends React.Component<Props> {
               <div style={{ fontSize: 22 }}>
                 You may pay{" "}
                 <span style={{ fontWeight: "bold", fontSize: 24 }}>
-                  $1,500{" "}
+                  ${this.props.data.costPerPeriod.toLocaleString()}{" "}
                 </span>
                 for a given week of work. Upon completion and when you are
                 ready, you may pay for another week. These weeks can be
@@ -107,14 +107,14 @@ export default class PaymentOptions extends React.Component<Props> {
             <Center size={8}>
               <div style={{ fontSize: 22 }}>
                 You may pay 50% in a lump sum to get work started.{" "}
-                <span style={{ fontWeight: "bold", fontSize: 24 }}>$9,750</span>
+                <span style={{ fontWeight: "bold", fontSize: 24 }}>${(this.props.data.costPerPeriod * this.props.data.weeks.length * 0.5).toLocaleString()}</span>
                 .
               </div>
 
               <div style={{ fontSize: 22 }}>
                 When the project is finished and ready for delivery, you will
                 need to pay the other 50% to own the app.{" "}
-                <span style={{ fontWeight: "bold", fontSize: 24 }}>$9,750</span>
+                <span style={{ fontWeight: "bold", fontSize: 24 }}>${(this.props.data.costPerPeriod * this.props.data.weeks.length * 0.5).toLocaleString()}</span>
                 .
               </div>
             </Center>
@@ -129,17 +129,20 @@ const blue = "#1e88e5"
 
 const MonthlyCard = ({
   percentOff,
-  monthlyFee,
+  weeklyFee,
   months,
-  savings,
   big
 }: {
-  percentOff: string
-  monthlyFee: string
-  months: string
-  savings: string
+  percentOff: number
+  weeklyFee: number
+  months: number
   big?: boolean
-}) => (
+}) => {
+
+  const discountedPackageTotal = weeklyFee * 13 * ((100 - percentOff)/100)
+  const monthlyDiscountedPackageTotal = discountedPackageTotal / months
+
+  return (
   <Paper style={{ padding: 16, transform: big ? "scale(1.2)" : "scale(0.9)" }}>
     <div style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
       Save {percentOff}%
@@ -152,13 +155,14 @@ const MonthlyCard = ({
         margin: 4
       }}
     >
-      ${monthlyFee}/mo
+      ${monthlyDiscountedPackageTotal.toLocaleString()}/mo
     </div>
     <div style={{ textAlign: "center", fontSize: 20, margin: 4 }}>
       for {months} months
     </div>
     <div style={{ textAlign: "center", fontSize: 18, margin: 4 }}>
-      (${savings})
+      (${(discountedPackageTotal).toLocaleString()})
     </div>
   </Paper>
 )
+    }

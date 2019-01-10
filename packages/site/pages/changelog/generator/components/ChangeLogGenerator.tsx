@@ -2,6 +2,7 @@ import * as React from "react"
 import ChangeLogListGen from "./ChangeLogListGen"
 import FeaturedChangesGen from "./FeaturedChangesGen"
 import RoadMapListGen from "./RoadMapListGen"
+// @ts-ignore
 import { FeaturedChange, ChangeListing } from "../../components/ChangeLog";
 
 interface Props {}

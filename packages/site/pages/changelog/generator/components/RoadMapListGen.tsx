@@ -9,7 +9,9 @@ import {
 } from "@material-ui/core"
 import * as React from "react"
 import { RegularButton } from "@valpunk/core";
+// @ts-ignore
 import { ChangeListing } from "../../components/ChangeLog"
+// @ts-ignore
 import ChangeLogList from "../../components/ChangeLogList";
 
 interface Props {

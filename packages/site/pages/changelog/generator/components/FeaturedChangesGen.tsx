@@ -1,6 +1,7 @@
 import { Divider, FormControl, Grid, Paper, TextField } from "@material-ui/core"
 import { RegularButton } from "@valpunk/core"
 import * as React from "react"
+// @ts-ignore
 import ChangeLogItem from "../../components/ChangeLogItem"
 
 interface Props {

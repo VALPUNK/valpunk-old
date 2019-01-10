@@ -2,7 +2,11 @@ import Grid from "@material-ui/core/Grid"
 import * as React from "react"
 import Center from "./Center"
 
-interface Props {}
+interface Props {
+  devPeriod: string
+  numberPeriods: number
+  costPerPeriod: number
+}
 
 export default class Estimates extends React.Component<Props> {
   public render() {
@@ -16,17 +20,17 @@ export default class Estimates extends React.Component<Props> {
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>13 weeks</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>{this.props.numberPeriods}{" "}{this.props.devPeriod}s</span>
             </Grid>
           </Grid>
           <Grid container>
             <Grid item xs container justify="flex-end">
               <span style={{ fontWeight: "bold", fontSize: 26 }}>
-                Developer Cost Per Week:{" "}
+                Developer Cost Per {this.props.devPeriod}:{" "}
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>$1,500</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>${this.props.costPerPeriod.toLocaleString()}</span>
             </Grid>
           </Grid>
           <Grid container>
@@ -36,7 +40,7 @@ export default class Estimates extends React.Component<Props> {
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>$19,500</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>${(this.props.costPerPeriod * this.props.numberPeriods).toLocaleString()}</span>
             </Grid>
           </Grid>
         </Center>

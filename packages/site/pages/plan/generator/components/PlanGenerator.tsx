@@ -16,9 +16,11 @@ interface State {
     projectTitle?: string
     stakeholders?: string[]
     developers?: string[]
-    date?: string
+    dateOfQuote?: string
+    expirationOfQuote?: string
     devPeriod?: string
     weeks?: WeekProps[]
+    costPerPeriod?: number
     // tempWeek?: {
     //   title?: string
     //   overview?: string
@@ -34,8 +36,10 @@ export default class PlanGenerator extends React.Component<{}, State> {
       projectTitle: "",
       stakeholders: [],
       developers: [],
-      date: "",
+      dateOfQuote: "",
+      expirationOfQuote: "",
       devPeriod: "",
+      costPerPeriod: 0,
       weeks: []
       }
     }
@@ -48,7 +52,8 @@ export default class PlanGenerator extends React.Component<{}, State> {
       projectTitle: data.projectTitle,
       stakeholders: data.stakeholders,
       developers: data.developers,
-      date: data.date,
+      dateOfQuote: data.dateOfQuote,
+      expirationOfQuote: data.expirationOfQuote,
       devPeriod: data.devPeriod,
     })
 

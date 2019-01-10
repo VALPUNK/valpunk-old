@@ -81,7 +81,7 @@ export default class ProjectTitleArea extends React.Component<Props> {
               <Grid item xs>
                 <span style={{ fontSize: 26, marginLeft: 8 }}>
                   {" "}
-                  {this.props.data.date}
+                  {this.props.data.dateOfQuote}
                 </span>
               </Grid>
             </Grid>
