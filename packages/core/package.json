@@ -1,7 +1,7 @@
 {
   "name": "@valpunk/core",
   "private": false,
-  "version": "0.1.8-alpha.0",
+  "version": "0.1.12",
   "description": "VALPUNK UI Library",
   "author": "Enrico Valbuena",
   "license": "MIT",
@@ -45,6 +45,7 @@
     "@storybook/addons": "^4.0.8",
     "@storybook/react": "^4.0.8",
     "@types/classnames": "^2.2.6",
+    "@types/is-hotkey": "^0.1.1",
     "@types/jest": "^23.3.5",
     "@types/match-sorter": "^2.2.0",
     "@types/material-ui": "^0.21.5",
@@ -52,6 +53,7 @@
     "@types/react-dom": "^16.0.9",
     "@types/react-swipeable-views": "^0.12.2",
     "@types/react-table": "^6.7.18",
+    "@types/slate-react": "^0.20.3",
     "@types/storybook__addon-info": "^3.4.2",
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
@@ -99,11 +101,15 @@
   "dependencies": {
     "css-element-queries": "^1.1.1",
     "immer": "^1.8.0",
+    "is-hotkey": "^0.1.4",
     "match-sorter": "^2.3.0",
+    "react-emotion": "^10.0.0",
     "react-spring": "^7.2.5",
     "react-swipeable-views": "^0.13.0",
     "react-swipeable-views-utils": "^0.13.0",
     "react-table": "^6.8.6",
+    "slate": "^0.44.9",
+    "slate-react": "^0.21.15",
     "storybook-addon-jsx": "^5.4.0"
   },
   "gitHead": "22580132db407e10cf0b7b6b94bd9f9ec7dc023e"
