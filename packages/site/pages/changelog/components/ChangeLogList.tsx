@@ -6,9 +6,10 @@ import MiscIcon from "@material-ui/icons/CheckCircle"
 import EnhancementIcon from "@material-ui/icons/Star"
 import AdjustmentIcon from "@material-ui/icons/SwapVerticalCircle"
 import * as React from "react"
+import { SectionListing } from "./ChangeLog"
 
 interface Props {
-  changeLogList: any[]
+  changeLogList: SectionListing[]
 }
 
 export default class ChangeLogList extends React.Component<Props> {
@@ -39,7 +40,9 @@ export default class ChangeLogList extends React.Component<Props> {
             fontSize: "1.25em",
             padding: "5px",
             marginLeft: "2em",
-            fontWeight: 50
+            fontWeight: 50,
+            color: "#999"
+
           }}
         >
           {this.bulletType(nestedLog.type)}
@@ -59,8 +62,7 @@ export default class ChangeLogList extends React.Component<Props> {
             display: "flex",
             justifyContent: "center",
             backgroundColor: "#282828",
-            backgroundImage:
-              `linear-gradient(rgba(0, 0, 0, 1), rgba(40,40,40, 0.3)),
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 1), rgba(40,40,40, 0.3)),
               // url(https://images.unsplash.com/photo-1467646208740-18124b37eb58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
               `,
             backgroundAttachment: "fixed",
@@ -70,30 +72,49 @@ export default class ChangeLogList extends React.Component<Props> {
         >
           <div
             style={{
-              maxWidth: "1200px",
+              maxWidth: "1000px",
               backgroundColor: "#041c23",
-              boxShadow: "0 0 5px 0 black"
+              boxShadow: "0 0 5px 0 black",
+              padding: "10px 50px 0 50px"
             }}
           >
-            <Divider />
             <div style={{ padding: "15px", color: "#e8e8e8" }}>
-              {this.props.changeLogList.map((log, index) => (
-                <React.Fragment key={index}>
+              {this.props.changeLogList.map((section, index) => (
+                <div key={index} style={{margin: "10px 0 50px 0"}}>
                   <div
                     style={{
                       display: "flex",
                       alignItems: "flex-start",
-                      fontSize: "1.25em",
+                      fontSize: "1.5em",
                       padding: "5px",
-                      fontWeight: 50
+                      fontWeight: 500,
+                      color: "white",
+                      paddingBottom: "20px"
+                      // marginTop: 10
                     }}
                   >
-                    {this.bulletType(log.type)}
-                    <span style={{ width: "1em" }} />
-                    {log.log}
+                    {section.title}
                   </div>
-                  {log.nestedLog && this.nestedListing(log.nestedLog)}
-                </React.Fragment>
+                  {section.listings.map((log, index) => (
+                    <React.Fragment key={index}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          fontSize: "1.25em",
+                          padding: "5px",
+                          fontWeight: 50,
+                          color: "#999"
+                        }}
+                      >
+                        {this.bulletType(log.type)}
+                        <span style={{ width: "1em" }} />
+                        {log.log}
+                      </div>
+                      {log.nestedLog && this.nestedListing(log.nestedLog)}
+                    </React.Fragment>
+                  ))}
+                </div>
               ))}
             </div>
           </div>

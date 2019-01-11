@@ -4,7 +4,7 @@ import ChangeLogList from "./ChangeLogList"
 
 interface ChangeLogProps {
   featuredChanges?: FeaturedChange[]
-  changeLogList?: ChangeListing[]
+  changeLogList?: SectionListing[]
   roadMapList?: ChangeListing[]
 }
 
@@ -12,6 +12,11 @@ export interface FeaturedChange {
   title: string
   description: string
   images: string[]
+}
+
+export interface SectionListing {
+  title: string
+  listings: ChangeListing[]
 }
 
 export interface ChangeListing {
@@ -48,7 +53,7 @@ export default class ChangeLog extends React.Component<ChangeLogProps> {
                 textAlign: "center",
                 fontSize: "2em",
                 padding: "50px 0",
-                backgroundColor: "black"
+                backgroundColor: "#041c23"
               }}
             >
               General Changes:
@@ -70,7 +75,7 @@ export default class ChangeLog extends React.Component<ChangeLogProps> {
             >
               Road Map:
             </div>
-            <ChangeLogList changeLogList={this.props.roadMapList} />
+            <ChangeLogList changeLogList={this.props.changeLogList} />
           </>
         )}
 

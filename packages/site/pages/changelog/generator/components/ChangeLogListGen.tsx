@@ -19,7 +19,7 @@ interface Props {
 
 interface State {
   type?: string
-  log?: string
+  log?: string[]
   nestedLog?: ChangeListing[]
 }
 
@@ -28,7 +28,7 @@ export default class ChangeLogListGen extends React.Component<Props, State> {
     super(props)
     this.state = {
       type: "",
-      log: ""
+      log: []
     }
   }
 
@@ -60,10 +60,21 @@ export default class ChangeLogListGen extends React.Component<Props, State> {
   public handleAddListing = (data: any) => (
     _event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    this.props.addListing("changeLogList", this.state)
+    const tempListing = this.state
+
+    const tempLogs = tempListing.log.map(log => (
+      {type: this.state.type, log: log }
+
+      ))
+
+
+    console.log("changeLogList", tempLogs)
+
+
+    this.props.addListing("changeLogList", tempLogs)
     this.setState({
       type: "",
-      log: ""
+      log: []
     })
     console.log(data)
   }
@@ -94,6 +105,7 @@ export default class ChangeLogListGen extends React.Component<Props, State> {
                   name="log"
                   label="Log"
                   multiline
+                  // value={this.state.log}
                   rows={4}
                   onChange={this.handleChange}
                 />

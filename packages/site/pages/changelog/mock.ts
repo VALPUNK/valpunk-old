@@ -1,6 +1,10 @@
-import {ChangeListing, FeaturedChange} from "./components/ChangeLog"
+import { ChangeListing, FeaturedChange } from "./components/ChangeLog"
+import { string } from "prop-types"
 
-
+interface SectionListing {
+  title: string
+  listings: ChangeListing[]
+}
 
 const changeLogSample: FeaturedChange = {
   title: "Epic Changes are ahead",
@@ -23,7 +27,7 @@ const changeLogData: FeaturedChange[] = [
 
 const changeLogListItem: ChangeListing = {
   type: "bug",
-  log: "Bug Fix: Replaced glitchy carousel with a newer, more stable version."
+  log: "Bug Fix: Replaced glitchy carousel with a newer, more stable version. Lorem ipsum dolor sit."
 }
 
 const enhancement: ChangeListing = {
@@ -50,50 +54,94 @@ const randomDefault: ChangeListing = {
   log: "This is everything we need to do.",
   nestedLog: [
     {
-    type: "bug",
-    log: "This is a subset of the last thing I talked about",
-  }
-]
+      type: "bug",
+      log: "This is a subset of the last thing I talked about"
+    }
+  ]
 }
 
-const changeLogList: ChangeListing[] = [
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  changeLogListItem,
-  enhancement,
-  enhancement,
-  enhancement,
-  enhancement,
-  newFeature,
-  newFeature,
-  newFeature,
-  adjustment,
-  adjustment,
-  adjustment,
-  adjustment,
-  adjustment,
-  adjustment,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  misc,
-  randomDefault,
-  randomDefault,
-  randomDefault,
-  randomDefault,
-  randomDefault,
-  randomDefault,
+const bugListings: SectionListing = {
+  title: "Bug Fixes",
+  listings: [
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem,
+    changeLogListItem
+  ]
+}
+
+const enhancementListings: SectionListing = {
+  title: "Enhancements",
+  listings: [
+    enhancement,
+    enhancement,
+    enhancement,
+    enhancement,
+  ]
+}
+
+const newFeatureListing: SectionListing = {
+  title: "New Features",
+  listings: [
+    newFeature,
+    newFeature,
+    newFeature,
+  ]
+}
+
+const adjustmentListings: SectionListing = {
+  title: "Adjustments",
+  listings: [
+    adjustment,
+    adjustment,
+    adjustment,
+    adjustment,
+    adjustment,
+    adjustment,
+  ]
+}
+
+const miscListings: SectionListing = {
+  title: "Miscellaneous",
+  listings: [
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+    misc,
+  ]
+}
+
+const randomDefaultListings: SectionListing = {
+  title: "Nested Listings Example",
+  listings: [
+    randomDefault,
+    randomDefault,
+    randomDefault,
+    randomDefault,
+    randomDefault,
+    randomDefault
+  ]
+}
+
+
+
+const changeLogList: SectionListing[] = [
+  bugListings,
+  enhancementListings,
+  newFeatureListing,
+  adjustmentListings,
+  miscListings,
+  randomDefaultListings
 ]
 
 const roadMapList: ChangeListing[] = [
@@ -118,14 +166,13 @@ const roadMapList: ChangeListing[] = [
   randomDefault,
   randomDefault,
   randomDefault,
-  randomDefault,
+  randomDefault
 ]
-
 
 const sampleChangeLog = {
   changeLogData,
   changeLogList,
-  roadMapList,
+  roadMapList
 }
 
 export default sampleChangeLog

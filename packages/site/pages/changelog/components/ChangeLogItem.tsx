@@ -51,7 +51,7 @@ export default class ChangeLogItem extends React.Component<Props> {
                 <ThumbnailCarousel images={this.props.data.images} />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <div style={{ fontSize: "2.25em", color: "white" }}>
+                <div style={{ fontSize: "2.25em", fontWeight: 500, color: "white" }}>
                   {this.props.data.title}
                 </div>
                 <div style={{ fontSize: "1.25em", fontWeight: 100, color: "white" }}>
