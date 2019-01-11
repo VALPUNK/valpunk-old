@@ -3,14 +3,14 @@ import * as React from "react";
 import { Layout, Meta } from "~/components/universal";
 import SideMenu from "~/components/universal/SideMenu";
 import Documentation from "./Documentation/Documentation";
+import { mockData } from "./mock"
 
 const listItems = (
   <List>
     <ListItem button={true}>Introduction</ListItem>
-    <ListItem button={true}>First Thing</ListItem>
-    <ListItem button={true}>Here is another Thing</ListItem>
+    <ListItem button={true}>API</ListItem>
+    <ListItem button={true}>FAQs</ListItem>
     <ListItem button={true}>Frequently Encountered Problems</ListItem>
-    <ListItem button={true}>Conclusion</ListItem>
   </List>
 )
 export default class Docs extends React.Component {
@@ -20,7 +20,7 @@ export default class Docs extends React.Component {
         <Meta />
         <Layout>
           <SideMenu listItems={listItems}>
-            <Documentation />
+            <Documentation data={mockData} />
           </SideMenu>
         </Layout>
       </div>
