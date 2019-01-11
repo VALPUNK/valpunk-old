@@ -10,6 +10,7 @@ const Counter = (props: {
   ) => React.ReactNode
 }) => {
   return (
+    // @ts-ignore
     <Spring
       config={{ duration: 10000 }}
       from={{ number: 0 }}
