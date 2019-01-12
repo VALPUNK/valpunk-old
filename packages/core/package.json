@@ -99,10 +99,14 @@
     "dist"
   ],
   "dependencies": {
+    "@types/graphql": "^14.0.4",
+    "@types/yup": "^0.26.4",
     "css-element-queries": "^1.1.1",
+    "graphql": "^14.0.2",
     "immer": "^1.8.0",
     "is-hotkey": "^0.1.4",
     "match-sorter": "^2.3.0",
+    "react-apollo": "^2.3.3",
     "react-emotion": "^10.0.0",
     "react-spring": "^7.2.5",
     "react-swipeable-views": "^0.13.0",
@@ -110,7 +114,9 @@
     "react-table": "^6.8.6",
     "slate": "^0.44.9",
     "slate-react": "^0.21.15",
-    "storybook-addon-jsx": "^5.4.0"
+    "storybook-addon-jsx": "^5.4.0",
+    "valpunk-ui": "^0.1.7",
+    "yup": "^0.26.7"
   },
   "gitHead": "22580132db407e10cf0b7b6b94bd9f9ec7dc023e"
 }
