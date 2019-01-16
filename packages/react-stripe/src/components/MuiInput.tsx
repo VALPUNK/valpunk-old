@@ -3,18 +3,24 @@
 // to correctly show the floating label and error messages etc.
 
 import { TextField } from "@material-ui/core";
-import { TextFieldProps } from "material-ui";
 import * as React from "react";
 import StripeInput from "./StripeInput";
 import StripeInputWrapper from "./StripeInputWrapper";
+import { TextFieldProps } from "@material-ui/core/TextField";
 
-export interface MuiInputProps extends TextFieldProps {
+export interface MuiInputProps {
   component: any;
   label: string;
   stripeStyle?: { base: stripe.elements.Style };
+  muiProps?: TextFieldProps;
 }
 
-const MuiInput = ({ component, stripeStyle, ...rest }: MuiInputProps) => {
+const MuiInput = ({
+  component,
+  stripeStyle,
+  muiProps,
+  ...rest
+}: MuiInputProps) => {
   return (
     <StripeInputWrapper>
       {({ focused, empty, error, ...func }) => (
@@ -22,16 +28,19 @@ const MuiInput = ({ component, stripeStyle, ...rest }: MuiInputProps) => {
           InputLabelProps={{
             focused,
             shrink: focused || !empty,
-            error: !!error
+            error: !!error,
+            ...muiProps.InputLabelProps
           }}
           {...rest}
           {...func}
           InputProps={{
-            inputComponent: StripeInput
+            inputComponent: StripeInput,
+            ...muiProps.InputProps
           }}
           inputProps={{
             component,
-            stripeStyle
+            stripeStyle,
+            ...muiProps.inputProps
           }}
           helperText={error ? error.message : " "}
           FormHelperTextProps={{ error: error ? true : false }}
