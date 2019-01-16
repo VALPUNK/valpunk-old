@@ -1,11 +1,12 @@
 import Grid from "@material-ui/core/Grid"
 import Paper from "@material-ui/core/Paper"
 import * as React from "react"
+import { Project } from "../mock"
 import Center from "./Center"
-import { Project } from "../mock";
 
 interface Props {
   data: Project
+  rawTotal: number
 }
 
 export default class PaymentOptions extends React.Component<Props> {
@@ -45,6 +46,7 @@ export default class PaymentOptions extends React.Component<Props> {
                 percentOff={10}
                 weeklyFee={this.props.data.costPerPeriod}
                 months={3}
+                rawTotal={this.props.rawTotal}
               />
             </Grid>
             <Grid item xs={4}>
@@ -53,6 +55,7 @@ export default class PaymentOptions extends React.Component<Props> {
                 weeklyFee={this.props.data.costPerPeriod}
                 months={6}
                 big
+                rawTotal={this.props.rawTotal}
               />
             </Grid>
             <Grid item xs={4}>
@@ -60,6 +63,7 @@ export default class PaymentOptions extends React.Component<Props> {
                 percentOff={10}
                 weeklyFee={this.props.data.costPerPeriod}
                 months={9}
+                rawTotal={this.props.rawTotal}
               />
             </Grid>
           </Grid>
@@ -107,14 +111,28 @@ export default class PaymentOptions extends React.Component<Props> {
             <Center size={8}>
               <div style={{ fontSize: 22 }}>
                 You may pay 50% in a lump sum to get work started.{" "}
-                <span style={{ fontWeight: "bold", fontSize: 24 }}>${(this.props.data.costPerPeriod * this.props.data.weeks.length * 0.5).toLocaleString()}</span>
+                <span style={{ fontWeight: "bold", fontSize: 24 }}>
+                  $
+                  {(
+                    this.props.data.costPerPeriod *
+                    this.props.data.weeks.length *
+                    0.5
+                  ).toLocaleString()}
+                </span>
                 .
               </div>
 
               <div style={{ fontSize: 22 }}>
                 When the project is finished and ready for delivery, you will
                 need to pay the other 50% to own the app.{" "}
-                <span style={{ fontWeight: "bold", fontSize: 24 }}>${(this.props.data.costPerPeriod * this.props.data.weeks.length * 0.5).toLocaleString()}</span>
+                <span style={{ fontWeight: "bold", fontSize: 24 }}>
+                  $
+                  {(
+                    this.props.data.costPerPeriod *
+                    this.props.data.weeks.length *
+                    0.5
+                  ).toLocaleString()}
+                </span>
                 .
               </div>
             </Center>
@@ -131,38 +149,41 @@ const MonthlyCard = ({
   percentOff,
   weeklyFee,
   months,
-  big
+  big,
+  rawTotal
 }: {
   percentOff: number
   weeklyFee: number
   months: number
   big?: boolean
+  rawTotal: number
 }) => {
-
-  const discountedPackageTotal = weeklyFee * 13 * ((100 - percentOff)/100)
+  const discountedPackageTotal = rawTotal * ((100 - percentOff) / 100)
   const monthlyDiscountedPackageTotal = discountedPackageTotal / months
 
   return (
-  <Paper style={{ padding: 16, transform: big ? "scale(1.2)" : "scale(0.9)" }}>
-    <div style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
-      Save {percentOff}%
-    </div>
-    <div
-      style={{
-        textAlign: "center",
-        fontSize: 28,
-        fontWeight: "bold",
-        margin: 4
-      }}
+    <Paper
+      style={{ padding: 16, transform: big ? "scale(1.2)" : "scale(0.9)" }}
     >
-      ${monthlyDiscountedPackageTotal.toLocaleString()}/mo
-    </div>
-    <div style={{ textAlign: "center", fontSize: 20, margin: 4 }}>
-      for {months} months
-    </div>
-    <div style={{ textAlign: "center", fontSize: 18, margin: 4 }}>
-      (${(discountedPackageTotal).toLocaleString()})
-    </div>
-  </Paper>
-)
-    }
+      <div style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+        Save {percentOff}%
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          fontSize: 28,
+          fontWeight: "bold",
+          margin: 4
+        }}
+      >
+        ${monthlyDiscountedPackageTotal.toLocaleString()}/mo
+      </div>
+      <div style={{ textAlign: "center", fontSize: 20, margin: 4 }}>
+        for {months} months
+      </div>
+      <div style={{ textAlign: "center", fontSize: 18, margin: 4 }}>
+        (${discountedPackageTotal.toLocaleString()})
+      </div>
+    </Paper>
+  )
+}

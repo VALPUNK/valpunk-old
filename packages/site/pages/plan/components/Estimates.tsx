@@ -20,7 +20,9 @@ export default class Estimates extends React.Component<Props> {
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>{this.props.numberPeriods}{" "}{this.props.devPeriod}s</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>
+                {this.props.numberPeriods} {this.props.devPeriod}s
+              </span>
             </Grid>
           </Grid>
           <Grid container>
@@ -30,7 +32,9 @@ export default class Estimates extends React.Component<Props> {
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>${this.props.costPerPeriod.toLocaleString()}</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>
+                ${this.props.costPerPeriod.toLocaleString()}
+              </span>
             </Grid>
           </Grid>
           <Grid container>
@@ -40,7 +44,12 @@ export default class Estimates extends React.Component<Props> {
               </span>
             </Grid>
             <Grid item xs>
-              <span style={{ fontSize: 26, marginLeft: 8 }}>${(this.props.costPerPeriod * this.props.numberPeriods).toLocaleString()}</span>
+              <span style={{ fontSize: 26, marginLeft: 8 }}>
+                $
+                {(
+                  this.props.costPerPeriod * this.props.numberPeriods
+                ).toLocaleString()}
+              </span>
             </Grid>
           </Grid>
         </Center>
@@ -48,4 +57,3 @@ export default class Estimates extends React.Component<Props> {
     )
   }
 }
-
