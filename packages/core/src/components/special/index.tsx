@@ -1,4 +1,5 @@
 import ImageCompareSlider from "./ImageCompareSlider/index"
 import RichTextEditor from "./RichTextEditor"
+import ContactForm from "./ContactForm"
 
-export { ImageCompareSlider, RichTextEditor }
+export { ContactForm, ImageCompareSlider, RichTextEditor }

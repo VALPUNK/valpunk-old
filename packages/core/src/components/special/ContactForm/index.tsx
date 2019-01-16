@@ -51,7 +51,7 @@ class ContactForm extends React.Component<ContactFormProps, State> {
             message: Yup.string().required("Required")
           })}
           onSubmit={async (_values, { setSubmitting }) => {
-            console.log("hi")
+            // console.log("hi")
             setSubmitting(true)
             const result = await this.props.client
               .mutate({
