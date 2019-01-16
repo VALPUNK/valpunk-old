@@ -44,7 +44,6 @@ export default class PaymentOptions extends React.Component<Props> {
             <Grid item xs={4}>
               <MonthlyCard
                 percentOff={10}
-                weeklyFee={this.props.data.costPerPeriod}
                 months={3}
                 rawTotal={this.props.rawTotal}
               />
@@ -52,7 +51,6 @@ export default class PaymentOptions extends React.Component<Props> {
             <Grid item xs={4}>
               <MonthlyCard
                 percentOff={20}
-                weeklyFee={this.props.data.costPerPeriod}
                 months={6}
                 big
                 rawTotal={this.props.rawTotal}
@@ -61,7 +59,6 @@ export default class PaymentOptions extends React.Component<Props> {
             <Grid item xs={4}>
               <MonthlyCard
                 percentOff={10}
-                weeklyFee={this.props.data.costPerPeriod}
                 months={9}
                 rawTotal={this.props.rawTotal}
               />
@@ -147,13 +144,11 @@ const blue = "#1e88e5"
 
 const MonthlyCard = ({
   percentOff,
-  weeklyFee,
   months,
   big,
   rawTotal
 }: {
   percentOff: number
-  weeklyFee: number
   months: number
   big?: boolean
   rawTotal: number

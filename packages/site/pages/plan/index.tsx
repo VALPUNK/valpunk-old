@@ -1,15 +1,7 @@
 import Head from "next/head"
 import * as React from "react"
-import Estimates from "./components/Estimates"
-import PaymentAgreement from "./components/PaymentAgreement"
-import PaymentOptions from "./components/PaymentOptions"
-import ProjectTitleArea from "./components/ProjectTitleArea"
-import Signature from "./components/Signature"
-import Spacer from "./components/Spacer"
-import TermsAndConditions from "./components/TermsAndConditions"
-import Week from "./components/Week"
-import { joinme as data, WeekProps } from "./mock"
-import PlanComponent from "./components/PlanComponent";
+import PlanComponent from "./components/PlanComponent"
+import { joinme as data } from "./mock"
 
 export default class Plan extends React.Component {
   public render() {

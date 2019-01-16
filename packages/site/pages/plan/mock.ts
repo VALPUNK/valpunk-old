@@ -5,8 +5,8 @@ export const joinme: Project = {
   developers: ["VAL PUNK, LLC"],
   devPeriod: "Week",
   costPerPeriod: 1500,
-  dateOfQuote: "January 8, 2019",
-  expirationOfQuote: "February 5, 2019",
+  dateOfQuote: "January 11, 2019",
+  expirationOfQuote: "February 8, 2019",
   weeks: [
     {
       id: "0",

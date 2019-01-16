@@ -1,20 +1,20 @@
+import { Paper } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import { withInfo } from "@storybook/addon-info";
 import { storiesOf } from "@storybook/react";
 import * as React from "react";
-import { CenteredForStories } from "~/components/compositions";
-import { Paper } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
 import {
   CardCVCElement,
   CardExpiryElement,
   CardNumberElement,
+  Elements,
   injectStripe,
   PostalCodeElement,
-  ReactStripeElements
+  ReactStripeElements,
+  StripeProvider
 } from "react-stripe-elements-universal";
+import { CenteredForStories } from "~/components/compositions";
 import MuiInput from "./MuiInput";
-
-import { StripeProvider, Elements } from "react-stripe-elements-universal";
 
 (storiesOf("Form", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
@@ -38,6 +38,7 @@ const StripeCards = ({ stripe }: Props) => {
 
     stripe.createSource().then((payload: any) => {
       if (payload.error) {
+        console.log(payload.error);
       } else {
         console.log("source", payload);
       }

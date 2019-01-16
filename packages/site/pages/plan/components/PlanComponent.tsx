@@ -51,7 +51,7 @@ export default class PlanComponent extends React.Component<Props> {
           <PaymentOptions data={data} rawTotal={rawTotal} />
         </div>
 
-        <PaymentAgreement data={data} />
+        <PaymentAgreement data={data} rawTotal={rawTotal} />
         <Signature expiration={data.expirationOfQuote} />
         <TermsAndConditions />
         <div style={{ height: 400 }} />
