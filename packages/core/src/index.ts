@@ -6,14 +6,15 @@ import {
   TableHeaderCell,
   TablePagination,
   TableToolbar,
-  TableWithModal
+  TableWithModal,
+  TextInputField
 } from "./components/collections"
 import {
   CarouselContainer,
   CarouselNav,
   Navbar
 } from "./components/compositions"
-import { ImageCompareSlider, RichTextEditor } from "./components/special"
+import { ImageCompareSlider, RichTextEditor, ContactForm } from "./components/special"
 import { Carousel } from "./components/templates"
 
 export {
@@ -21,11 +22,13 @@ export {
   RegularButton,
   SimpleTable,
   TableWithModal,
+  TextInputField,
   Navbar,
   TableCell,
   TableHeaderCell,
   TablePagination,
   TableToolbar,
+  ContactForm,
   Carousel,
   CarouselContainer,
   CarouselNav,
