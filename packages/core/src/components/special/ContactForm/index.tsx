@@ -6,7 +6,7 @@ import { GraphQLError } from "graphql"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
-import TextInputField from "~/components/collections/TextInputField"
+import TextInputField from "../../../components/collections/TextInputField"
 
 interface Values {
   name?: string
@@ -71,7 +71,7 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                 }
               })
               .then(response => {
-                // console.log(response)
+                console.log(response)
                 setSubmitting(false)
                 if (!response.errors) {
                   this.setState({
@@ -210,7 +210,7 @@ const CONTACT_SEND_FORM = gql`
   mutation visitorSendEmail(
     $title: String!
     $body: String!
-    $to: String!
+    $to: [String!]!
     $from: String!
   ) {
     visitorSendEmail(title: $title, body: $body, to: $to, from: $from) {
