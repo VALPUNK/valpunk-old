@@ -16,6 +16,9 @@ interface Values {
 
 interface ContactFormProps {
   client: ApolloClient<any>
+  uriEndpoint?: string
+  receivingEmails?: string[]
+  businessId?: string
 }
 
 interface State {
@@ -57,14 +60,18 @@ class ContactForm extends React.Component<ContactFormProps, State> {
               .mutate({
                 mutation: CONTACT_SEND_FORM,
                 variables: {
+                  businessId: this.props.businessId,
                   title: `Name: ${_values.name}`,
-                  to: "enrico@valpunk.com",
+                  to: this.props.receivingEmails ? this.props.receivingEmails : "enrico@valpunk.com",
                   from: _values.email,
                   body: _values.message
+                },
+                context: {
+                  uri: this.props.uriEndpoint ? this.props.uriEndpoint : "https://valpunk-server.now.sh/"
                 }
               })
               .then(response => {
-                console.log(response)
+                // console.log(response)
                 setSubmitting(false)
                 if (!response.errors) {
                   this.setState({
