@@ -13,6 +13,7 @@ export interface MuiInputProps {
   label: string;
   stripeStyle?: { base: stripe.elements.Style };
   muiProps?: TextFieldProps;
+  style?: React.CSSProperties;
 }
 
 const MuiInput = ({
