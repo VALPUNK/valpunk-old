@@ -62,7 +62,7 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                 variables: {
                   businessId: this.props.businessId,
                   title: `Name: ${_values.name}`,
-                  to: this.props.receivingEmails ? this.props.receivingEmails : "enrico@valpunk.com",
+                  to: this.props.receivingEmails ? this.props.receivingEmails : ["enrico@valpunk.com"],
                   from: _values.email,
                   body: _values.message
                 },
