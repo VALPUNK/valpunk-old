@@ -6,7 +6,9 @@ import { GraphQLError } from "graphql"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
-import TextInputField from "~/components/collections/TextInputField"
+import TextInputField from "../../../components/collections/TextInputField"
+import { visitorSendEmail, visitorSendEmailVariables } from './__generated__/visitorSendEmail';
+import { BusinessType } from '../../../../__generated__/globalTypes';
 
 interface Values {
   name?: string
@@ -17,8 +19,8 @@ interface Values {
 interface ContactFormProps {
   client: ApolloClient<any>
   uriEndpoint?: string
-  receivingEmails?: string[]
-  businessId?: string
+  receivingEmails: string[]
+  businessType: BusinessType
 }
 
 interface State {
@@ -42,6 +44,8 @@ class ContactForm extends React.Component<ContactFormProps, State> {
   }
 
   public render() {
+    const receivingEmails = this.props.receivingEmails ? this.props.receivingEmails : ["enrico@valpunk.com"]
+    const uriEndpoint = this.props.uriEndpoint ? this.props.uriEndpoint : "https://valpunk-server.now.sh/"
     return (
       <div>
         <Formik<Values>
@@ -56,22 +60,22 @@ class ContactForm extends React.Component<ContactFormProps, State> {
           onSubmit={async (_values, { setSubmitting }) => {
             // console.log("hi")
             setSubmitting(true)
-            const result = await this.props.client
-              .mutate({
+            await this.props.client
+              .mutate<visitorSendEmail,visitorSendEmailVariables>({
                 mutation: CONTACT_SEND_FORM,
                 variables: {
-                  businessId: this.props.businessId,
+                  businessType: this.props.businessType,
                   title: `Name: ${_values.name}`,
-                  to: this.props.receivingEmails ? this.props.receivingEmails : "enrico@valpunk.com",
+                  to: receivingEmails,
                   from: _values.email,
                   body: _values.message
                 },
                 context: {
-                  uri: this.props.uriEndpoint ? this.props.uriEndpoint : "https://valpunk-server.now.sh/"
+                  uri: uriEndpoint
                 }
               })
               .then(response => {
-                // console.log(response)
+                console.log(response)
                 setSubmitting(false)
                 if (!response.errors) {
                   this.setState({
@@ -208,12 +212,13 @@ class ContactForm extends React.Component<ContactFormProps, State> {
 
 const CONTACT_SEND_FORM = gql`
   mutation visitorSendEmail(
+    $businessType: BusinessType!
     $title: String!
     $body: String!
-    $to: String!
+    $to: [String!]!
     $from: String!
   ) {
-    visitorSendEmail(title: $title, body: $body, to: $to, from: $from) {
+    visitorSendEmail(businessType: $businessType, title: $title, body: $body, to: $to, from: $from) {
       body
     }
   }

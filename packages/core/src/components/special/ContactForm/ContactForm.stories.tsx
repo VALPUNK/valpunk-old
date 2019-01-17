@@ -16,15 +16,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-{
-}
+const emailList = ["adam@valpunk.com", "tttgkm@gmail.com"]
+
 
 ;(storiesOf("Form", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
   .add("Contact Form", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <ContactForm />
+        <ContactForm
+          businessType="NODBEANBAGCHAIRS"
+          receivingEmails={emailList}
+          uriEndpoint="http://localhost:4000" />
       </ApolloProvider>
     </CenteredForStories>
   ))
