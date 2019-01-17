@@ -1,7 +1,7 @@
 {
   "name": "@valpunk/core",
   "private": false,
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "VALPUNK UI Library",
   "author": "Enrico Valbuena",
   "license": "MIT",
