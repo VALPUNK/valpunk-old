@@ -1,20 +1,32 @@
-import { isKeyHotkey } from "is-hotkey"
-import React from "react"
-import { Editor as CoreEditor, Value } from "slate"
-import { Editor, RenderNodeProps } from "slate-react"
-import { Button, Icon, Toolbar } from "./components"
-import { initialValue } from "./value"
+import { TextField } from "@material-ui/core"
+import Code from "@material-ui/icons/Code"
 import FormatBold from "@material-ui/icons/FormatBold"
 import FormatItalic from "@material-ui/icons/FormatItalic"
+import FormatListBulleted from "@material-ui/icons/FormatListBulleted"
+import FormatListNumbered from "@material-ui/icons/FormatListNumbered"
+import FormatQuote from "@material-ui/icons/FormatQuote"
 import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
-import Code from "@material-ui/icons/Code"
 import LooksOne from "@material-ui/icons/LooksOne"
 import LooksTwo from "@material-ui/icons/LooksTwo"
-import FormatQuote from "@material-ui/icons/FormatQuote"
-import FormatListNumbered from "@material-ui/icons/FormatListNumbered"
-import FormatListBulleted from "@material-ui/icons/FormatListBulleted"
-
+import { ApolloClient, gql } from "apollo-boost"
+import { isKeyHotkey } from "is-hotkey"
+import React from "react"
+import { withApollo } from "react-apollo"
+import { Editor as CoreEditor, Value } from "slate"
+import { Editor, RenderNodeProps } from "slate-react"
+import { BusinessType } from "../../../../__generated__/globalTypes"
+import { GET_CONTENT } from "../RichTextViewer"
+import {
+  getContent,
+  getContentVariables
+} from "../RichTextViewer/__generated__/getContent"
+import { Button, Icon, Toolbar } from "./components"
 import "./slate.css"
+import { initialValue } from "./value"
+import {
+  upsertContent,
+  upsertContentVariables
+} from "./__generated__/upsertContent"
 
 const DEFAULT_NODE = "paragraph"
 
@@ -24,11 +36,18 @@ const isUnderlinedHotkey = isKeyHotkey("mod+u")
 const isCodeHotkey = isKeyHotkey("mod+`")
 
 interface State {
-  value: Value
+  value?: Value
+  title?: string
+  author?: string
+  contentId?: string
 }
 
 interface RichTextEditorProps {
   onChange?: (value: Value) => void
+  client: ApolloClient<any>
+  businessType: BusinessType
+  uriEndpoint?: string
+  contentId?: string
 }
 
 class RichTextExample extends React.Component<RichTextEditorProps, State> {
@@ -37,8 +56,48 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      value: Value.fromJSON(initialValue)
+      value: Value.fromJSON(initialValue),
+      title: "",
+      author: "",
+      contentId: this.props.contentId ? this.props.contentId : ""
     }
+  }
+
+  public componentDidMount = () => {
+    {this.props.contentId && (
+      this.getContent(this.props.contentId)
+    )}
+  }
+
+  public getContent = async (contentId: string) => {
+    const uriEndpoint = this.props.uriEndpoint
+      ? this.props.uriEndpoint
+      : "https://valpunk-server.now.sh/"
+    const result = await this.props.client.query<
+      getContent,
+      getContentVariables
+    >({
+      query: GET_CONTENT,
+      variables: {
+        contentId
+      },
+      context: {
+        uri: uriEndpoint
+      }
+    })
+
+    const title = result.data.getContent.title
+    const author = result.data.getContent.author
+    const valueContent = Value.fromJSON(
+      JSON.parse(result.data.getContent.content)
+    )
+
+    this.setState({
+      title: title,
+      author: author,
+      value: valueContent
+    })
+    console.log(this.state)
   }
 
   /**
@@ -84,6 +143,18 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
+        <div>
+          <TextField name="title" label="Title" value={this.state.title} onChange={this.onChangeField} />
+        </div>
+        <div>
+          <TextField
+            name="author"
+            label="Author"
+            value={this.state.author}
+            onChange={this.onChangeField}
+          />
+        </div>
+
         <Toolbar>
           <FormatBold
             onClick={e => {
@@ -141,18 +212,47 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
             }}
           />
         </Toolbar>
-        <Editor
-          spellCheck
-          autoFocus
-          placeholder="Enter some rich text..."
-          ref={this.editor}
-          value={this.state.value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
-          renderMark={this.renderMark}
-          style={{ maxWidth: 1000, minWidth: 800 }}
-        />
+        <div
+          style={{
+            borderBottom: "2px solid #eee",
+            margin: "0 -20px",
+            padding: "0 20px",
+            paddingBottom: "20px"
+          }}
+        >
+          <Editor
+            spellCheck
+            autoFocus
+            placeholder="Enter some rich text..."
+            ref={this.editor}
+            value={this.state.value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            renderNode={this.renderNode}
+            renderMark={this.renderMark}
+            style={{ maxWidth: 1000, minWidth: 800 }}
+          />
+        </div>
+        <div
+          style={{
+            paddingTop: "20px"
+          }}
+        >
+          <Button
+            style={{
+              backgroundColor: "#2196f3",
+              color: "white",
+              padding: "10px",
+              borderRadius: "4px"
+            }}
+            onClick={e => {
+              e.preventDefault()
+              this.onClickSave()
+            }}
+          >
+            Save
+          </Button>
+        </div>
       </div>
     )
   }
@@ -171,6 +271,7 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
     return (
       <Button
         active={isActive}
+        style={{ cursor: "pointer" }}
         onMouseDown={event => this.onClickMark(event, type)}
       >
         <Icon>{icon}</Icon>
@@ -204,6 +305,7 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
     return (
       <Button
         active={isActive}
+        style={{ cursor: "pointer" }}
         onMouseDown={event => this.onClickBlock(event, type)}
       >
         <Icon>{icon}</Icon>
@@ -274,10 +376,47 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
    */
 
   public onChange = ({ value }: Editor) => {
-    this.setState({ value })
+    this.setState({
+      value
+    })
     if (this.props.onChange) {
       this.props.onChange(this.state.value)
     }
+  }
+
+  public onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  public onClickSave = async () => {
+    const saveContent = JSON.stringify(this.state.value.toJSON())
+    const contentId = this.props.contentId ? this.props.contentId : this.state.contentId
+    const uriEndpoint = this.props.uriEndpoint
+      ? this.props.uriEndpoint
+      : "https://valpunk-server.now.sh/"
+    const result = await this.props.client.mutate<
+      upsertContent,
+      upsertContentVariables
+    >({
+      mutation: SAVE_CONTENT,
+      variables: {
+        title: this.state.title,
+        author: this.state.author,
+        content: saveContent,
+        contentId: contentId,
+        accountId: "",
+        businessType: this.props.businessType
+      },
+      context: {
+        uri: uriEndpoint
+      }
+    })
+    {this.props.contentId ? {} :   this.setState({
+      contentId: result.data.upsertContent.id
+    })
+  }
+
+    console.log("Content Saved.")
   }
 
   /**
@@ -379,4 +518,27 @@ class RichTextExample extends React.Component<RichTextEditorProps, State> {
  * Export.
  */
 
-export default RichTextExample
+const SAVE_CONTENT = gql`
+  mutation upsertContent(
+    $title: String
+    $author: String
+    $content: String!
+    $contentId: String
+    $accountId: String
+    $businessType: BusinessType!
+  ) {
+    upsertContent(
+      title: $title
+      author: $author
+      content: $content
+      contentId: $contentId
+      accountId: $accountId
+      businessType: $businessType
+    ) {
+      id
+      content
+    }
+  }
+`
+
+export default withApollo(RichTextExample)
