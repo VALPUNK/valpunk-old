@@ -1,6 +1,6 @@
 import { withInfo } from "@storybook/addon-info"
 import { storiesOf } from "@storybook/react"
-import { ApolloClient, InMemoryCache, gql } from "apollo-boost"
+import { ApolloClient, InMemoryCache } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
@@ -20,11 +20,10 @@ const client = new ApolloClient({
   .add("Viewer", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <RichTextEditor contentId="cjr2jirai8r8y0a71d2a6xl73" uriEndpoint="http://localhost:4000" />
+        <RichTextEditor
+          contentId="cjr2jirai8r8y0a71d2a6xl73"
+          uriEndpoint="http://localhost:4000"
+        />
       </ApolloProvider>
     </CenteredForStories>
   ))
-
-
-
-
