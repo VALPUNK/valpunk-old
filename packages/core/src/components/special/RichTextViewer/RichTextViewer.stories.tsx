@@ -17,12 +17,10 @@ const client = new ApolloClient({
 })
 ;(storiesOf("Rich Text Editor", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Basic", () => (
+  .add("Viewer", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <RichTextEditor businessType="VALPUNK" uriEndpoint="http://localhost:4000"
-        contentId="cjr2lds9c8xh10a71hdia4prn"
-        />
+        <RichTextEditor contentId="cjr2jirai8r8y0a71d2a6xl73" uriEndpoint="http://localhost:4000" />
       </ApolloProvider>
     </CenteredForStories>
   ))
