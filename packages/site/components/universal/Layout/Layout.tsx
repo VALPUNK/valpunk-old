@@ -1,7 +1,6 @@
-import * as React from "react"
-import { Footer } from "~/components/templates"
 import { Navbar } from "@valpunk/core"
 import Router from "next/router"
+import * as React from "react"
 
 const navButtons = [
   {
@@ -52,7 +51,7 @@ export default class Layout extends React.Component {
           navButtons={navButtons}
         />
         {this.props.children}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }

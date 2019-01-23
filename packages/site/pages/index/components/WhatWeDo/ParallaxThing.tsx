@@ -53,7 +53,8 @@ export default class ParallaxThing extends React.Component<Props> {
         style={{
           position: "relative",
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
         <Parallax
@@ -61,12 +62,12 @@ export default class ParallaxThing extends React.Component<Props> {
           ref={ref => (this.parallax = ref)}
           pages={3}
           style={{
-            width: "80%",
+            width: this.props.height * 0.8,
             height: this.props.height * 0.8,
             backgroundColor: "white",
             // top: "50%",
             // left: "50%",
-            // transform: "translate(50%, 50%)",
+            transform: "translate(0%, 50%)",
             boxShadow: "2px 2px 5px rgba(0,0,0,0.5)"
           }}
           // innerStyle={{ width: "75%" }}
@@ -78,6 +79,7 @@ export default class ParallaxThing extends React.Component<Props> {
               speed={1}
               style={{ backgroundColor: "#805E73", width: "100%" }}
             />
+
             <ParallaxLayer
               offset={2}
               speed={1}
@@ -95,20 +97,7 @@ export default class ParallaxThing extends React.Component<Props> {
               }}
             />
 
-            <ParallaxLayer
-              offset={1.3}
-              speed={-0.3}
-              style={{ pointerEvents: "none", width: pWidth }}
-            >
-              <img
-                src={url("satellite4")}
-                style={{
-                  width: "15%",
-                  marginLeft: "70%",
-                  height: standardHeight
-                }}
-              />
-            </ParallaxLayer>
+            <ExperienceIcons scaleFactor={0.8} speedFactor={2} />
 
             <ParallaxLayer
               offset={1}
@@ -285,26 +274,9 @@ export default class ParallaxThing extends React.Component<Props> {
               }}
             >
               <img
-                src={url("server")}
-                style={{ width: "20%", height: standardHeight }}
-              />
-            </ParallaxLayer>
-
-            <ParallaxLayer
-              offset={1}
-              speed={0.1}
-              // @ts-ignore
-              // onClick={() => this.parallax.scrollTo(2)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: pWidth
-              }}
-            >
-              <img
-                src={url("bash")}
-                style={{ width: "40%", height: standardHeight }}
+                // src={url("server")}
+                src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/idea.png"
+                style={{ width: "40%", height: "auto" }}
               />
             </ParallaxLayer>
 
@@ -332,3 +304,149 @@ export default class ParallaxThing extends React.Component<Props> {
     )
   }
 }
+
+const ExperienceIcons = ({
+  scaleFactor = 1,
+  speedFactor = 1
+}: {
+  scaleFactor: number
+  speedFactor: number
+}) => (
+  <>
+    <ParallaxLayer
+      offset={1.4}
+      speed={6 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/shopify.png"
+        style={{
+          width: `${20 * scaleFactor}%`,
+          marginLeft: "80%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+    <ParallaxLayer
+      offset={1.35}
+      speed={2 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/shopify.png"
+        style={{
+          width: `${20 * scaleFactor}%`,
+          marginLeft: "5%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+
+    <ParallaxLayer
+      offset={1.2}
+      speed={5 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/android.png"
+        style={{
+          width: `${15 * scaleFactor}%`,
+          marginLeft: "65%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+
+    <ParallaxLayer
+      offset={1.15}
+      speed={4 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/apple.png"
+        style={{
+          width: `${12 * scaleFactor}%`,
+          marginLeft: "45%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+    <ParallaxLayer
+      offset={1.2}
+      speed={3 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/mozilla.png"
+        style={{
+          width: `${12 * scaleFactor}%`,
+          marginLeft: "25%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+
+    <ParallaxLayer
+      offset={1}
+      speed={0.1 * speedFactor}
+      // @ts-ignore
+      // onClick={() => this.parallax.scrollTo(2)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: pWidth
+      }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/coding.png"
+        style={{ width: `${50 * scaleFactor}%`, height: "auto" }}
+      />
+    </ParallaxLayer>
+    <ParallaxLayer
+      offset={1.6}
+      speed={1 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/photoshop.png"
+        style={{
+          width: `${25 * scaleFactor}%`,
+          marginLeft: "6%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+    <ParallaxLayer
+      offset={1.65}
+      speed={8 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/chrome.png"
+        style={{
+          width: `${35 * scaleFactor}%`,
+          marginLeft: "30%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+
+    <ParallaxLayer
+      offset={1.6}
+      speed={7 * speedFactor}
+      style={{ pointerEvents: "none", width: pWidth }}
+    >
+      <img
+        src="https://s3.us-east-2.amazonaws.com/valpunk-cdn/img/windows.png"
+        style={{
+          width: `${25 * scaleFactor}%`,
+          marginLeft: "70%",
+          height: "auto"
+        }}
+      />
+    </ParallaxLayer>
+
+    {/* End Slie 2 */}
+  </>
+)

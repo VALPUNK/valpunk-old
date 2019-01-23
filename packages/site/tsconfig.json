@@ -34,7 +34,8 @@
     "noImplicitAny": true,
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
-    "noImplicitUseStrict": true
+    "noImplicitUseStrict": true,
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",

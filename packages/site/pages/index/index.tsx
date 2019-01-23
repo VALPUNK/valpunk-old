@@ -31,9 +31,7 @@ export default class Index extends React.Component<{}, State> {
       <div>
         <Meta />
         <Layout>
-          <div style={{ height: 1000 }}>
-            <Jumbotron />
-          </div>
+          <Jumbotron height={800} />
           <Grid container justify="center">
             <Grid
               container
@@ -47,7 +45,10 @@ export default class Index extends React.Component<{}, State> {
             <Mobile />
             <Grid
               container
-              style={{ backgroundColor: "#CFD8DC" }}
+              style={{
+                backgroundColor: "#CFD8DC",
+                boxShadow: "0px -5px 8px rgba(0,0,0,.6)"
+              }}
               justify="center"
             >
               <Grid item xs={12} xl={7} lg={8} md={10} sm={11}>

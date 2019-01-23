@@ -17,7 +17,8 @@ export default class Meta extends React.PureComponent {
           {`
             body {
               margin: 0;
-              font-family: "Poppins", sans-serif;
+              // font-family: "Poppins", sans-serif;
+              font-family: "Kanit", sans-serif;
             }
           `}
         </style>
