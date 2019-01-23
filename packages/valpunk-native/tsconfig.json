@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "types/*": ["./types/*"],
+      "constants/*": ["./constants/*"],
+      "components/*": ["./components/*"]
+    },
+    // "rootDir": ".",
+    "target": "es5",
+    "module": "esnext",
+    "outDir": "build/dist",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "jsx": "react-native",
+    "lib": ["dom", "es2015", "es2016"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    // "strict": true,
+    "noImplicitReturns": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noImplicitUseStrict": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "src/**/*.toDelete.tsx",
+    "src/**/*.toDelete.ts"
+  ]
+}
