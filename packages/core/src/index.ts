@@ -14,7 +14,7 @@ import {
   CarouselNav,
   Navbar
 } from "./components/compositions"
-import { ImageCompareSlider, RichTextEditor, ContactForm } from "./components/special"
+import { ImageCompareSlider, RichTextEditor, RichTextViewer, SimpleViewer, ContactForm } from "./components/special"
 import { Carousel } from "./components/templates"
 
 export {
@@ -34,5 +34,7 @@ export {
   CarouselNav,
   ImageCompareSlider,
   TableCheckbox,
-  RichTextEditor
+  RichTextEditor,
+  RichTextViewer,
+  SimpleViewer
 }
