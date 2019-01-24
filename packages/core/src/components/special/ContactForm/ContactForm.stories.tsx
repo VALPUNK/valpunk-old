@@ -16,7 +16,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-const emailList = ["adam@valpunk.com", "tttgkm@gmail.com"]
 
 
 ;(storiesOf("Form", module) as any)
@@ -25,9 +24,9 @@ const emailList = ["adam@valpunk.com", "tttgkm@gmail.com"]
     <CenteredForStories>
       <ApolloProvider client={client}>
         <ContactForm
-          businessType="NODBEANBAGCHAIRS"
-          receivingEmails={emailList}
-          uriEndpoint="http://localhost:4000" />
+          businessType="VALPUNK"
+          // uriEndpoint="http://localhost:4000"
+          />
       </ApolloProvider>
     </CenteredForStories>
   ))
