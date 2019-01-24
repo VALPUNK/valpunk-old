@@ -6,6 +6,7 @@
 //==============================================================
 
 export enum BusinessType {
+  NIMBUS = "NIMBUS",
   NODBEANBAGCHAIRS = "NODBEANBAGCHAIRS",
   PMCI = "PMCI",
   SENDAFRIEND = "SENDAFRIEND",

@@ -19,7 +19,6 @@ interface Values {
 interface ContactFormProps {
   client: ApolloClient<any>
   uriEndpoint?: string
-  receivingEmails: string[]
   businessType: BusinessType
 }
 
@@ -44,7 +43,6 @@ class ContactForm extends React.Component<ContactFormProps, State> {
   }
 
   public render() {
-    const receivingEmails = this.props.receivingEmails ? this.props.receivingEmails : ["enrico@valpunk.com"]
     const uriEndpoint = this.props.uriEndpoint ? this.props.uriEndpoint : "https://valpunk-server.now.sh/"
     return (
       <div>
@@ -66,7 +64,6 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                 variables: {
                   businessType: this.props.businessType,
                   title: `Name: ${_values.name}`,
-                  to: receivingEmails,
                   from: _values.email,
                   body: _values.message
                 },
@@ -215,10 +212,9 @@ const CONTACT_SEND_FORM = gql`
     $businessType: BusinessType!
     $title: String!
     $body: String!
-    $to: [String!]!
     $from: String!
   ) {
-    visitorSendEmail(businessType: $businessType, title: $title, body: $body, to: $to, from: $from) {
+    visitorSendEmail(businessType: $businessType, title: $title, body: $body, from: $from) {
       body
     }
   }

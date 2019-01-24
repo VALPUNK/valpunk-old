@@ -19,6 +19,5 @@ export interface visitorSendEmailVariables {
   businessType: BusinessType;
   title: string;
   body: string;
-  to: string[];
   from: string;
 }
