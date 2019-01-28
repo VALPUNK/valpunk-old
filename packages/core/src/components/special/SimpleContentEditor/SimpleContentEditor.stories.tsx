@@ -1,11 +1,11 @@
 import { withInfo } from "@storybook/addon-info"
 import { storiesOf } from "@storybook/react"
-import { ApolloClient, InMemoryCache } from "apollo-boost"
+import { ApolloClient, InMemoryCache, gql } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
-import RichTextEditor from "./index"
+import SimpleContentEditor from "./index"
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -17,13 +17,16 @@ const client = new ApolloClient({
 })
 ;(storiesOf("Rich Text Editor", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Rich Text Viewer", () => (
+  .add("Simple Content Editor", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <RichTextEditor
-          contentId="cjrccxqhn00150889hw9f8jja"
-          uriEndpoint="http://localhost:4000"
+        <SimpleContentEditor businessType="VALPUNK" uriEndpoint="http://localhost:4000"
+        // contentId="cjrco5odr01j90808o05dx3iy"
         />
       </ApolloProvider>
     </CenteredForStories>
   ))
+
+
+
+

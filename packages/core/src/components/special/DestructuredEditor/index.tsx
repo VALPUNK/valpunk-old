@@ -35,73 +35,76 @@ const isItalicHotkey = isKeyHotkey("mod+i")
 const isUnderlinedHotkey = isKeyHotkey("mod+u")
 const isCodeHotkey = isKeyHotkey("mod+`")
 
-interface State {
-  value?: Value
-  title?: string
-  author?: string
-  contentId?: string
-  submitting?: boolean
-}
+// interface State {
+//   value?: Value
+//   title?: string
+//   author?: string
+//   contentId?: string
+//   submitting?: boolean
+// }
 
 interface RichTextEditorProps {
-  onChange?: (value: Value) => void
-  client: ApolloClient<any>
-  businessType: BusinessType
-  uriEndpoint?: string
-  contentId?: string
+  onChange: (value: Value) => void
+  // client: ApolloClient<any>
+  // businessType: BusinessType
+  // uriEndpoint?: string
+  // contentId?: string
+  value: Value
 }
 
-class RichTextEditor extends React.Component<RichTextEditorProps, State> {
+class DestructuredEditor extends React.Component<RichTextEditorProps
+// , State
+> {
   public editor = React.createRef<Editor>()
 
   constructor(props: any) {
     super(props)
     this.state = {
-      value: Value.fromJSON(initialValue),
-      title: "",
-      author: "",
-      contentId: this.props.contentId ? this.props.contentId : "",
-      submitting: false
+      // value: Value.fromJSON(initialValue),
+      // title: "",
+      // author: "",
+      // contentId: this.props.contentId ? this.props.contentId : "",
+      // submitting: false
     }
   }
 
-  public componentDidMount = () => {
-    {
-      this.props.contentId && this.getContent(this.props.contentId)
-    }
-  }
+  // public componentDidMount = () => {
+  //   {
+  //     this.props.contentId && this.getContent(this.props.contentId)
+  //   }
+  // }
 
-  public getContent = async (contentId: string) => {
-    console.log("Getting Content...")
-    const uriEndpoint = this.props.uriEndpoint
-      ? this.props.uriEndpoint
-      : "https://valpunk-server.now.sh/"
-    const result = await this.props.client.query<
-      getContent,
-      getContentVariables
-    >({
-      query: GET_CONTENT,
-      variables: {
-        contentId
-      },
-      context: {
-        uri: uriEndpoint
-      }
-    })
+  // public getContent = async (contentId: string) => {
+  //   console.log("Getting Content...")
+  //   const uriEndpoint = this.props.uriEndpoint
+  //     ? this.props.uriEndpoint
+  //     : "https://valpunk-server.now.sh/"
+  //   const result = await this.props.client.query<
+  //     getContent,
+  //     getContentVariables
+  //   >({
+  //     query: GET_CONTENT,
+  //     variables: {
+  //       contentId
+  //     },
+  //     context: {
+  //       uri: uriEndpoint
+  //     }
+  //   })
 
-    const title = result.data.getContent.title
-    const author = result.data.getContent.author
-    const valueContent = Value.fromJSON(
-      JSON.parse(result.data.getContent.content)
-    )
+  //   const title = result.data.getContent.title
+  //   const author = result.data.getContent.author
+  //   const valueContent = Value.fromJSON(
+  //     JSON.parse(result.data.getContent.content)
+  //   )
 
-    this.setState({
-      title: title,
-      author: author,
-      value: valueContent
-    })
-    console.log(this.state)
-  }
+  //   this.setState({
+  //     title: title,
+  //     author: author,
+  //     value: valueContent
+  //   })
+  //   console.log(this.state)
+  // }
 
   /**
    * Check if the current selection has a mark with `type` in it.
@@ -111,7 +114,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
    */
 
   public hasMark = (type: any) => {
-    const { value } = this.state
+    const { value } = this.props
     return value.activeMarks.some(mark => mark.type === type)
   }
 
@@ -123,7 +126,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
    */
 
   public hasBlock = (type: string) => {
-    const { value } = this.state
+    const { value } = this.props
     return value.blocks.some(node => node.type === type)
   }
 
@@ -146,7 +149,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <TextField
             name="title"
             label="Title"
@@ -161,9 +164,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             value={this.state.author}
             onChange={this.onChangeField}
           />
-        </div>
-
-        <div style={{margin: "30px 0"}}>
+        </div> */}
 
         <Toolbar>
           <FormatBold
@@ -233,7 +234,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             autoFocus
             placeholder="Enter some rich text..."
             ref={this.editor}
-            value={this.state.value}
+            value={this.props.value}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
             renderNode={this.renderNode}
@@ -241,10 +242,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             style={{ maxWidth: 1000, minWidth: 800 }}
           />
         </div>
-
-        </div>
-
-        <div
+        {/* <div
           style={{
             paddingTop: "20px"
           }}
@@ -263,7 +261,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
           >
             Save
           </Button>
-        </div>
+        </div> */}
       </div>
     )
   }
@@ -304,7 +302,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     if (["numbered-list", "bulleted-list"].includes(type)) {
       const {
         value: { document, blocks }
-      } = this.state
+      } = this.props
 
       if (blocks.size > 0) {
         const parent = document.getParent(blocks.first().key)
@@ -387,61 +385,61 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
    */
 
   public onChange = ({ value }: Editor) => {
-    this.setState({
-      value
-    })
-    if (this.props.onChange) {
-      this.props.onChange(this.state.value)
-    }
+    // this.setState({
+    //   value
+    // })
+    // if (this.props.onChange) {
+      this.props.onChange(value)
+    // }
   }
 
   public onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  public onClickSave = async () => {
-    console.log("Submitting...")
-    await this.setState({
-      submitting: true
-    })
-    const saveContent = JSON.stringify(this.state.value.toJSON())
-    const contentId = this.state.contentId
-    const uriEndpoint = this.props.uriEndpoint
-      ? this.props.uriEndpoint
-      : "https://valpunk-server.now.sh/"
-    const result = await this.props.client.mutate<
-      upsertContent,
-      upsertContentVariables
-    >({
-      mutation: SAVE_CONTENT,
-      variables: {
-        title: this.state.title,
-        author: this.state.author,
-        content: saveContent,
-        contentId: contentId,
-        accountId: "",
-        businessType: this.props.businessType
-      },
-      context: {
-        uri: uriEndpoint
-      }
-    })
+  // public onClickSave = async () => {
+  //   console.log("Submitting...")
+  //   await this.setState({
+  //     submitting: true
+  //   })
+  //   const saveContent = JSON.stringify(this.state.value.toJSON())
+  //   const contentId = this.state.contentId
+  //   const uriEndpoint = this.props.uriEndpoint
+  //     ? this.props.uriEndpoint
+  //     : "https://valpunk-server.now.sh/"
+  //   const result = await this.props.client.mutate<
+  //     upsertContent,
+  //     upsertContentVariables
+  //   >({
+  //     mutation: SAVE_CONTENT,
+  //     variables: {
+  //       title: this.state.title,
+  //       author: this.state.author,
+  //       content: saveContent,
+  //       contentId: contentId,
+  //       accountId: "",
+  //       businessType: this.props.businessType
+  //     },
+  //     context: {
+  //       uri: uriEndpoint
+  //     }
+  //   })
 
-    console.log("Just saved all this stuff: ", result)
+  //   console.log("Just saved all this stuff: ", result)
 
-    this.props.contentId
-      ? {}
-      : this.setState({
-          contentId: result.data.upsertContent.id
-        })
+  //   this.props.contentId
+  //     ? {}
+  //     : this.setState({
+  //         contentId: result.data.upsertContent.id
+  //       })
 
 
-    await this.setState({
-      submitting: false
-    })
+  //   await this.setState({
+  //     submitting: false
+  //   })
 
-    console.log("Content Saved.")
-  }
+  //   console.log("Content Saved.")
+  // }
 
   /**
    * On key down, if it's a formatting command toggle a mark.
@@ -542,27 +540,27 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
  * Export.
  */
 
-const SAVE_CONTENT = gql`
-  mutation upsertContent(
-    $title: String
-    $author: String
-    $content: String!
-    $contentId: String
-    $accountId: String
-    $businessType: BusinessType!
-  ) {
-    upsertContent(
-      title: $title
-      author: $author
-      content: $content
-      contentId: $contentId
-      accountId: $accountId
-      businessType: $businessType
-    ) {
-      id
-      content
-    }
-  }
-`
+// const SAVE_CONTENT = gql`
+//   mutation upsertContent(
+//     $title: String
+//     $author: String
+//     $content: String!
+//     $contentId: String
+//     $accountId: String
+//     $businessType: BusinessType!
+//   ) {
+//     upsertContent(
+//       title: $title
+//       author: $author
+//       content: $content
+//       contentId: $contentId
+//       accountId: $accountId
+//       businessType: $businessType
+//     ) {
+//       id
+//       content
+//     }
+//   }
+// `
 
-export default withApollo(RichTextEditor)
+export default withApollo(DestructuredEditor)

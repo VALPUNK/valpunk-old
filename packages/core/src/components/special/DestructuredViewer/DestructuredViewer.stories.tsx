@@ -7,7 +7,8 @@ import { ApolloProvider, Query } from "react-apollo"
 import { Value } from "slate"
 import { CenteredForStories } from "~/components/compositions"
 import { GET_CONTENT } from "../RichTextViewer"
-import SimpleViewer from "./index"
+import DestructuredViewer from "./index"
+import "./slate.css"
 import { getContent, getContentVariables } from "./__generated__/getContent"
 
 const httpLink = createHttpLink({
@@ -20,13 +21,13 @@ const client = new ApolloClient({
 })
 ;(storiesOf("Rich Text Editor", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Simple Viewer", () => {
+  .add("Destructured Viewer", () => {
     return (
       <CenteredForStories>
         <ApolloProvider client={client}>
           <ContentQuery
             query={GET_CONTENT}
-            variables={{ contentId: "cjr2jirai8r8y0a71d2a6xl73" }}
+            variables={{ contentId: "cjrcjv3dt00eg08897khcb69x" }}
             context={{ uri: "http://localhost:4000" }}
           >
             {({ loading, data, error }) => {
@@ -40,6 +41,8 @@ const client = new ApolloClient({
               const valueContent = Value.fromJSON(
                 JSON.parse(data.getContent.content)
               )
+
+              // console.log("ValueContent: ", data.getContent.content)
               return (
                 <div>
                   <div style={{ fontSize: "2em", textAlign: "center" }}>
@@ -55,7 +58,14 @@ const client = new ApolloClient({
                   >
                     {data.getContent.author}
                   </div>
-                  <SimpleViewer value={valueContent} />
+
+
+                  <div style={{border: "1px solid red"}}>
+                    <DestructuredViewer value={valueContent} />
+                  </div>
+                  <div style={{color: "red"}}>*Editor Content</div>
+
+
                 </div>
               )
             }}

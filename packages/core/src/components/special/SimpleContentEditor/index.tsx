@@ -43,7 +43,7 @@ interface State {
   submitting?: boolean
 }
 
-interface RichTextEditorProps {
+interface SimpleContentEditorProps {
   onChange?: (value: Value) => void
   client: ApolloClient<any>
   businessType: BusinessType
@@ -51,7 +51,7 @@ interface RichTextEditorProps {
   contentId?: string
 }
 
-class RichTextEditor extends React.Component<RichTextEditorProps, State> {
+class SimpleContentEditor extends React.Component<SimpleContentEditorProps, State> {
   public editor = React.createRef<Editor>()
 
   constructor(props: any) {
@@ -146,7 +146,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
-        <div>
+        {/* <div>
           <TextField
             name="title"
             label="Title"
@@ -161,9 +161,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             value={this.state.author}
             onChange={this.onChangeField}
           />
-        </div>
-
-        <div style={{margin: "30px 0"}}>
+        </div> */}
 
         <Toolbar>
           <FormatBold
@@ -241,9 +239,6 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             style={{ maxWidth: 1000, minWidth: 800 }}
           />
         </div>
-
-        </div>
-
         <div
           style={{
             paddingTop: "20px"
@@ -565,4 +560,4 @@ const SAVE_CONTENT = gql`
   }
 `
 
-export default withApollo(RichTextEditor)
+export default withApollo(SimpleContentEditor)

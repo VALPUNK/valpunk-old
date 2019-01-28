@@ -5,7 +5,8 @@ import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
-import RichTextEditor from "./index"
+import SimpleContentViewer from "./index"
+import "./slate.css"
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -17,13 +18,18 @@ const client = new ApolloClient({
 })
 ;(storiesOf("Rich Text Editor", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Rich Text Viewer", () => (
-    <CenteredForStories>
-      <ApolloProvider client={client}>
-        <RichTextEditor
-          contentId="cjrccxqhn00150889hw9f8jja"
-          uriEndpoint="http://localhost:4000"
-        />
-      </ApolloProvider>
-    </CenteredForStories>
-  ))
+  .add("Simple Content Viewer", () => {
+    return (
+      <CenteredForStories>
+        <ApolloProvider client={client}>
+          <div>
+            <SimpleContentViewer
+              // value={valueContent}
+              contentId="cjrckd6vz00p608082lyuyn2y"
+              uriEndpoint="http://localhost:4000"
+            />
+          </div>
+        </ApolloProvider>
+      </CenteredForStories>
+    )
+  })
