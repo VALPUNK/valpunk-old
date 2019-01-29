@@ -20,7 +20,9 @@ import {
   DestructuredViewer,
   ImageCompareSlider,
   RichTextEditor,
-  RichTextViewer
+  RichTextViewer,
+  SimpleContentEditor,
+  SimpleContentViewer
 } from "./components/special"
 import { Carousel } from "./components/templates"
 
@@ -44,5 +46,7 @@ export {
   RichTextEditor,
   RichTextViewer,
   DestructuredEditor,
-  DestructuredViewer
+  DestructuredViewer,
+  SimpleContentEditor,
+  SimpleContentViewer
 }

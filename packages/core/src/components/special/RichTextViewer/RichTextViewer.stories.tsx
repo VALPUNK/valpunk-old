@@ -6,6 +6,8 @@ import * as React from "react"
 import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
 import RichTextEditor from "./index"
+import "./slate.css"
+
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -21,7 +23,7 @@ const client = new ApolloClient({
     <CenteredForStories>
       <ApolloProvider client={client}>
         <RichTextEditor
-          contentId="cjrccxqhn00150889hw9f8jja"
+          contentId="cjrgt2vb80uvg08085czabcvl"
           uriEndpoint="http://localhost:4000"
         />
       </ApolloProvider>

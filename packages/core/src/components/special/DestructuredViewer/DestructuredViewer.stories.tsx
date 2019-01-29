@@ -7,9 +7,12 @@ import { ApolloProvider, Query } from "react-apollo"
 import { Value } from "slate"
 import { CenteredForStories } from "~/components/compositions"
 import { GET_CONTENT } from "../RichTextViewer"
+import {
+  getContent,
+  getContentVariables
+} from "../RichTextViewer/__generated__/getContent"
 import DestructuredViewer from "./index"
 import "./slate.css"
-import { getContent, getContentVariables } from "./__generated__/getContent"
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -27,7 +30,7 @@ const client = new ApolloClient({
         <ApolloProvider client={client}>
           <ContentQuery
             query={GET_CONTENT}
-            variables={{ contentId: "cjrcjv3dt00eg08897khcb69x" }}
+            variables={{ contentId: "cjrgt2yba0uvn08086o9akphz" }}
             context={{ uri: "http://localhost:4000" }}
           >
             {({ loading, data, error }) => {
@@ -59,13 +62,10 @@ const client = new ApolloClient({
                     {data.getContent.author}
                   </div>
 
-
-                  <div style={{border: "1px solid red"}}>
+                  <div style={{ border: "1px solid red" }}>
                     <DestructuredViewer value={valueContent} />
                   </div>
-                  <div style={{color: "red"}}>*Editor Content</div>
-
-
+                  <div style={{ color: "red" }}>*Editor Content</div>
                 </div>
               )
             }}

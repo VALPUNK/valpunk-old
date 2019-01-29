@@ -4,7 +4,11 @@ import { withApollo } from "react-apollo"
 import { Editor as CoreEditor, Value } from "slate"
 import { Editor, RenderNodeProps } from "slate-react"
 import { initialValue } from "./value"
-import { getContent, getContentVariables } from "./__generated__/getContent"
+import {
+  getContent,
+  getContentVariables
+} from "../RichTextViewer/__generated__/getContent"
+import { GET_CONTENT } from "../RichTextViewer"
 
 interface State {
   value?: Value
@@ -29,7 +33,7 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
     }
   }
 
-  public getContent = async (contentId: string) => {
+  public retrieveContent = async (contentId: string) => {
     const uriEndpoint = this.props.uriEndpoint
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
@@ -48,7 +52,9 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
 
     const title = result.data.getContent.title
     const author = result.data.getContent.author
-    const valueContent = Value.fromJSON(JSON.parse(result.data.getContent.content))
+    const valueContent = Value.fromJSON(
+      JSON.parse(result.data.getContent.content)
+    )
 
     this.setState({
       title: title,
@@ -57,14 +63,13 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
     })
   }
 
-  // public ref = (editor: any) => {
-  //   this.editor = editor
-  // }
-
-  public componentDidMount = () => {
-    this.getContent(this.props.contentId)
+  public ref = (editor: any) => {
+    this.editor = editor
   }
 
+  public componentDidMount = () => {
+    this.retrieveContent(this.props.contentId)
+  }
 
   public render() {
     return (
@@ -80,8 +85,6 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
       </div>
     )
   }
-
-
 
   public renderNode = (
     props: RenderNodeProps,
@@ -133,14 +136,5 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
   }
 }
 
-const GET_CONTENT = gql`
-  query getContent($contentId: String!) {
-    getContent(contentId: $contentId) {
-      title
-      author
-      content
-    }
-  }
-`
 
 export default withApollo(SimpleContentViewer)

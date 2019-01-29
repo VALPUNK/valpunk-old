@@ -21,12 +21,11 @@ import {
   getContentVariables
 } from "../RichTextViewer/__generated__/getContent"
 import { Button, Icon, Toolbar } from "./components"
-import "./slate.css"
 import { initialValue } from "./value"
 import {
-  upsertContent,
-  upsertContentVariables
-} from "./__generated__/upsertContent"
+  createOrConnectContent,
+  createOrConnectContentVariables
+} from "./__generated__/createOrConnectContent"
 
 const DEFAULT_NODE = "paragraph"
 
@@ -43,7 +42,7 @@ interface State {
   submitting?: boolean
 }
 
-interface RichTextEditorProps {
+export interface RichTextEditorProps {
   onChange?: (value: Value) => void
   client: ApolloClient<any>
   businessType: BusinessType
@@ -67,12 +66,12 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
 
   public componentDidMount = () => {
     {
-      this.props.contentId && this.getContent(this.props.contentId)
+      this.props.contentId && this.retrieveContent(this.props.contentId)
     }
   }
 
-  public getContent = async (contentId: string) => {
-    console.log("Getting Content...")
+  public retrieveContent = async (contentId: string) => {
+    // console.log("Getting Content...")
     const uriEndpoint = this.props.uriEndpoint
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
@@ -100,7 +99,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
       author: author,
       value: valueContent
     })
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   /**
@@ -146,102 +145,111 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
-        <div>
+        <div style={{margin: "20px 0"}}>
           <TextField
             name="title"
             label="Title"
+            variant="outlined"
             value={this.state.title}
             onChange={this.onChangeField}
+            style={{width: "100%"}}
           />
         </div>
-        <div>
+        <div style={{margin: "20px 0"}}>
           <TextField
             name="author"
             label="Author"
+            variant="outlined"
             value={this.state.author}
             onChange={this.onChangeField}
           />
         </div>
 
-        <div style={{margin: "30px 0"}}>
-
-        <Toolbar>
-          <FormatBold
-            onClick={e => {
-              e.preventDefault()
-              this.onClickMark(e, "bold")
+        <div style={{ margin: "30px 0" }}>
+          <Toolbar>
+            {this.renderMarkButton("bold", <FormatBold/>)}
+            {/* <FormatBold
+              onClick={e => {
+                e.preventDefault()
+                this.onClickMark(e, "bold")
+              }}
+            /> */}
+            {this.renderMarkButton("italic", <FormatItalic/>)}
+            {/* <FormatItalic
+              onClick={e => {
+                e.preventDefault()
+                this.onClickMark(e, "italic")
+              }}
+            /> */}
+            {this.renderMarkButton("underlined", <FormatUnderlined/>)}
+            {/* <FormatUnderlined
+              onClick={e => {
+                e.preventDefault()
+                this.onClickMark(e, "underlined")
+              }}
+            /> */}
+            {this.renderMarkButton("code", <Code/>)}
+            {/* <Code
+              onClick={e => {
+                e.preventDefault()
+                this.onClickMark(e, "code")
+              }}
+            /> */}
+            {this.renderBlockButton("heading-one", <LooksOne/>)}
+            {/* <LooksOne
+              onClick={e => {
+                e.preventDefault()
+                this.onClickBlock(e, "heading-one")
+              }}
+            /> */}
+            {this.renderBlockButton("heading-two", <LooksTwo/>)}
+            {/* <LooksTwo
+              onClick={e => {
+                e.preventDefault()
+                this.onClickBlock(e, "heading-two")
+              }}
+            /> */}
+            {this.renderBlockButton("block-quote", <FormatQuote/>)}
+            {/* <FormatQuote
+              onClick={e => {
+                e.preventDefault()
+                this.onClickBlock(e, "block-quote")
+              }}
+            /> */}
+            {this.renderBlockButton("numbered-list", <FormatListNumbered/>)}
+            {/* <FormatListNumbered
+              onClick={e => {
+                e.preventDefault()
+                this.onClickBlock(e, "numbered-list")
+              }}
+            /> */}
+            {this.renderBlockButton("bulleted-list", <FormatListBulleted/>)}
+            {/* <FormatListBulleted
+              onClick={e => {
+                e.preventDefault()
+                this.onClickBlock(e, "bulleted-list")
+              }}
+            /> */}
+          </Toolbar>
+          <div
+            style={{
+              border: "2px solid #eee",
+              padding: "20px 20px"
             }}
-          />
-          <FormatItalic
-            onClick={e => {
-              e.preventDefault()
-              this.onClickMark(e, "italic")
-            }}
-          />
-          <FormatUnderlined
-            onClick={e => {
-              e.preventDefault()
-              this.onClickMark(e, "underlined")
-            }}
-          />
-          <Code
-            onClick={e => {
-              e.preventDefault()
-              this.onClickMark(e, "code")
-            }}
-          />
-          <LooksOne
-            onClick={e => {
-              e.preventDefault()
-              this.onClickBlock(e, "heading-one")
-            }}
-          />
-          <LooksTwo
-            onClick={e => {
-              e.preventDefault()
-              this.onClickBlock(e, "heading-two")
-            }}
-          />
-          <FormatQuote
-            onClick={e => {
-              e.preventDefault()
-              this.onClickBlock(e, "block-quote")
-            }}
-          />
-          <FormatListNumbered
-            onClick={e => {
-              e.preventDefault()
-              this.onClickBlock(e, "numbered-list")
-            }}
-          />
-
-          <FormatListBulleted
-            onClick={e => {
-              e.preventDefault()
-              this.onClickBlock(e, "bulleted-list")
-            }}
-          />
-        </Toolbar>
-        <div
-          style={{
-            border: "2px solid #eee",
-            padding: "20px 20px",
-          }}
-        >
-          <Editor
-            spellCheck
-            autoFocus
-            placeholder="Enter some rich text..."
-            ref={this.editor}
-            value={this.state.value}
-            onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            renderNode={this.renderNode}
-            renderMark={this.renderMark}
-            style={{ maxWidth: 1000, minWidth: 800 }}
-          />
-        </div>
-
+          >
+            <Editor
+              spellCheck
+              autoFocus
+              placeholder="Enter some rich text..."
+              ref={this.editor}
+              value={this.state.value}
+              onChange={this.onChange}
+              onKeyDown={this.onKeyDown}
+              renderNode={this.renderNode}
+              renderMark={this.renderMark}
+              style={{ maxWidth: 1000, minWidth: 800 }}
+            />
+          </div>
         </div>
 
         <div
@@ -276,7 +284,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
    * @return {Element}
    */
 
-  public renderMarkButton = (type: string, icon: string) => {
+  public renderMarkButton = (type: string, icon: any) => {
     const isActive = this.hasMark(type)
 
     return (
@@ -298,7 +306,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
    * @return {Element}
    */
 
-  public renderBlockButton = (type: string, icon: string) => {
+  public renderBlockButton = (type: string, icon: any) => {
     let isActive = this.hasBlock(type)
 
     if (["numbered-list", "bulleted-list"].includes(type)) {
@@ -400,7 +408,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   }
 
   public onClickSave = async () => {
-    console.log("Submitting...")
+    // console.log("Submitting...")
     await this.setState({
       submitting: true
     })
@@ -410,8 +418,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
     const result = await this.props.client.mutate<
-      upsertContent,
-      upsertContentVariables
+      createOrConnectContent,
+      createOrConnectContentVariables
     >({
       mutation: SAVE_CONTENT,
       variables: {
@@ -427,14 +435,13 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
       }
     })
 
-    console.log("Just saved all this stuff: ", result)
+    // console.log("Just saved all this stuff: ", result)
 
     this.props.contentId
       ? {}
       : this.setState({
-          contentId: result.data.upsertContent.id
+          contentId: result.data.createOrConnectContent.id
         })
-
 
     await this.setState({
       submitting: false
@@ -542,8 +549,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
  * Export.
  */
 
-const SAVE_CONTENT = gql`
-  mutation upsertContent(
+export const SAVE_CONTENT = gql`
+  mutation createOrConnectContent(
     $title: String
     $author: String
     $content: String!
@@ -551,7 +558,7 @@ const SAVE_CONTENT = gql`
     $accountId: String
     $businessType: BusinessType!
   ) {
-    upsertContent(
+    createOrConnectContent(
       title: $title
       author: $author
       content: $content

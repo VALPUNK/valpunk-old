@@ -1,14 +1,18 @@
 import { withInfo } from "@storybook/addon-info"
 import { storiesOf } from "@storybook/react"
-import { ApolloClient, InMemoryCache, gql } from "apollo-boost"
+import { ApolloClient, InMemoryCache } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider, Query } from "react-apollo"
 import { Value } from "slate"
 import { CenteredForStories } from "~/components/compositions"
-import EditorFrame from "./EditorFrame"
 import { GET_CONTENT } from "../RichTextViewer"
-import { getContent, getContentVariables } from "./__generated__/getContent"
+import {
+  getContent,
+  getContentVariables
+} from "../RichTextViewer/__generated__/getContent"
+import EditorFrame from "./EditorFrame"
+import "./slate.css"
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -26,7 +30,7 @@ const client = new ApolloClient({
         <ApolloProvider client={client}>
           <ContentQuery
             query={GET_CONTENT}
-            variables={{ contentId: "cjrcjv3dt00eg08897khcb69x" }}
+            variables={{ contentId: "cjrgt2yba0uvn08086o9akphz" }}
             context={{ uri: "http://localhost:4000" }}
           >
             {({ loading, data, error }) => {
@@ -44,13 +48,12 @@ const client = new ApolloClient({
               // console.log("ValueContent: ", data.getContent.content)
               return (
                 <div>
-
                   <EditorFrame
                     title={data.getContent.title}
                     author={data.getContent.author}
                     businessType="VALPUNK"
                     uriEndpoint="http://localhost:4000"
-                    contentId="cjrcjv3dt00eg08897khcb69x"
+                    contentId="cjrgt2yba0uvn08086o9akphz"
                     value={valueContent}
                   />
                 </div>

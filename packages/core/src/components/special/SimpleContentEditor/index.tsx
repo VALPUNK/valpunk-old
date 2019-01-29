@@ -1,4 +1,4 @@
-import { TextField } from "@material-ui/core"
+// import { TextField } from "@material-ui/core"
 import Code from "@material-ui/icons/Code"
 import FormatBold from "@material-ui/icons/FormatBold"
 import FormatItalic from "@material-ui/icons/FormatItalic"
@@ -8,25 +8,25 @@ import FormatQuote from "@material-ui/icons/FormatQuote"
 import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
 import LooksOne from "@material-ui/icons/LooksOne"
 import LooksTwo from "@material-ui/icons/LooksTwo"
-import { ApolloClient, gql } from "apollo-boost"
+import { ApolloClient } from "apollo-boost"
 import { isKeyHotkey } from "is-hotkey"
 import React from "react"
 import { withApollo } from "react-apollo"
 import { Editor as CoreEditor, Value } from "slate"
 import { Editor, RenderNodeProps } from "slate-react"
 import { BusinessType } from "../../../../__generated__/globalTypes"
+import { SAVE_CONTENT } from "../RichTextEditor"
+import {
+  createOrConnectContent,
+  createOrConnectContentVariables
+} from "../RichTextEditor/__generated__/createOrConnectContent"
 import { GET_CONTENT } from "../RichTextViewer"
 import {
   getContent,
   getContentVariables
 } from "../RichTextViewer/__generated__/getContent"
 import { Button, Icon, Toolbar } from "./components"
-import "./slate.css"
 import { initialValue } from "./value"
-import {
-  upsertContent,
-  upsertContentVariables
-} from "./__generated__/upsertContent"
 
 const DEFAULT_NODE = "paragraph"
 
@@ -51,7 +51,10 @@ interface SimpleContentEditorProps {
   contentId?: string
 }
 
-class SimpleContentEditor extends React.Component<SimpleContentEditorProps, State> {
+class SimpleContentEditor extends React.Component<
+  SimpleContentEditorProps,
+  State
+> {
   public editor = React.createRef<Editor>()
 
   constructor(props: any) {
@@ -67,12 +70,12 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
 
   public componentDidMount = () => {
     {
-      this.props.contentId && this.getContent(this.props.contentId)
+      this.props.contentId && this.retrieveContent(this.props.contentId)
     }
   }
 
-  public getContent = async (contentId: string) => {
-    console.log("Getting Content...")
+  public retrieveContent = async (contentId: string) => {
+    // console.log("Getting Content...")
     const uriEndpoint = this.props.uriEndpoint
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
@@ -100,7 +103,7 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
       author: author,
       value: valueContent
     })
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   /**
@@ -223,7 +226,7 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
         <div
           style={{
             border: "2px solid #eee",
-            padding: "20px 20px",
+            padding: "20px 20px"
           }}
         >
           <Editor
@@ -395,7 +398,7 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
   }
 
   public onClickSave = async () => {
-    console.log("Submitting...")
+    // console.log("Submitting...")
     await this.setState({
       submitting: true
     })
@@ -405,8 +408,8 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
     const result = await this.props.client.mutate<
-      upsertContent,
-      upsertContentVariables
+      createOrConnectContent,
+      createOrConnectContentVariables
     >({
       mutation: SAVE_CONTENT,
       variables: {
@@ -422,14 +425,13 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
       }
     })
 
-    console.log("Just saved all this stuff: ", result)
+    // console.log("Just saved all this stuff: ", result)
 
     this.props.contentId
       ? {}
       : this.setState({
-          contentId: result.data.upsertContent.id
+          contentId: result.data.createOrConnectContent.id
         })
-
 
     await this.setState({
       submitting: false
@@ -536,28 +538,5 @@ class SimpleContentEditor extends React.Component<SimpleContentEditorProps, Stat
 /**
  * Export.
  */
-
-const SAVE_CONTENT = gql`
-  mutation upsertContent(
-    $title: String
-    $author: String
-    $content: String!
-    $contentId: String
-    $accountId: String
-    $businessType: BusinessType!
-  ) {
-    upsertContent(
-      title: $title
-      author: $author
-      content: $content
-      contentId: $contentId
-      accountId: $accountId
-      businessType: $businessType
-    ) {
-      id
-      content
-    }
-  }
-`
 
 export default withApollo(SimpleContentEditor)

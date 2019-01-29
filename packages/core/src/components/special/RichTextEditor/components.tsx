@@ -11,7 +11,7 @@ export const Button = styled.span<{ reversed?: boolean; active?: boolean }>`
         : "#aaa"
       : props.active
       ? "black"
-      : "#ccc"};
+      : "#999"};
 `
 
 export const Icon = styled(

@@ -1,5 +1,4 @@
 import React from "react"
-import { withApollo } from "react-apollo"
 import { Editor as CoreEditor, Value } from "slate"
 import { Editor, RenderNodeProps } from "slate-react"
 

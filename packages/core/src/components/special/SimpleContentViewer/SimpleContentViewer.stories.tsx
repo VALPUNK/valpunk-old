@@ -25,7 +25,7 @@ const client = new ApolloClient({
           <div>
             <SimpleContentViewer
               // value={valueContent}
-              contentId="cjrckd6vz00p608082lyuyn2y"
+              contentId="cjrgt22740uuv0808ybdljhvp"
               uriEndpoint="http://localhost:4000"
             />
           </div>

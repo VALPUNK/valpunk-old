@@ -4,6 +4,8 @@ import RichTextEditor from "./RichTextEditor"
 import RichTextViewer from "./RichTextViewer"
 import DestructuredViewer from "./DestructuredViewer"
 import DestructuredEditor from "./DestructuredEditor"
+import SimpleContentEditor from "./SimpleContentEditor"
+import SimpleContentViewer from "./SimpleContentViewer"
 
 export {
   ContactForm,
@@ -11,5 +13,7 @@ export {
   RichTextEditor,
   RichTextViewer,
   DestructuredEditor,
-  DestructuredViewer
+  DestructuredViewer,
+  SimpleContentEditor,
+  SimpleContentViewer
 }

@@ -4,19 +4,19 @@
 import { BusinessType } from "./..\\..\\..\\..\\..\\__generated__\\globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: upsertContent
+// GraphQL mutation operation: createOrConnectContent
 // ====================================================
 
-export interface upsertContent_upsertContent {
+export interface createOrConnectContent_createOrConnectContent {
   id: string;
   content: string;
 }
 
-export interface upsertContent {
-  upsertContent: upsertContent_upsertContent;
+export interface createOrConnectContent {
+  createOrConnectContent: createOrConnectContent_createOrConnectContent;
 }
 
-export interface upsertContentVariables {
+export interface createOrConnectContentVariables {
   title?: string | null;
   author?: string | null;
   content: string;

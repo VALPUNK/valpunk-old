@@ -25,7 +25,7 @@ const client = new ApolloClient({
       <ApolloProvider client={client}>
         <ContactForm
           businessType="VALPUNK"
-          uriEndpoint="http://localhost:4000"
+          // uriEndpoint="http://localhost:4000"
           />
       </ApolloProvider>
     </CenteredForStories>

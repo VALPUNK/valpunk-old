@@ -1,38 +1,20 @@
 import { TextField } from "@material-ui/core"
-import Code from "@material-ui/icons/Code"
-import FormatBold from "@material-ui/icons/FormatBold"
-import FormatItalic from "@material-ui/icons/FormatItalic"
-import FormatListBulleted from "@material-ui/icons/FormatListBulleted"
-import FormatListNumbered from "@material-ui/icons/FormatListNumbered"
-import FormatQuote from "@material-ui/icons/FormatQuote"
-import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
-import LooksOne from "@material-ui/icons/LooksOne"
-import LooksTwo from "@material-ui/icons/LooksTwo"
-import { ApolloClient, gql } from "apollo-boost"
-import { isKeyHotkey } from "is-hotkey"
+import { ApolloClient } from "apollo-boost"
 import React from "react"
 import { withApollo } from "react-apollo"
-import { Editor as CoreEditor, Value } from "slate"
-import { Editor, RenderNodeProps } from "slate-react"
+import { Value } from "slate"
+import { Editor } from "slate-react"
 import { BusinessType } from "../../../../__generated__/globalTypes"
+import { SAVE_CONTENT } from "../RichTextEditor"
+import {
+  createOrConnectContent,
+  createOrConnectContentVariables
+} from "../RichTextEditor/__generated__/createOrConnectContent"
+import { Button } from "./components"
 import DestructuredEditor from "./index"
-import { GET_CONTENT } from "../RichTextViewer"
-import {
-  getContent,
-  getContentVariables
-} from "../RichTextViewer/__generated__/getContent"
-import { Button, Icon, Toolbar } from "./components"
-import "./slate.css"
 import { initialValue } from "./value"
-import {
-  upsertContent,
-  upsertContentVariables
-} from "./__generated__/upsertContent"
-
-
 
 interface RichTextEditorProps {
-  // onChange: (value: Value) => void
   title?: string
   author?: string
   client: ApolloClient<any>
@@ -67,8 +49,7 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
   }
 
   public componentDidMount = () => {
-
-    console.log("Value: ", this.props.value)
+    // console.log("Value: ", this.props.value)
     this.props.value
       ? this.setState({
           value: this.props.value
@@ -94,11 +75,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       : {}
   }
 
-
   public render() {
     return (
       <div>
-
         <div>
           <TextField
             name="title"
@@ -125,15 +104,12 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
           />
         </div>
 
-
-
         <div style={{ margin: "30px 0px" }}>
-          <DestructuredEditor value={this.state.value} onChange={this.onChange} />
+          <DestructuredEditor
+            value={this.state.value}
+            onChange={this.onChange}
+          />
         </div>
-
-
-
-
 
         <div
           style={{
@@ -159,8 +135,7 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     )
   }
 
-
-  public onChange = ( value: Value) => {
+  public onChange = (value: Value) => {
     this.setState({
       value
     })
@@ -171,7 +146,7 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
   }
 
   public onClickSave = async () => {
-    console.log("Submitting...")
+    // console.log("Submitting...")
     await this.setState({
       submitting: true
     })
@@ -181,8 +156,8 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
     const result = await this.props.client.mutate<
-      upsertContent,
-      upsertContentVariables
+      createOrConnectContent,
+      createOrConnectContentVariables
     >({
       mutation: SAVE_CONTENT,
       variables: {
@@ -198,12 +173,12 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       }
     })
 
-    console.log("Just saved all this stuff: ", result)
+    // console.log("Just saved all this stuff: ", result)
 
     this.props.contentId
       ? {}
       : this.setState({
-          contentId: result.data.upsertContent.id
+          contentId: result.data.createOrConnectContent.id
         })
 
     await this.setState({
@@ -212,31 +187,6 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
 
     console.log("Content Saved.")
   }
-
 }
-
-
-const SAVE_CONTENT = gql`
-  mutation upsertContent(
-    $title: String
-    $author: String
-    $content: String!
-    $contentId: String
-    $accountId: String
-    $businessType: BusinessType!
-  ) {
-    upsertContent(
-      title: $title
-      author: $author
-      content: $content
-      contentId: $contentId
-      accountId: $accountId
-      businessType: $businessType
-    ) {
-      id
-      content
-    }
-  }
-`
 
 export default withApollo(EditorFrame)
