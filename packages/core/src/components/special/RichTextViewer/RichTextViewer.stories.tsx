@@ -7,6 +7,7 @@ import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
 import RichTextEditor from "./index"
 import "./slate.css"
+import { withKnobs, object } from "@storybook/addon-knobs/react"
 
 
 const httpLink = createHttpLink({
@@ -18,14 +19,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 ;(storiesOf("Rich Text Editor", module) as any)
-  .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("Rich Text Viewer", () => (
+  .addDecorator(withInfo({ text: `Description!`, inline: true }), withKnobs)
+  .add("Rich Text Viewer", () => {
+    const contentId = object("contentId", "cjrgt2vb80uvg08085czabcvl")
+    const uriEndpoint = object("uriEndpoint", "http://localhost:4000")
+    return (
     <CenteredForStories>
       <ApolloProvider client={client}>
         <RichTextEditor
-          contentId="cjrgt2vb80uvg08085czabcvl"
-          uriEndpoint="http://localhost:4000"
+          contentId={contentId}
+          uriEndpoint={uriEndpoint}
         />
       </ApolloProvider>
     </CenteredForStories>
-  ))
+  )})

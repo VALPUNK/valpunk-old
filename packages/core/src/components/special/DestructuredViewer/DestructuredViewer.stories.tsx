@@ -1,4 +1,5 @@
 import { withInfo } from "@storybook/addon-info"
+import { object, withKnobs } from "@storybook/addon-knobs/react"
 import { storiesOf } from "@storybook/react"
 import { ApolloClient, InMemoryCache } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
@@ -23,15 +24,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 ;(storiesOf("Rich Text Editor", module) as any)
-  .addDecorator(withInfo({ text: `Description!`, inline: true }))
+  .addDecorator(withInfo({ text: `Description!`, inline: true }), withKnobs)
   .add("Destructured Viewer", () => {
+    const contendId = object("contendId", "cjrgt2yba0uvn08086o9akphz")
+    const uriEndpoint = object("uriEndpoint", "http://localhost:4000")
     return (
       <CenteredForStories>
         <ApolloProvider client={client}>
           <ContentQuery
             query={GET_CONTENT}
-            variables={{ contentId: "cjrgt2yba0uvn08086o9akphz" }}
-            context={{ uri: "http://localhost:4000" }}
+            variables={{ contentId: contendId }}
+            context={{ uri: uriEndpoint }}
           >
             {({ loading, data, error }) => {
               if (loading) {

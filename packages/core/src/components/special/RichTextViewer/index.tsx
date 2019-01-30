@@ -142,6 +142,7 @@ class RichTextViewer extends React.Component<RichTextViewerProps, State> {
 export const GET_CONTENT = gql`
   query getContent($contentId: String!) {
     getContent(contentId: $contentId) {
+      id
       title
       author
       content

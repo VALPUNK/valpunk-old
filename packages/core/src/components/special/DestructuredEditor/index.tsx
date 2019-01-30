@@ -72,7 +72,25 @@ class DestructuredEditor extends React.Component<RichTextEditorProps> {
     return (
       <div>
         <Toolbar>
-          <FormatBold
+          {this.renderMarkButton("bold", <FormatBold />)}
+
+          {this.renderMarkButton("italic", <FormatItalic />)}
+
+          {this.renderMarkButton("underlined", <FormatUnderlined />)}
+
+          {this.renderMarkButton("code", <Code />)}
+
+          {this.renderBlockButton("heading-one", <LooksOne />)}
+
+          {this.renderBlockButton("heading-two", <LooksTwo />)}
+
+          {this.renderBlockButton("block-quote", <FormatQuote />)}
+
+          {this.renderBlockButton("numbered-list", <FormatListNumbered />)}
+
+          {this.renderBlockButton("bulleted-list", <FormatListBulleted />)}
+
+          {/* <FormatBold
             onClick={e => {
               e.preventDefault()
               this.onClickMark(e, "bold")
@@ -126,7 +144,7 @@ class DestructuredEditor extends React.Component<RichTextEditorProps> {
               e.preventDefault()
               this.onClickBlock(e, "bulleted-list")
             }}
-          />
+          /> */}
         </Toolbar>
         <div
           style={{
@@ -159,7 +177,7 @@ class DestructuredEditor extends React.Component<RichTextEditorProps> {
    * @return {Element}
    */
 
-  public renderMarkButton = (type: string, icon: string) => {
+  public renderMarkButton = (type: string, icon: any) => {
     const isActive = this.hasMark(type)
 
     return (
@@ -181,7 +199,7 @@ class DestructuredEditor extends React.Component<RichTextEditorProps> {
    * @return {Element}
    */
 
-  public renderBlockButton = (type: string, icon: string) => {
+  public renderBlockButton = (type: string, icon: any) => {
     let isActive = this.hasBlock(type)
 
     if (["numbered-list", "bulleted-list"].includes(type)) {
