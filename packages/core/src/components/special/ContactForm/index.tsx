@@ -7,8 +7,11 @@ import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
 import TextInputField from "../../../components/collections/TextInputField"
-import { visitorSendEmail, visitorSendEmailVariables } from './__generated__/visitorSendEmail';
-import { BusinessType } from '../../../../__generated__/globalTypes';
+import {
+  visitorSendEmail,
+  visitorSendEmailVariables
+} from "./__generated__/visitorSendEmail"
+import { BusinessType } from "../../../../__generated__/globalTypes"
 
 interface Values {
   name?: string
@@ -43,7 +46,9 @@ class ContactForm extends React.Component<ContactFormProps, State> {
   }
 
   public render() {
-    const uriEndpoint = this.props.uriEndpoint ? this.props.uriEndpoint : "https://valpunk-server.now.sh/"
+    const uriEndpoint = this.props.uriEndpoint
+      ? this.props.uriEndpoint
+      : "https://valpunk-server.now.sh/"
     return (
       <div>
         <Formik<Values>
@@ -59,7 +64,7 @@ class ContactForm extends React.Component<ContactFormProps, State> {
             // console.log("hi")
             setSubmitting(true)
             await this.props.client
-              .mutate<visitorSendEmail,visitorSendEmailVariables>({
+              .mutate<visitorSendEmail, visitorSendEmailVariables>({
                 mutation: CONTACT_SEND_FORM,
                 variables: {
                   businessType: this.props.businessType,
@@ -214,7 +219,12 @@ const CONTACT_SEND_FORM = gql`
     $body: String!
     $from: String!
   ) {
-    visitorSendEmail(businessType: $businessType, title: $title, body: $body, from: $from) {
+    visitorSendEmail(
+      businessType: $businessType
+      title: $title
+      body: $body
+      from: $from
+    ) {
       body
     }
   }

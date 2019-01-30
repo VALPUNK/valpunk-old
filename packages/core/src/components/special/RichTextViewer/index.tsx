@@ -3,7 +3,6 @@ import React from "react"
 import { withApollo } from "react-apollo"
 import { Editor as CoreEditor, Value } from "slate"
 import { Editor, RenderNodeProps } from "slate-react"
-import "./slate.css"
 import { initialValue } from "./value"
 import { getContent, getContentVariables } from "./__generated__/getContent"
 
@@ -30,7 +29,7 @@ class RichTextViewer extends React.Component<RichTextViewerProps, State> {
     }
   }
 
-  public getContent = async (contentId: string) => {
+  public retrieveContent = async (contentId: string) => {
     const uriEndpoint = this.props.uriEndpoint
       ? this.props.uriEndpoint
       : "https://valpunk-server.now.sh/"
@@ -63,7 +62,7 @@ class RichTextViewer extends React.Component<RichTextViewerProps, State> {
   }
 
   public componentDidMount = () => {
-    this.getContent(this.props.contentId)
+    this.retrieveContent(this.props.contentId)
   }
 
 
@@ -143,6 +142,7 @@ class RichTextViewer extends React.Component<RichTextViewerProps, State> {
 export const GET_CONTENT = gql`
   query getContent($contentId: String!) {
     getContent(contentId: $contentId) {
+      id
       title
       author
       content

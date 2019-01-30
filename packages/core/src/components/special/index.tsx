@@ -1,7 +1,19 @@
 import ImageCompareSlider from "./ImageCompareSlider/index"
-import RichTextEditor from "./RichTextEditor"
 import ContactForm from "./ContactForm"
-import SimpleViewer from "./SimpleViewer"
+import RichTextEditor from "./RichTextEditor"
 import RichTextViewer from "./RichTextViewer"
+import DestructuredViewer from "./DestructuredViewer"
+import DestructuredEditor from "./DestructuredEditor"
+import SimpleContentEditor from "./SimpleContentEditor"
+import SimpleContentViewer from "./SimpleContentViewer"
 
-export { ContactForm, ImageCompareSlider, RichTextEditor, SimpleViewer, RichTextViewer }
+export {
+  ContactForm,
+  ImageCompareSlider,
+  RichTextEditor,
+  RichTextViewer,
+  DestructuredEditor,
+  DestructuredViewer,
+  SimpleContentEditor,
+  SimpleContentViewer
+}

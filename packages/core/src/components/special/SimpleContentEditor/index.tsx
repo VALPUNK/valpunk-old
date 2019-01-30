@@ -1,4 +1,4 @@
-import { TextField } from "@material-ui/core"
+// import { TextField } from "@material-ui/core"
 import Code from "@material-ui/icons/Code"
 import FormatBold from "@material-ui/icons/FormatBold"
 import FormatItalic from "@material-ui/icons/FormatItalic"
@@ -8,13 +8,18 @@ import FormatQuote from "@material-ui/icons/FormatQuote"
 import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
 import LooksOne from "@material-ui/icons/LooksOne"
 import LooksTwo from "@material-ui/icons/LooksTwo"
-import { ApolloClient, gql } from "apollo-boost"
+import { ApolloClient } from "apollo-boost"
 import { isKeyHotkey } from "is-hotkey"
 import React from "react"
 import { withApollo } from "react-apollo"
 import { Editor as CoreEditor, Value } from "slate"
 import { Editor, RenderNodeProps } from "slate-react"
 import { BusinessType } from "../../../../__generated__/globalTypes"
+import { SAVE_CONTENT } from "../RichTextEditor"
+import {
+  createOrConnectContent,
+  createOrConnectContentVariables
+} from "../RichTextEditor/__generated__/createOrConnectContent"
 import { GET_CONTENT } from "../RichTextViewer"
 import {
   getContent,
@@ -22,10 +27,6 @@ import {
 } from "../RichTextViewer/__generated__/getContent"
 import { Button, Icon, Toolbar } from "./components"
 import { initialValue } from "./value"
-import {
-  createOrConnectContent,
-  createOrConnectContentVariables
-} from "./__generated__/createOrConnectContent"
 
 const DEFAULT_NODE = "paragraph"
 
@@ -42,7 +43,7 @@ interface State {
   submitting?: boolean
 }
 
-export interface RichTextEditorProps {
+interface SimpleContentEditorProps {
   onChange?: (value: Value) => void
   client: ApolloClient<any>
   businessType: BusinessType
@@ -50,7 +51,10 @@ export interface RichTextEditorProps {
   contentId?: string
 }
 
-class RichTextEditor extends React.Component<RichTextEditorProps, State> {
+class SimpleContentEditor extends React.Component<
+  SimpleContentEditorProps,
+  State
+> {
   public editor = React.createRef<Editor>()
 
   constructor(props: any) {
@@ -145,113 +149,117 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
-        <div style={{margin: "20px 0"}}>
+        {/* <div>
           <TextField
             name="title"
             label="Title"
-            variant="outlined"
             value={this.state.title}
             onChange={this.onChangeField}
-            style={{width: "100%"}}
           />
         </div>
-        <div style={{margin: "20px 0"}}>
+        <div>
           <TextField
             name="author"
             label="Author"
-            variant="outlined"
             value={this.state.author}
             onChange={this.onChangeField}
           />
-        </div>
+        </div> */}
 
-        <div style={{ margin: "30px 0" }}>
-          <Toolbar>
-            {this.renderMarkButton("bold", <FormatBold/>)}
-            {/* <FormatBold
-              onClick={e => {
-                e.preventDefault()
-                this.onClickMark(e, "bold")
-              }}
-            /> */}
-            {this.renderMarkButton("italic", <FormatItalic/>)}
-            {/* <FormatItalic
-              onClick={e => {
-                e.preventDefault()
-                this.onClickMark(e, "italic")
-              }}
-            /> */}
-            {this.renderMarkButton("underlined", <FormatUnderlined/>)}
-            {/* <FormatUnderlined
-              onClick={e => {
-                e.preventDefault()
-                this.onClickMark(e, "underlined")
-              }}
-            /> */}
-            {this.renderMarkButton("code", <Code/>)}
-            {/* <Code
-              onClick={e => {
-                e.preventDefault()
-                this.onClickMark(e, "code")
-              }}
-            /> */}
-            {this.renderBlockButton("heading-one", <LooksOne/>)}
-            {/* <LooksOne
-              onClick={e => {
-                e.preventDefault()
-                this.onClickBlock(e, "heading-one")
-              }}
-            /> */}
-            {this.renderBlockButton("heading-two", <LooksTwo/>)}
-            {/* <LooksTwo
-              onClick={e => {
-                e.preventDefault()
-                this.onClickBlock(e, "heading-two")
-              }}
-            /> */}
-            {this.renderBlockButton("block-quote", <FormatQuote/>)}
-            {/* <FormatQuote
-              onClick={e => {
-                e.preventDefault()
-                this.onClickBlock(e, "block-quote")
-              }}
-            /> */}
-            {this.renderBlockButton("numbered-list", <FormatListNumbered/>)}
-            {/* <FormatListNumbered
-              onClick={e => {
-                e.preventDefault()
-                this.onClickBlock(e, "numbered-list")
-              }}
-            /> */}
-            {this.renderBlockButton("bulleted-list", <FormatListBulleted/>)}
-            {/* <FormatListBulleted
-              onClick={e => {
-                e.preventDefault()
-                this.onClickBlock(e, "bulleted-list")
-              }}
-            /> */}
-          </Toolbar>
-          <div
-            style={{
-              border: "2px solid #eee",
-              padding: "20px 20px"
+        <Toolbar>
+          {this.renderMarkButton("bold", <FormatBold />)}
+
+          {this.renderMarkButton("italic", <FormatItalic />)}
+
+          {this.renderMarkButton("underlined", <FormatUnderlined />)}
+
+          {this.renderMarkButton("code", <Code />)}
+
+          {this.renderBlockButton("heading-one", <LooksOne />)}
+
+          {this.renderBlockButton("heading-two", <LooksTwo />)}
+
+          {this.renderBlockButton("block-quote", <FormatQuote />)}
+
+          {this.renderBlockButton("numbered-list", <FormatListNumbered />)}
+
+          {this.renderBlockButton("bulleted-list", <FormatListBulleted />)}
+
+          {/* <FormatBold
+            onClick={e => {
+              e.preventDefault()
+              this.onClickMark(e, "bold")
             }}
-          >
-            <Editor
-              spellCheck
-              autoFocus
-              placeholder="Enter some rich text..."
-              ref={this.editor}
-              value={this.state.value}
-              onChange={this.onChange}
-              onKeyDown={this.onKeyDown}
-              renderNode={this.renderNode}
-              renderMark={this.renderMark}
-              style={{ maxWidth: 1000, minWidth: 800 }}
-            />
-          </div>
-        </div>
+          />
+          <FormatItalic
+            onClick={e => {
+              e.preventDefault()
+              this.onClickMark(e, "italic")
+            }}
+          />
+          <FormatUnderlined
+            onClick={e => {
+              e.preventDefault()
+              this.onClickMark(e, "underlined")
+            }}
+          />
+          <Code
+            onClick={e => {
+              e.preventDefault()
+              this.onClickMark(e, "code")
+            }}
+          />
+          <LooksOne
+            onClick={e => {
+              e.preventDefault()
+              this.onClickBlock(e, "heading-one")
+            }}
+          />
+          <LooksTwo
+            onClick={e => {
+              e.preventDefault()
+              this.onClickBlock(e, "heading-two")
+            }}
+          />
+          <FormatQuote
+            onClick={e => {
+              e.preventDefault()
+              this.onClickBlock(e, "block-quote")
+            }}
+          />
+          <FormatListNumbered
+            onClick={e => {
+              e.preventDefault()
+              this.onClickBlock(e, "numbered-list")
+            }}
+          />
 
+          <FormatListBulleted
+            onClick={e => {
+              e.preventDefault()
+              this.onClickBlock(e, "bulleted-list")
+            }}
+          /> */}
+        </Toolbar>
+        <div
+          style={{
+            border: "2px solid #eee",
+            padding: "20px 20px"
+          }}
+        >
+          <Editor
+            spellCheck
+            autoFocus
+            placeholder="Enter some rich text..."
+            ref={this.editor}
+            value={this.state.value}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            renderNode={this.renderNode}
+            renderMark={this.renderMark}
+            style={{ maxWidth: 1000, minWidth: 800 }}
+          />
+        </div>
         <div
           style={{
             paddingTop: "20px"
@@ -549,27 +557,4 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
  * Export.
  */
 
-export const SAVE_CONTENT = gql`
-  mutation createOrConnectContent(
-    $title: String
-    $author: String
-    $content: String!
-    $contentId: String
-    $accountId: String
-    $businessType: BusinessType!
-  ) {
-    createOrConnectContent(
-      title: $title
-      author: $author
-      content: $content
-      contentId: $contentId
-      accountId: $accountId
-      businessType: $businessType
-    ) {
-      id
-      content
-    }
-  }
-`
-
-export default withApollo(RichTextEditor)
+export default withApollo(SimpleContentEditor)
