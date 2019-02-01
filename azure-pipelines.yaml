@@ -1,0 +1,25 @@
+variables:
+  - group: netlify-group
+
+trigger:
+  - develop
+
+pool:
+  vmImage: "Ubuntu-16.04"
+
+steps:
+  - task: NodeTool@0
+    env:
+      BRANCH_NAME: $(Build.SourceBranch)
+    inputs:
+      versionSpec: "8.x"
+    displayName: "Site deploy with $env:BRANCH_NAME"
+
+  - script: |
+      npm install
+      npm install -g netlify-cli
+      cd packages/site npm run deploy
+      netlify deploy --dir=packages/site/out --auth=$env:NETLIFY_AUTH_TOKEN --site=$env:BRANCH_NAME
+      #
+      #
+    displayName: "Deploy Netlify Site"
