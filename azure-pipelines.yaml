@@ -2,7 +2,7 @@ variables:
   - group: netlify-groupX
 
 trigger:
-  - sprint
+  - develop
 
 pool:
   vmImage: "Ubuntu-16.04"
