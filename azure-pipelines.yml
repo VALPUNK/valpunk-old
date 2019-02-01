@@ -1,11 +1,10 @@
 variables:
   - group: netlify-group
 
-trigger:
-  - ["sprint", "develop", "master"]
+trigger: ["sprint", "develop", "master"]
 
-pr:
-  - ["sprint", "develop", "master"]
+# pr:
+#   - ["sprint", "develop", "master"]
 
 pool:
   vmImage: "Ubuntu-16.04"
