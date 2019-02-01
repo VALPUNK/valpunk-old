@@ -21,4 +21,5 @@ steps:
       cd packages/site npm run deploy
       netlify deploy --dir=packages/site/out --auth=$env:NETLIFY_AUTH_TOKEN --site=$env:BRANCH_NAME
       #
+      #
     displayName: "Deploy Netlify Site"
