@@ -17,11 +17,9 @@ steps:
       versionSpec: "8.x"
     displayName: "Site deploy with $env:BRANCH_NAME"
 
-  - script: npm install
   - script: npm install -g netlify-cli
+    displayName: "Install Netlify"
   - script: cd packages/site && npm run deploy
-  - script:
-      netlify deploy --dir=packages/site/out --auth=$env:NETLIFY_AUTH_TOKEN --site=$env:BRANCH_NAME
-      #
-      #
+    displayName: "Build Site"
+  - script: netlify deploy --dir=packages/site/out --auth=$env:NETLIFY_AUTH_TOKEN --site=$env:BRANCH_NAME
     displayName: "Deploy Netlify Site"
