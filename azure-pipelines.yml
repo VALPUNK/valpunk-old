@@ -21,5 +21,5 @@ steps:
     displayName: "Install Netlify"
   - script: cd packages/site && npm install && npm run deploy
     displayName: "Build Site"
-  - script: netlify deploy --dir=packages/site/out --auth=$(NETLIFY_AUTH_TOKEN) --site=$env:BRANCH_NAME
+  - script: ls && netlify deploy --dir=packages/site/out --auth=$(NETLIFY_AUTH_TOKEN) --site=$env:BRANCH_NAME
     displayName: "Deploy Netlify Site"
