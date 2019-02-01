@@ -1,8 +1,8 @@
-import { List, ListItem } from "@material-ui/core";
-import * as React from "react";
-import { Layout, Meta } from "~/components/universal";
-import SideMenu from "~/components/universal/SideMenu";
-import Documentation from "./Documentation/Documentation";
+import { List, ListItem } from "@material-ui/core"
+import * as React from "react"
+import { Layout, Meta } from "~/components/universal"
+import SideMenu from "~/components/universal/SideMenu"
+import Documentation from "./Documentation"
 import { mockData } from "./mock"
 
 const listItems = (

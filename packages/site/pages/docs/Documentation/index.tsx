@@ -5,7 +5,7 @@ interface Props {
   data?: any
 }
 
-export default class Documentation extends React.Component<Props> {
+export default class Index extends React.Component<Props> {
   public render() {
     return (
       <div>
