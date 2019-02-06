@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "@valpunk/valpunk-native",
   "main": "node_modules/expo/AppEntry.js",
   "types": "node_modules/@types",
