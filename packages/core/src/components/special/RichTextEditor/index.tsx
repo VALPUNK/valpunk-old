@@ -67,6 +67,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public componentDidMount = () => {
     {
       this.props.contentId && this.retrieveContent(this.props.contentId)
+      //hope this works
     }
   }
 
