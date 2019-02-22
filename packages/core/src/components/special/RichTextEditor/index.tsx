@@ -6,6 +6,7 @@ import FormatListBulleted from "@material-ui/icons/FormatListBulleted"
 import FormatListNumbered from "@material-ui/icons/FormatListNumbered"
 import FormatQuote from "@material-ui/icons/FormatQuote"
 import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
+import FormatLink from "@material-ui/icons/Link"
 import LooksOne from "@material-ui/icons/LooksOne"
 import LooksTwo from "@material-ui/icons/LooksTwo"
 import { ApolloClient, gql } from "apollo-boost"
@@ -189,6 +190,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
                 this.onClickMark(e, "underlined")
               }}
             /> */}
+            {/* {this.renderMarkButton("link", <FormatLink/>)} */}
             {this.renderMarkButton("code", <Code/>)}
             {/* <Code
               onClick={e => {
@@ -384,6 +386,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
         return <em {...attributes}>{children}</em>
       case "underlined":
         return <u {...attributes}>{children}</u>
+      // case "link":
+      //   return <a {...attributes}>{children}</a>
       default:
         return next()
     }

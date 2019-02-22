@@ -18,7 +18,6 @@ class DestructuredViewer extends React.Component<RichTextViewerProps> {
           value={this.props.value}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
-          style={{ maxWidth: 1000, minWidth: 800 }}
         />
       </div>
     )

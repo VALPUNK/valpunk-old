@@ -80,7 +80,6 @@ class SimpleContentViewer extends React.Component<RichTextViewerProps, State> {
           value={this.state.value}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
-          style={{ maxWidth: 1000, minWidth: 800 }}
         />
       </div>
     )
