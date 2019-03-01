@@ -4,19 +4,21 @@ import { BusinessType } from '../../../../../../__generated__/globalTypes';
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: LoginMutation
+// GraphQL mutation operation: officeSignUp
 // ====================================================
 
-export interface LoginMutation_login {
+export interface signup_signup {
   token: string | null;
 }
 
-export interface LoginMutation {
-  login: LoginMutation_login | null;
+export interface signup {
+  signup: signup_signup | null;
 }
 
-export interface LoginMutationVariables {
+export interface signupVariables {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
   businessType: BusinessType;
 }

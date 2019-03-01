@@ -17,7 +17,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-const businessType: BusinessType = 'VALPUNK'
+const businessType = BusinessType.VALPUNK
 
 ;(storiesOf("Authentication", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
