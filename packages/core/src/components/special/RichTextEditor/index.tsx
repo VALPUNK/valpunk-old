@@ -96,8 +96,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     )
 
     this.setState({
-      title: title,
-      author: author,
+      title,
+      author,
       value: valueContent
     })
     // console.log(this.state)
@@ -427,7 +427,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
         title: this.state.title,
         author: this.state.author,
         content: saveContent,
-        contentId: contentId,
+        contentId,
         accountId: "",
         businessType: this.props.businessType
       },
