@@ -9,10 +9,12 @@ import { withApollo } from "react-apollo"
 import * as Yup from "yup"
 import { BusinessType } from "../../../../../__generated__/globalTypes"
 import { LoginMutation } from "./__generated__/LoginMutation"
+import TextInputField from "../../../../components/collections/TextInputField"
 
 interface Props {
   client?: ApolloClient<any>
   businessType: BusinessType
+  uriEndpoint?: string
 }
 
 interface Values {
@@ -30,7 +32,9 @@ export class Login extends React.Component<Props> {
       <Formik<Values>
         initialValues={{}}
         validationSchema={Yup.object().shape({
-          email: Yup.string().required("Required"),
+          email: Yup.string()
+            .email()
+            .required("Required"),
           password: Yup.lazy(value =>
             !value
               ? Yup.string()
@@ -53,9 +57,12 @@ export class Login extends React.Component<Props> {
               email,
               password,
               businessType
-            }
+            },
+            context: this.props.uriEndpoint
+              ? this.props.uriEndpoint
+              : "https://valpunk-server.now.sh/"
           })
-          console.log(result)
+          console.log("Result: ", result)
           if (result.errors) {
             alert(result.errors[0].message)
           }
@@ -79,18 +86,30 @@ export class Login extends React.Component<Props> {
               <Grid item={true} xs={11} md={8}>
                 <Field
                   name="email"
-                  component={TextField}
+                  render={(props: any) => (
+                    <TextInputField
+                      name="email"
+                      type="email"
+                      label="Email"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
                   style={{ width: "100%" }}
-                  type="email"
-                  label="Email"
                 />
               </Grid>
               <Grid item={true} xs={11} md={8}>
                 <Field
                   name="password"
-                  component={TextField}
-                  type="password"
-                  label="Password"
+                  render={(props: any) => (
+                    <TextInputField
+                      name="password"
+                      type="password"
+                      label="Password"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
                   style={{ width: "100%" }}
                   margin="normal"
                 />

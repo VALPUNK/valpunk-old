@@ -7,15 +7,19 @@ import * as React from "react"
 import * as Yup from "yup"
 import { ApolloClient, gql } from "apollo-boost"
 import { BusinessType } from "../../../../../__generated__/globalTypes"
+import TextInputField from "../../../../components/collections/TextInputField"
+import { signup, signupVariables } from "./__generated__/signup"
 // import { TextField } from "~/components/basic"
 
 interface Props {
   client?: ApolloClient<any>
   businessType: BusinessType
+  uriEndpoint?: string
 }
 
 interface Values {
-  name?: string
+  firstName?: string
+  lastName?: string
   email?: string
   password?: string
   confirmPassword?: string
@@ -27,9 +31,8 @@ export class Signup extends React.Component<Props> {
   }
 
   public signup = async () => {
-    const { email, password, name } = this.state
+    // const { email, password, name } = this.state
     // console.warn("businessId is hardcoded")
-
     // try {
     //   const result = await this.props.client.mutate({
     //     mutation: OFFICE_SIGNUP_MUTATION,
@@ -40,7 +43,6 @@ export class Signup extends React.Component<Props> {
     //       businessId: "cjp8nyc10dak80a62an1dbhjo"
     //     }
     //   })
-
     //   const { token } = result.data.officeSignUp
     //   await this.props.client.resetStore()
     //   console.log(result)
@@ -56,6 +58,8 @@ export class Signup extends React.Component<Props> {
       <Formik<Values>
         initialValues={{}}
         validationSchema={Yup.object().shape({
+          firstName: Yup.string(),
+          lastName: Yup.string(),
           email: Yup.string()
             .email()
             .required("Required"),
@@ -71,7 +75,7 @@ export class Signup extends React.Component<Props> {
             "Passwords do not match"
           )
         })}
-        onSubmit={(_values, { setSubmitting }) => {
+        onSubmit={async (_values, { setSubmitting }) => {
           setTimeout(() => {
             setSubmitting(false)
             // action("submit")(values)
@@ -79,21 +83,30 @@ export class Signup extends React.Component<Props> {
 
           const email = _values.email
           const password = _values.password
-          const name = _values.name
+          // const name = _values.name
+          const firstName = _values.firstName
+          const lastName = _values.lastName
           const businessType = this.props.businessType
 
           try {
-            const result = await this.props.client.mutate({
+            const result = await this.props.client.mutate<
+              signup,
+              signupVariables
+            >({
               mutation: SIGNUP_MUTATION,
               variables: {
                 email,
                 password,
-                name,
+                firstName,
+                lastName,
                 businessType
-              }
+              },
+              context: this.props.uriEndpoint
+                ? this.props.uriEndpoint
+                : "https://valpunk-server.now.sh/"
             })
 
-            const { token } = result.data.officeSignUp
+            const { token } = result.data.signup
             await this.props.client.resetStore()
             console.log(result)
             this.saveUserData(token)
@@ -112,28 +125,63 @@ export class Signup extends React.Component<Props> {
             >
               <Grid item={true} xs={11} md={8}>
                 <Field
-                  name="name"
-                  component={TextField}
+                  name="firstName"
                   style={{ width: "100%" }}
-                  type="text"
-                  label="Name"
+                  render={(props: any) => (
+                    <TextInputField
+                      name="firstName"
+                      type="text"
+                      label="First Name"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
+                  margin="normal"
+                />
+              </Grid>
+              <Grid item={true} xs={11} md={8}>
+                <Field
+                  name="lastName"
+                  style={{ width: "100%" }}
+                  render={(props: any) => (
+                    <TextInputField
+                      name="lastName"
+                      type="text"
+                      label="Last Name"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
+                  margin="normal"
                 />
               </Grid>
               <Grid item={true} xs={11} md={8}>
                 <Field
                   name="email"
-                  component={TextField}
+                  render={(props: any) => (
+                    <TextInputField
+                      name="email"
+                      type="email"
+                      label="Email"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
                   style={{ width: "100%" }}
-                  type="email"
-                  label="Email"
                 />
               </Grid>
               <Grid item={true} xs={11} md={8}>
                 <Field
                   name="password"
-                  component={TextField}
-                  type="password"
-                  label="Password"
+                  render={(props: any) => (
+                    <TextInputField
+                      name="password"
+                      type="password"
+                      label="Password"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
                   style={{ width: "100%" }}
                   margin="normal"
                 />
@@ -141,9 +189,15 @@ export class Signup extends React.Component<Props> {
               <Grid item={true} xs={11} md={8}>
                 <Field
                   name="confirmPassword"
-                  component={TextField}
-                  type="password"
-                  label="Confirm Password"
+                  render={(props: any) => (
+                    <TextInputField
+                      name="confirmPassword"
+                      type="password"
+                      label="Confirm Password"
+                      // variant="outlined"
+                      {...props}
+                    />
+                  )}
                   style={{ width: "100%" }}
                   margin="normal"
                 />

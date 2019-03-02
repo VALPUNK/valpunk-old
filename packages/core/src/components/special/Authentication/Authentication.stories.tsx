@@ -17,7 +17,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-const businessType: BusinessType = 'VALPUNK'
+const businessType: BusinessType = BusinessType.VALPUNK
 
 ;(storiesOf("Authentication", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
@@ -26,7 +26,7 @@ const businessType: BusinessType = 'VALPUNK'
       <ApolloProvider client={client}>
         <Authentication
           businessType={businessType}
-          // uriEndpoint="http://localhost:4000"
+          uriEndpoint="http://localhost:4000"
         />
       </ApolloProvider>
     </CenteredForStories>
