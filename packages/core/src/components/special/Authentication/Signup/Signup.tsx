@@ -7,9 +7,9 @@ import * as React from "react"
 import * as Yup from "yup"
 import { ApolloClient, gql } from "apollo-boost"
 import { BusinessType } from "../../../../../__generated__/globalTypes"
-import TextInputField from "../../../../components/collections/TextInputField"
 import { signup, signupVariables } from "./__generated__/signup"
 // import { TextField } from "~/components/basic"
+import TextInputField from "../../../../components/collections/TextInputField"
 
 interface Props {
   client?: ApolloClient<any>
@@ -58,8 +58,10 @@ export class Signup extends React.Component<Props> {
       <Formik<Values>
         initialValues={{}}
         validationSchema={Yup.object().shape({
-          firstName: Yup.string(),
-          lastName: Yup.string(),
+          firstName: Yup.string()
+            .required("Required"),
+          lastName: Yup.string()
+          .required("Required"),
           email: Yup.string()
             .email()
             .required("Required"),
@@ -83,7 +85,6 @@ export class Signup extends React.Component<Props> {
 
           const email = _values.email
           const password = _values.password
-          // const name = _values.name
           const firstName = _values.firstName
           const lastName = _values.lastName
           const businessType = this.props.businessType
@@ -108,7 +109,7 @@ export class Signup extends React.Component<Props> {
 
             const { token } = result.data.signup
             await this.props.client.resetStore()
-            console.log(result)
+            console.log("Signup result: ", result)
             this.saveUserData(token)
             // this.props.router.push("/dashboard")
           } catch (e) {
@@ -168,6 +169,7 @@ export class Signup extends React.Component<Props> {
                     />
                   )}
                   style={{ width: "100%" }}
+                  margin="normal"
                 />
               </Grid>
               <Grid item={true} xs={11} md={8}>

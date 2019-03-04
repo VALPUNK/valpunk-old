@@ -15,7 +15,7 @@ import { ApolloClient, gql } from "apollo-boost"
 import { withApollo } from "react-apollo"
 
 interface Props {
-  client?: ApolloClient<any>
+  client: ApolloClient<any>
   theme?: Theme
   authState?: authStateType
   businessType: BusinessType
@@ -44,11 +44,16 @@ class Authentication extends React.Component<Props, State> {
   // const [authState, setAuthState] = React.useState<authStateType>("default")
 
   public handleChange = (_event: React.FormEvent, v: number) => {
-    this.setState({ value: v })
+    this.setState({
+      value: v
+    })
+    // setValue(v)
   }
 
   public handleChangeIndex = (index: number) => {
-    this.setState({ value: index })
+    this.setState({
+      value: index
+    })
   }
 
   // React.useEffect(() => {

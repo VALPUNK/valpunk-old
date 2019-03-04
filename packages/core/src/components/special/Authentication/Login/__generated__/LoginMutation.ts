@@ -1,3 +1,5 @@
+import { BusinessType } from '../../../../../../__generated__/globalTypes';
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -16,4 +18,5 @@ export interface LoginMutation {
 export interface LoginMutationVariables {
   email: string;
   password: string;
+  businessType: BusinessType;
 }

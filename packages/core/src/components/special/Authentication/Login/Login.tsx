@@ -7,9 +7,13 @@ import { Field, Form, Formik } from "formik"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
-import { BusinessType } from "../../../../../__generated__/globalTypes"
-import { LoginMutation } from "./__generated__/LoginMutation"
 import TextInputField from "../../../../components/collections/TextInputField"
+import { BusinessType } from "../../../../../__generated__/globalTypes"
+import TextInputField from "../../../../components/collections/TextInputField"
+  LoginMutationVariables
+  LoginMutation,
+import {
+} from "./__generated__/LoginMutation"
 
 interface Props {
   client?: ApolloClient<any>
@@ -42,15 +46,23 @@ export class Login extends React.Component<Props> {
           )
         })}
         onSubmit={async (values, { setSubmitting }) => {
+          console.log(
+            "Why is this having such a hard time working? I mean, this should be easy. Just click the submit button and get an onSubmit event to work. How hard could it be?"
+          )
           setTimeout(() => {
-            setSubmitting(false)
+            setSubmitting(true)
+            console.log("Setting Timer")
             // action("submit")(values)
           }, 2000)
+          console.log("Logging in now...")
           const email = values.email
           const password = values.password
           const businessType = this.props.businessType
 
-          const result = await this.props.client.mutate<LoginMutation>({
+          const result = await this.props.client.mutate<
+            LoginMutation,
+            LoginMutationVariables
+          >({
             errorPolicy: "all",
             mutation: LOGIN_MUTATION,
             variables: {
@@ -62,7 +74,7 @@ export class Login extends React.Component<Props> {
               ? this.props.uriEndpoint
               : "https://valpunk-server.now.sh/"
           })
-          console.log("Result: ", result)
+          console.log("Login results: ", result)
           if (result.errors) {
             alert(result.errors[0].message)
           }
@@ -74,9 +86,23 @@ export class Login extends React.Component<Props> {
           await this.props.client.resetStore()
           this.saveUserData(token)
           // this.props.router.push("/dashboard")
+          setSubmitting(false)
         }}
-        render={({ submitForm, isSubmitting, error }) => (
+        render={({
+          submitForm,
+          isSubmitting,
+          // status,
+          isValidating,
+          // submitCount,
+          error,
+          // errors
+        }) => (
           <Form>
+            {/* {console.log("isValidating: ", isValidating)}
+            {console.log("isSubmitting: ", isSubmitting)}
+            {console.log("status: ", status)}
+            {console.log("is Error?: ", errors)}
+            {console.log("Submit Count: ", submitCount)} */}
             <Grid
               container={true}
               alignItems="center"
@@ -96,6 +122,7 @@ export class Login extends React.Component<Props> {
                     />
                   )}
                   style={{ width: "100%" }}
+                  margin="normal"
                 />
               </Grid>
               <Grid item={true} xs={11} md={8}>
@@ -117,7 +144,8 @@ export class Login extends React.Component<Props> {
               <Grid item={true} xs={8} md={8}>
                 <Button
                   onClick={submitForm}
-                  disabled={error || isSubmitting}
+                  disabled={error || isSubmitting || isValidating}
+                  type="submit"
                   variant="contained"
                   style={{
                     width: "100%",
