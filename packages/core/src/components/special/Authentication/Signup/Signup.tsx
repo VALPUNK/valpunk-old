@@ -239,7 +239,7 @@ const SIGNUP_MUTATION = gql`
     signup(
       email: $email
       password: $password
-      firstname: $firstname
+      firstName: $firstName
       lastName: $lastName
       businessType: $businessType
     ) {

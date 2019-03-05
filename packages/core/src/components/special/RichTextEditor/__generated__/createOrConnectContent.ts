@@ -18,6 +18,7 @@ export interface createOrConnectContent {
 
 export interface createOrConnectContentVariables {
   title?: string | null;
+  slug?: string | null;
   author?: string | null;
   content: string;
   contentId?: string | null;

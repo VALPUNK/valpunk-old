@@ -37,6 +37,7 @@ const isCodeHotkey = isKeyHotkey("mod+`")
 
 interface State {
   value?: Value
+  slug?: string
   title?: string
   author?: string
   contentId?: string
@@ -58,6 +59,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     super(props)
     this.state = {
       value: Value.fromJSON(initialValue),
+      slug: "",
       title: "",
       author: "",
       contentId: this.props.contentId ? this.props.contentId : "",
@@ -91,6 +93,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     })
 
     const title = result.data.getContent.title
+    const slug = result.data.getContent.slug
     const author = result.data.getContent.author
     const valueContent = Value.fromJSON(
       JSON.parse(result.data.getContent.content)
@@ -99,7 +102,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     this.setState({
       title: title,
       author: author,
-      value: valueContent
+      value: valueContent,
+      slug: slug
     })
     // console.log(this.state)
   }
@@ -163,6 +167,16 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
             label="Author"
             variant="outlined"
             value={this.state.author}
+            onChange={this.onChangeField}
+          />
+        </div>
+
+        <div style={{margin: "20px 0"}}>
+          <TextField
+            name="slug"
+            label="Slug"
+            variant="outlined"
+            value={this.state.slug}
             onChange={this.onChangeField}
           />
         </div>
@@ -429,6 +443,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
       mutation: SAVE_CONTENT,
       variables: {
         title: this.state.title,
+        slug: this.state.slug,
         author: this.state.author,
         content: saveContent,
         contentId: contentId,
@@ -557,6 +572,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
 export const SAVE_CONTENT = gql`
   mutation createOrConnectContent(
     $title: String
+    $slug: String
     $author: String
     $content: String!
     $contentId: String
@@ -565,6 +581,7 @@ export const SAVE_CONTENT = gql`
   ) {
     createOrConnectContent(
       title: $title
+      slug: $slug
       author: $author
       content: $content
       contentId: $contentId

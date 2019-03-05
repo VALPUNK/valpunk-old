@@ -7,12 +7,11 @@ import { Field, Form, Formik } from "formik"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
-import TextInputField from "../../../../components/collections/TextInputField"
 import { BusinessType } from "../../../../../__generated__/globalTypes"
 import TextInputField from "../../../../components/collections/TextInputField"
-  LoginMutationVariables
-  LoginMutation,
 import {
+  LoginMutation,
+  LoginMutationVariables
 } from "./__generated__/LoginMutation"
 
 interface Props {

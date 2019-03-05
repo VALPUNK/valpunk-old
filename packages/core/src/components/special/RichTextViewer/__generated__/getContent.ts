@@ -6,8 +6,9 @@
 // ====================================================
 
 export interface getContent_getContent {
-  id: string
+  id: string;
   title: string | null;
+  slug: string | null;
   author: string | null;
   content: string;
 }

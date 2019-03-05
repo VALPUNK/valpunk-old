@@ -12,7 +12,8 @@ import {
 import {
   CarouselContainer,
   CarouselNav,
-  Navbar
+  Navbar,
+  TimedPromoBar
 } from "./components/compositions"
 import {
   ContactForm,
@@ -48,5 +49,6 @@ export {
   DestructuredEditor,
   DestructuredViewer,
   SimpleContentEditor,
-  SimpleContentViewer
+  SimpleContentViewer,
+  TimedPromoBar
 }
