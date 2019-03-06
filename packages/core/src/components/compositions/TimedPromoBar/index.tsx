@@ -1,17 +1,18 @@
+import { ApolloClient } from "apollo-boost"
+import gql from "graphql-tag"
 import * as React from "react"
-import { SimpleContentViewer } from "@valpunk/core"
+import { withApollo } from "react-apollo"
+import { Value } from "slate"
+import { initialValue } from "~/components/special/DestructuredEditor/value"
 import {
   BusinessType,
   PromoStatusType
 } from "../../../../__generated__/globalTypes"
-import gql from "graphql-tag"
-import { ApolloClient } from "apollo-boost"
-import { withApollo } from "react-apollo"
+import PromoBar from "./components/PromoBar"
 import {
   getPromotionDisplay,
   getPromotionDisplayVariables
 } from "./__generated__/getPromotionDisplay"
-import PromoBar from "./components/PromoBar"
 
 interface Props {
   client: ApolloClient<any>
@@ -19,10 +20,6 @@ interface Props {
 
   promoSlug?: string
   businessType?: BusinessType
-
-  // startDate?: Date
-  // endDate?: Date
-  // contentId?: string
   status?: PromoStatusType
 
   backgroundColor?: string
@@ -30,19 +27,19 @@ interface Props {
 }
 
 interface State {
-  contentId?: string
   startDate?: Date
   endDate?: Date
   status?: PromoStatusType
   active?: boolean
+  content?: Value
 }
 
 class TimedPromoBar extends React.PureComponent<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      contentId: "",
-      active: false
+      active: true,
+      content: Value.fromJSON(initialValue)
     }
   }
 
@@ -119,15 +116,23 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
       }
     })
 
-    const { contentId, contentSlug, startDate, endDate, status } = result.data.getPromotion
-
-    console.log("ContentId: ", contentId)
-    console.log("ContentSlug: ", contentSlug)
-    await this.setState({
-      contentId,
+    const {
+      valueContent,
       startDate,
       endDate,
       status
+    } = result.data.getPromotion
+
+    // console.log("ContentId: ", contentId)
+    // console.log("Content itself: ", valueContent)
+
+    const content = this.convertValue(valueContent)
+
+    await this.setState({
+      startDate,
+      endDate,
+      status,
+      content
     })
   }
 
@@ -140,36 +145,37 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
     }
   }
 
+  public convertValue = (stringContent: string) => {
+    const valueContent = Value.fromJSON(JSON.parse(stringContent))
+    return valueContent
+  }
+
   public render() {
-    console.log("Active? ", this.state.active)
+    // console.log("Active? ", this.state.active)
 
     return (
       <>
         <PromoBar
           active={this.state.active}
-          status={this.state.status}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
-          contentId={this.state.contentId}
-          businessType={this.props.businessType}
+          valueContent={this.state.content}
           backgroundColor={this.props.backgroundColor}
           textColor={this.props.textColor}
-          uriEndpoint={this.props.uriEndpoint}
         />
       </>
     )
   }
 }
 
-const GET_PROMOTION = gql`
+export const GET_PROMOTION = gql`
   query getPromotionDisplay($promoSlug: String!) {
     getPromotion(promoSlug: $promoSlug) {
       id
-      slug
+      promoSlug
       startDate
       endDate
-      contentId
-      contentSlug
+      valueContent
       status
     }
   }

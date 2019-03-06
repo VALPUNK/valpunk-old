@@ -9,9 +9,11 @@ import { PromoStatusType } from "./..\\..\\..\\..\\..\\__generated__\\globalType
 
 export interface getPromotionDisplay_getPromotion {
   id: string;
-  promoSlug: string;
+  slug: string;
   startDate: any | null;
   endDate: any | null;
+  contentId: string | null;
+  contentSlug: string | null;
   valueContent: string | null;
   status: PromoStatusType | null;
 }

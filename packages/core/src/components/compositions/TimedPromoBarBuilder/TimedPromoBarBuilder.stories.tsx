@@ -5,7 +5,7 @@ import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
-import TimedPromoBar from '.';
+import TimedPromoBarBuilder from './index';
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -20,15 +20,12 @@ const client = new ApolloClient({
 
 ;(storiesOf("PromoBar", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
-  .add("TimedPromoBar", () => (
+  .add("TimedPromoBarBuilder", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <TimedPromoBar
+        <TimedPromoBarBuilder
           // businessType="NIMBUS"
           // promoSlug="NIMBUS-top-promo-bar"
-          // status="ENABLED"
-          backgroundColor="blue"
-          textColor="white"
           uriEndpoint="http://localhost:4000"
           />
       </ApolloProvider>

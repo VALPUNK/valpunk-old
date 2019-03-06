@@ -4825,7 +4825,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug",
+            "name": "promoSlug",
             "description": "",
             "type": {
               "kind": "SCALAR",
@@ -4835,7 +4835,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_not",
+            "name": "promoSlug_not",
             "description": "All values that are not equal to given value.",
             "type": {
               "kind": "SCALAR",
@@ -4845,7 +4845,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_in",
+            "name": "promoSlug_in",
             "description": "All values that are contained in given list.",
             "type": {
               "kind": "LIST",
@@ -4863,7 +4863,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_not_in",
+            "name": "promoSlug_not_in",
             "description": "All values that are not contained in given list.",
             "type": {
               "kind": "LIST",
@@ -4881,7 +4881,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_lt",
+            "name": "promoSlug_lt",
             "description": "All values less than the given value.",
             "type": {
               "kind": "SCALAR",
@@ -4891,7 +4891,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_lte",
+            "name": "promoSlug_lte",
             "description": "All values less than or equal the given value.",
             "type": {
               "kind": "SCALAR",
@@ -4901,7 +4901,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_gt",
+            "name": "promoSlug_gt",
             "description": "All values greater than the given value.",
             "type": {
               "kind": "SCALAR",
@@ -4911,7 +4911,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_gte",
+            "name": "promoSlug_gte",
             "description": "All values greater than or equal the given value.",
             "type": {
               "kind": "SCALAR",
@@ -4921,7 +4921,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_contains",
+            "name": "promoSlug_contains",
             "description": "All values containing the given string.",
             "type": {
               "kind": "SCALAR",
@@ -4931,7 +4931,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_not_contains",
+            "name": "promoSlug_not_contains",
             "description": "All values not containing the given string.",
             "type": {
               "kind": "SCALAR",
@@ -4941,7 +4941,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_starts_with",
+            "name": "promoSlug_starts_with",
             "description": "All values starting with the given string.",
             "type": {
               "kind": "SCALAR",
@@ -4951,7 +4951,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_not_starts_with",
+            "name": "promoSlug_not_starts_with",
             "description": "All values not starting with the given string.",
             "type": {
               "kind": "SCALAR",
@@ -4961,7 +4961,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_ends_with",
+            "name": "promoSlug_ends_with",
             "description": "All values ending with the given string.",
             "type": {
               "kind": "SCALAR",
@@ -4971,7 +4971,7 @@
             "defaultValue": null
           },
           {
-            "name": "slug_not_ends_with",
+            "name": "promoSlug_not_ends_with",
             "description": "All values not ending with the given string.",
             "type": {
               "kind": "SCALAR",
@@ -6341,13 +6341,13 @@
             "deprecationReason": null
           },
           {
-            "name": "slug_ASC",
+            "name": "promoSlug_ASC",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "slug_DESC",
+            "name": "promoSlug_DESC",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -6453,7 +6453,7 @@
             "deprecationReason": null
           },
           {
-            "name": "slug",
+            "name": "promoSlug",
             "description": "",
             "args": [],
             "type": {
@@ -6462,22 +6462,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "content",
-            "description": "",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Content",
                 "ofType": null
               }
             },
@@ -6521,6 +6505,22 @@
             "deprecationReason": null
           },
           {
+            "name": "content",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Content",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "contentId",
             "description": "",
             "args": [],
@@ -6534,6 +6534,18 @@
           },
           {
             "name": "contentSlug",
+            "description": "",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "valueContent",
             "description": "",
             "args": [],
             "type": {
@@ -7099,17 +7111,35 @@
             "description": "",
             "args": [
               {
-                "name": "promoId",
+                "name": "promoSlug",
                 "description": "",
                 "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               },
               {
-                "name": "slug",
+                "name": "businessType",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "BusinessType",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "contentSlug",
                 "description": "",
                 "type": {
                   "kind": "NON_NULL",
@@ -7149,34 +7179,6 @@
                   "kind": "ENUM",
                   "name": "PromoStatusType",
                   "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "contentId",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "businessType",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "ENUM",
-                    "name": "BusinessType",
-                    "ofType": null
-                  }
                 },
                 "defaultValue": null
               }
@@ -7198,51 +7200,7 @@
             "description": "",
             "args": [
               {
-                "name": "startDate",
-                "description": "",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "endDate",
-                "description": "",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "DateTime",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "slug",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "status",
-                "description": "",
-                "type": {
-                  "kind": "ENUM",
-                  "name": "PromoStatusType",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "contentId",
+                "name": "promoSlug",
                 "description": "",
                 "type": {
                   "kind": "NON_NULL",
@@ -7266,6 +7224,50 @@
                     "name": "BusinessType",
                     "ofType": null
                   }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "contentSlug",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "startDate",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "endDate",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "status",
+                "description": "",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "PromoStatusType",
+                  "ofType": null
                 },
                 "defaultValue": null
               }
