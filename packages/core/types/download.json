@@ -7111,6 +7111,16 @@
             "description": "",
             "args": [
               {
+                "name": "promoId",
+                "description": "",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "promoSlug",
                 "description": "",
                 "type": {

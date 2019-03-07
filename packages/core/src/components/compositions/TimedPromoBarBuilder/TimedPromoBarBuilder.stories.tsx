@@ -24,8 +24,8 @@ const client = new ApolloClient({
     <CenteredForStories>
       <ApolloProvider client={client}>
         <TimedPromoBarBuilder
-          // businessType="NIMBUS"
-          // promoSlug="NIMBUS-top-promo-bar"
+          businessType="NIMBUS"
+          // promoSlug="NIMBUS-top-promo"
           uriEndpoint="http://localhost:4000"
           />
       </ApolloProvider>

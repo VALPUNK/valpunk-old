@@ -17,11 +17,16 @@ import {
 import { Button } from "./components"
 import DestructuredEditor from "../../../special/DestructuredEditor"
 import { initialValue } from "../../../special/RichTextEditor/value"
+
+import { GET_PROMOTION } from "~/components/compositions/TimedPromoBar"
+import {
+  getPromotionDisplay,
+  getPromotionDisplayVariables
+} from "../../TimedPromoBar/__generated__/getPromotionDisplay"
 import {
   savePromotion,
   savePromotionVariables
-} from "../__generated__/savePromotion"
-import { SimpleContentEditor } from '~/components/special';
+} from "./__generated__/savePromotion"
 
 interface RichTextEditorProps {
   slug?: string
@@ -40,10 +45,12 @@ interface RichTextEditorProps {
 interface State {
   value?: Value
   slug?: string
+  promoId?: string
   contentId?: string
-  contentSlug?: string
+  // contentSlug?: string
   submitting?: boolean
 
+  status?: PromoStatusType
   startDate?: Date
   endDate?: Date
 }
@@ -56,25 +63,75 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     this.state = {
       value: Value.fromJSON(initialValue),
       slug: "",
+      promoId: "",
       contentId: "",
       submitting: false,
-      contentSlug: "",
-      startDate: new Date(),
-      endDate: new Date(),
+      // contentSlug: "",
+      status: PromoStatusType.ENABLED
+      // startDate: new Date(),
+      // endDate: new Date()
     }
   }
 
+  public retrievePromotion = async (promoSlug: string) => {
+    console.log("Getting Promo!")
+    const uriEndpoint = this.props.uriEndpoint
+      ? this.props.uriEndpoint
+      : "https://valpunk-server.now.sh/"
+    const result = await this.props.client.query<
+      getPromotionDisplay,
+      getPromotionDisplayVariables
+    >({
+      query: GET_PROMOTION,
+      variables: {
+        promoSlug
+      },
+      context: {
+        uri: uriEndpoint
+      }
+    })
+
+    const {
+      id,
+      contentId,
+      valueContent,
+      startDate,
+      endDate,
+      status
+    } = result.data.getPromotion
+
+    // console.log("ContentId: ", contentId)
+    // console.log("Content itself: ", valueContent)
+
+    const value = this.convertValue(valueContent)
+
+    await this.setState({
+      promoId: id,
+      contentId,
+      slug: this.props.slug,
+      startDate,
+      endDate,
+      status,
+      value
+    })
+
+    console.log("Promo State: ", this.state)
+  }
+
+  public convertValue = (stringContent: string) => {
+    const valueContent = Value.fromJSON(JSON.parse(stringContent))
+    return valueContent
+  }
+
   public componentDidMount = () => {
-    // console.log("Value: ", this.props.value)
-    // this.props.value && this.setState({ value: this.props.value })
-    // this.props.slug && this.setState({ slug: this.props.slug })
-    // this.props.contentSlug && this.setState({ contentSlug: this.props.contentSlug })
-    // this.props.startDate && this.setState({ startDate: this.props.startDate })
-    // this.props.endDate && this.setState({ startDate: this.props.endDate })
+    console.log("Editor Frame Props: ", this.props.value)
+
+    if (this.props.slug) {
+      this.retrievePromotion(this.props.slug)
+    }
 
     console.log("State: ", this.state)
   }
-
 
   public render() {
     console.log("Editor Frame: ", this.state)
@@ -120,6 +177,16 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     )
   }
 
+  public onChange = (value: Value) => {
+    this.setState({
+      value
+    })
+  }
+
+  public onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
   public savePromotionInfo = async () => {
     await this.setState({
       submitting: true
@@ -133,43 +200,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     })
   }
 
-  public savePromo = async () => {
-    const uriEndpoint = this.props.uriEndpoint
-      ? this.props.uriEndpoint
-      : "https://valpunk-server.now.sh/"
-
-    const result = await this.props.client.mutate<
-      savePromotion,
-      savePromotionVariables
-    >({
-      mutation: SAVE_PROMOTION,
-      variables: {
-        promoSlug: this.state.slug,
-        businessType: this.props.businessType,
-        contentSlug: this.state.contentSlug,
-        startDate: this.state.startDate,
-        endDate: this.state.endDate
-      },
-      context: {
-        uri: uriEndpoint
-      }
-    })
-  }
-
-  public onChange = (value: Value) => {
-    this.setState({
-      value
-    })
-  }
-
-  public onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ [event.target.name]: event.target.value })
-  }
-
   public onClickSave = async () => {
-    // console.log("Submitting...")
-
     const saveContent = JSON.stringify(this.state.value.toJSON())
+    const contentSlug = this.state.slug
     const contentId = this.state.contentId
     const uriEndpoint = this.props.uriEndpoint
       ? this.props.uriEndpoint
@@ -180,9 +213,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     >({
       mutation: SAVE_CONTENT,
       variables: {
-        slug: this.state.slug,
+        slug: contentSlug,
         content: saveContent,
-        contentId: contentId,
+        contentId,
         businessType: this.props.businessType
       },
       context: {
@@ -192,22 +225,59 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
 
     // console.log("Just saved all this stuff: ", result)
 
-    this.props.contentId
-      ? {}
-      : this.setState({
-          contentId: result.data.createOrConnectContent.id
-        })
-
-    await this.setState({
-      submitting: false
+    this.setState({
+      contentId: result.data.createOrConnectContent.id
     })
 
+    console.log("ContentId: ", result.data.createOrConnectContent.id)
+
     console.log("Content Saved.")
+    console.log("CurrentContentState: ", this.state)
+  }
+
+  public savePromo = async () => {
+    const uriEndpoint = this.props.uriEndpoint
+      ? this.props.uriEndpoint
+      : "https://valpunk-server.now.sh/"
+
+    const promoId = this.state.promoId
+    const promoSlug = this.state.slug
+    const contentSlug = this.state.slug
+    const startDate = this.state.startDate
+    const endDate = this.state.endDate
+
+    const result = await this.props.client.mutate<
+      savePromotion,
+      savePromotionVariables
+    >({
+      mutation: SAVE_PROMOTION,
+      variables: {
+        promoId,
+        promoSlug,
+        businessType: this.props.businessType,
+        contentSlug,
+        startDate,
+        endDate
+      },
+      context: {
+        uri: uriEndpoint
+      }
+    })
+
+    this.setState({
+      promoId: result.data.createOrConnectPromotion.id
+    })
+
+    console.log("Promo Id: ", result.data.createOrConnectPromotion.id)
+
+    console.log("Promotion Saved.")
+    console.log("CurrentPromoState: ", this.state)
   }
 }
 
 export const SAVE_PROMOTION = gql`
   mutation savePromotion(
+    $promoId: String
     $promoSlug: String!
     $businessType: BusinessType!
     $contentSlug: String!
@@ -216,6 +286,7 @@ export const SAVE_PROMOTION = gql`
     $status: PromoStatusType
   ) {
     createOrConnectPromotion(
+      promoId: $promoId
       promoSlug: $promoSlug
       businessType: $businessType
       contentSlug: $contentSlug

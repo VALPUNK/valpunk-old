@@ -172,6 +172,7 @@ export const GET_PROMOTION = gql`
   query getPromotionDisplay($promoSlug: String!) {
     getPromotion(promoSlug: $promoSlug) {
       id
+      contentId
       promoSlug
       startDate
       endDate

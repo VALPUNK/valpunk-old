@@ -25,7 +25,7 @@ const client = new ApolloClient({
       <ApolloProvider client={client}>
         <TimedPromoBar
           // businessType="NIMBUS"
-          // promoSlug="NIMBUS-top-promo-bar"
+          promoSlug="NIMBUS-top-promo"
           // status="ENABLED"
           backgroundColor="blue"
           textColor="white"

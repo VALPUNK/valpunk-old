@@ -9,14 +9,14 @@ import {
   PromoStatusType
 } from "../../../../__generated__/globalTypes"
 import PromoBar from "./components/PromoBar"
+
+import { GET_PROMOTION } from "../TimedPromoBar/index"
+import { SAVE_CONTENT } from "~/components/special/RichTextEditor"
 import {
-  getPromotionDisplay,
-  getPromotionDisplayVariables
-} from "./__generated__/getPromotionDisplay"
-import { GET_PROMOTION } from '../TimedPromoBar/index';
-import { SAVE_CONTENT } from '~/components/special/RichTextEditor';
-import { createOrConnectContent, createOrConnectContentVariables } from '~/components/special/RichTextEditor/__generated__/createOrConnectContent';
-import EditorFrame from './components/EditorFrame';
+  createOrConnectContent,
+  createOrConnectContentVariables
+} from "~/components/special/RichTextEditor/__generated__/createOrConnectContent"
+import EditorFrame from "./components/EditorFrame"
 // import EditorFrame from '../../special/DestructuredEditor/EditorFrame';
 
 interface Props {
@@ -52,6 +52,7 @@ class TimedPromoBarBuilder extends React.PureComponent<Props, State> {
   }
 
   // public retrievePromotion = async (promoSlug: string) => {
+  //   console.log("Getting Promo!")
   //   const uriEndpoint = this.props.uriEndpoint
   //     ? this.props.uriEndpoint
   //     : "https://valpunk-server.now.sh/"
@@ -82,25 +83,31 @@ class TimedPromoBarBuilder extends React.PureComponent<Props, State> {
   //   const content = this.convertValue(valueContent)
 
   //   await this.setState({
+  //     slug: this.props.promoSlug,
   //     startDate,
   //     endDate,
   //     status,
   //     content,
   //     contentSlug
   //   })
+
+  //   console.log("Promo State: ", this.state)
   // }
 
-  public componentDidMount() {
-    // this.props.promoSlug && this.setState({slug: this.props.promoSlug})
-    // this.retrievePromotion(this.props.promoSlug)
-    console.log("I mounted!")
-  }
+
 
   // public convertValue = (stringContent: string) => {
   //   const valueContent = Value.fromJSON(JSON.parse(stringContent))
   //   return valueContent
   // }
 
+  public componentDidMount() {
+    // if (this.props.promoSlug) {
+    //   // this.retrievePromotion(this.props.promoSlug)
+    // }
+
+    console.log("I mounted!")
+  }
 
   public render() {
     // console.log("Active? ", this.state.active)
@@ -109,31 +116,20 @@ class TimedPromoBarBuilder extends React.PureComponent<Props, State> {
     // console.log("The state of everything: ", this.state)
     return (
       <>
-
-      <EditorFrame
-businessType={this.props.businessType}
-uriEndpoint={this.props.uriEndpoint}
-contentId="3"
-        // value={this.state.content}
-        // businessType={this.props.businessType}
-        // slug={this.state.slug}
-        // startDate={this.state.startDate}
-        // endDate={this.state.endDate}
-        // contentSlug={this.state.contentSlug}
-        // status={this.state.status}
-
-
-        // save={this.savePromotionInfo}
-        // onChange={this.onChange}
-        // onChangeField={this.onChangeField}
-        // submitting={this.state.submitting}
-      />
+        <EditorFrame
+          businessType={this.props.businessType}
+          uriEndpoint={this.props.uriEndpoint}
+          // contentId="3"
+          // value={this.state.content}
+          slug={this.props.promoSlug}
+          // startDate={this.state.startDate}
+          // endDate={this.state.endDate}
+          // contentSlug={this.state.contentSlug}
+          // status={this.state.status}
+        />
       </>
     )
   }
 }
-
-
-
 
 export default withApollo(TimedPromoBarBuilder)
