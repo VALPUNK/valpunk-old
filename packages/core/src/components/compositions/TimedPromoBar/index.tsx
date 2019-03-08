@@ -1,5 +1,4 @@
-import { ApolloClient } from "apollo-boost"
-import gql from "graphql-tag"
+import { ApolloClient, gql } from "apollo-boost"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import { Value } from "slate"
@@ -73,8 +72,6 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
   }
 
   public checkActive = () => {
-
-
     const currentDate = new Date()
     const startDate = new Date(this.state.startDate)
     const endDate = new Date(this.state.endDate)

@@ -5,24 +5,23 @@ import React from "react"
 import { withApollo } from "react-apollo"
 import { Value } from "slate"
 import { Editor } from "slate-react"
+import { GET_PROMOTION } from "~/components/compositions/TimedPromoBar"
 import {
   BusinessType,
   PromoStatusType
 } from "../../../../../__generated__/globalTypes"
-import RichTextEditor, { SAVE_CONTENT } from "../../../special/RichTextEditor"
+import DestructuredEditor from "../../../special/DestructuredEditor"
+import { SAVE_CONTENT } from "../../../special/RichTextEditor"
+import { initialValue } from "../../../special/RichTextEditor/value"
 import {
   createOrConnectContent,
   createOrConnectContentVariables
 } from "../../../special/RichTextEditor/__generated__/createOrConnectContent"
-import { Button } from "./components"
-import DestructuredEditor from "../../../special/DestructuredEditor"
-import { initialValue } from "../../../special/RichTextEditor/value"
-
-import { GET_PROMOTION } from "~/components/compositions/TimedPromoBar"
 import {
   getPromotionDisplay,
   getPromotionDisplayVariables
 } from "../../TimedPromoBar/__generated__/getPromotionDisplay"
+import { Button } from "./components"
 import {
   savePromotion,
   savePromotionVariables
