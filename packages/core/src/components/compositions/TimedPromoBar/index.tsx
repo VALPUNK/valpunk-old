@@ -73,10 +73,17 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
   }
 
   public checkActive = () => {
-    const currentDate = new Date()
 
+
+    const currentDate = new Date()
+    const startDate = new Date(this.state.startDate)
+    const endDate = new Date(this.state.endDate)
+
+    console.log("Checking Time... Current Date: ", currentDate)
+    console.log("Start Date: ", startDate)
+    console.log("End Date: ", endDate)
     if (this.state.startDate) {
-      if (currentDate < this.state.startDate) {
+      if (currentDate < startDate) {
         console.log("Before Start date")
         return this.setState({
           active: false
@@ -85,7 +92,7 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
     }
 
     if (this.state.endDate) {
-      if (currentDate > this.state.endDate) {
+      if (currentDate > endDate) {
         console.log("after End date")
         return this.setState({
           active: false
@@ -128,6 +135,7 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
 
     const content = this.convertValue(valueContent)
 
+    console.log("Retrieved Promo: ", result.data.getPromotion)
     await this.setState({
       startDate,
       endDate,
@@ -136,8 +144,9 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
     })
   }
 
-  public componentDidMount() {
-    this.retrievePromotion(this.props.promoSlug)
+  public async componentDidMount() {
+    await this.retrievePromotion(this.props.promoSlug)
+    await this.checkActive()
     if (this.props.status) {
       this.checkStatus(this.props.status)
     } else if (this.state.status) {

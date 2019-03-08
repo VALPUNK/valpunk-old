@@ -135,16 +135,34 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
 
   public render() {
     console.log("Editor Frame: ", this.state)
+
+    // const startDate = new Date(this.state.startDate)
     return (
       <div>
         <div>
           <TextField
             name="slug"
             label="Slug"
-            value={this.state.slug}
+            defaultValue={this.props.slug}
             onChange={this.onChangeField}
           />
         </div>
+
+        {/* <div>
+          <TextField
+            name="startDate"
+            label="Start Date"
+            type="datetime-local"
+            // defaultValue={this.state.startDate}
+            onChange={this.onChangeDate}
+          />
+          <TextField
+            name="endDate"
+            label="End Date"
+            type="datetime-local"
+            onChange={this.onChangeDate}
+          />
+        </div> */}
 
         <div style={{ margin: "30px 0px" }}>
           <DestructuredEditor
@@ -185,6 +203,15 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
 
   public onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ [event.target.name]: event.target.value })
+  }
+
+  public onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Date: ", event.target.value)
+    console.log("Date as Date: ", event.target.valueAsDate)
+    const newDate = new Date(event.target.value)
+
+    console.log("New Date", newDate)
+    this.setState({ [event.target.name]: newDate })
   }
 
   public savePromotionInfo = async () => {

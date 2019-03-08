@@ -26,6 +26,7 @@ const client = new ApolloClient({
         <TimedPromoBarBuilder
           businessType="NIMBUS"
           // promoSlug="NIMBUS-top-promo"
+          promoSlug="NIMBUS-time-late"
           uriEndpoint="http://localhost:4000"
           />
       </ApolloProvider>
