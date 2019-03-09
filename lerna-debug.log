@@ -8,7 +8,7 @@
 3 info versioning independent
 4 info Verifying npm credentials
 5 verbose Retrieving npm user profile
-6 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 663ms
+6 http fetch GET 200 https://registry.npmjs.org/-/npm/v1/user 401ms
 7 silly npm profile get received {"tfa":false,"name":"tanland","email":"adam@valpunk.com","email_verified":true,"created":"2018-12-19T20:45:36.972Z","updated":"2018-12-19T20:45:36.969Z","cidr_whitelist":null,"fullname":"Adam"}
 8 silly npm whoami received {"username":"tanland"}
 9 silly argv { _: [ 'publish' ],
@@ -26,49 +26,25 @@
 17 silly isBehindUpstream feature/TimedPromoBar is behind valpunk/feature/TimedPromoBar by 0 commit(s) and ahead by 0
 18 silly hasTags
 19 verbose hasTags true
-20 silly git-describe.sync "@valpunk/core@0.1.23-7-g54dfef1" => {"lastTagName":"@valpunk/core@0.1.23","lastVersion":"0.1.23","refCount":"7","sha":"54dfef1","isDirty":false}
-21 info Looking for changed packages since @valpunk/core@0.1.23
-22 silly diffSinceIn @valpunk/core@0.1.23 packages/core
-23 silly diff packages/core/__generated__/globalTypes.ts
-23 silly diff packages/core/package-lock.json
-23 silly diff packages/core/src/components/compositions/TimedPromoBar/TimedPromoBar.stories.tsx
-23 silly diff packages/core/src/components/compositions/TimedPromoBar/__generated__/getPromotionDisplay.ts
-23 silly diff packages/core/src/components/compositions/TimedPromoBar/components/PromoBar.tsx
+20 silly git-describe.sync "@valpunk/core@0.1.24-2-g7a29905" => {"lastTagName":"@valpunk/core@0.1.24","lastVersion":"0.1.24","refCount":"2","sha":"7a29905","isDirty":false}
+21 info Looking for changed packages since @valpunk/core@0.1.24
+22 silly diffSinceIn @valpunk/core@0.1.24 packages/core
+23 silly diff packages/core/package.json
 23 silly diff packages/core/src/components/compositions/TimedPromoBar/index.tsx
-23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/TimedPromoBarBuilder.stories.tsx
 23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/components/EditorFrame.tsx
-23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/components/PromoBar.tsx
-23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/components/__generated__/savePromotion.ts
-23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/components/components.tsx
-23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/components/slate.css
 23 silly diff packages/core/src/components/compositions/TimedPromoBarBuilder/index.tsx
 23 silly diff packages/core/src/components/compositions/index.tsx
-23 silly diff packages/core/src/components/special/Authentication/Authentication.stories.tsx
-23 silly diff packages/core/src/components/special/Authentication/ForgotPassword/ForgotPassword.tsx
-23 silly diff packages/core/src/components/special/Authentication/Login/Login.tsx
-23 silly diff packages/core/src/components/special/Authentication/Login/__generated__/LoginMutation.ts
-23 silly diff packages/core/src/components/special/Authentication/ResetPassword/ResetPassword.tsx
-23 silly diff packages/core/src/components/special/Authentication/Signup/Signup.tsx
-23 silly diff packages/core/src/components/special/Authentication/Signup/__generated__/signup.ts
-23 silly diff packages/core/src/components/special/Authentication/index.tsx
-23 silly diff packages/core/src/components/special/ContactForm/index.tsx
-23 silly diff packages/core/src/components/special/RichTextEditor/RichTextEditor.stories.tsx
-23 silly diff packages/core/src/components/special/RichTextEditor/__generated__/createOrConnectContent.ts
-23 silly diff packages/core/src/components/special/RichTextEditor/index.tsx
-23 silly diff packages/core/src/components/special/RichTextViewer/__generated__/getContent.ts
-23 silly diff packages/core/src/components/special/RichTextViewer/index.tsx
 23 silly diff packages/core/src/index.ts
-23 silly diff packages/core/types/download.json
-24 silly diffSinceIn @valpunk/core@0.1.23 packages/react-stripe
+24 silly diffSinceIn @valpunk/core@0.1.24 packages/react-stripe
 25 silly diff
-26 silly diffSinceIn @valpunk/core@0.1.23 packages/site
+26 silly diffSinceIn @valpunk/core@0.1.24 packages/site
 27 silly diff
-28 silly diffSinceIn @valpunk/core@0.1.23 packages/valpunk-native
+28 silly diffSinceIn @valpunk/core@0.1.24 packages/valpunk-native
 29 silly diff
 30 verbose updated @valpunk/core
 31 verbose updated @valpunk/site
-32 verbose git-describe undefined => "@valpunk/core@0.1.23-7-g54dfef1"
-33 silly git-describe parsed => {"lastTagName":"@valpunk/core@0.1.23","lastVersion":"0.1.23","refCount":"7","sha":"54dfef1","isDirty":false}
+32 verbose git-describe undefined => "@valpunk/core@0.1.24-2-g7a29905"
+33 silly git-describe parsed => {"lastTagName":"@valpunk/core@0.1.24","lastVersion":"0.1.24","refCount":"2","sha":"7a29905","isDirty":false}
 34 silly batched [ PackageGraphNode {
 34 silly batched     name: '@valpunk/core',
 34 silly batched     externalDependencies:
@@ -236,15 +212,15 @@
 36 silly gitAdd   'C:\\Users\\Enric\\Desktop\\Valpunk\\Valpunk-main\\valpunk\\packages\\site\\package.json' ]
 37 silly gitCommit Publish
 37 silly gitCommit
-37 silly gitCommit  - @valpunk/core@0.1.24
-37 silly gitCommit  - @valpunk/site@0.1.18
+37 silly gitCommit  - @valpunk/core@0.1.25
+37 silly gitCommit  - @valpunk/site@0.1.19
 38 verbose git [ 'commit',
 38 verbose git   '-F',
-38 verbose git   'C:\\Users\\Enric\\AppData\\Local\\Temp\\9a497b30-27fe-4504-a4b5-e3849e7592f8\\lerna-commit.txt' ]
-39 silly gitTag @valpunk/core@0.1.24
-40 verbose git [ 'tag', '@valpunk/core@0.1.24', '-m', '@valpunk/core@0.1.24' ]
-41 silly gitTag @valpunk/site@0.1.18
-42 verbose git [ 'tag', '@valpunk/site@0.1.18', '-m', '@valpunk/site@0.1.18' ]
+38 verbose git   'C:\\Users\\Enric\\AppData\\Local\\Temp\\0e4d8f1a-6a18-49eb-a2e7-11e202d6c46f\\lerna-commit.txt' ]
+39 silly gitTag @valpunk/core@0.1.25
+40 verbose git [ 'tag', '@valpunk/core@0.1.25', '-m', '@valpunk/core@0.1.25' ]
+41 silly gitTag @valpunk/site@0.1.19
+42 verbose git [ 'tag', '@valpunk/site@0.1.19', '-m', '@valpunk/site@0.1.19' ]
 43 info git Pushing tags...
 44 silly gitPush valpunk feature/TimedPromoBar
 45 silly batched [ PackageGraphNode {
@@ -276,10 +252,10 @@
 45 silly batched     localDependents: Map {} } ]
 46 info publish Publishing packages to npm...
 47 silly verifyNpmPackageAccess
-48 http fetch GET 200 https://registry.npmjs.org/-/org/tanland/package?format=cli 137ms
+48 http fetch GET 200 https://registry.npmjs.org/-/org/tanland/package?format=cli 94ms
 49 warn ENOLICENSE Packages @valpunk/core are missing a license
 50 silly getCurrentSHA
-51 verbose getCurrentSHA 5c9b8368feb0833acdfadc55c79221feffb18e1b
+51 verbose getCurrentSHA db21be831ad2b993f0826cbce50068f7ae61a16d
 52 silly getExecOpts C:\Users\Enric\Desktop\Valpunk\Valpunk-main\valpunk undefined
 53 silly exec npm options { cwd: 'C:\\Users\\Enric\\Desktop\\Valpunk\\Valpunk-main\\valpunk',
 53 silly exec   env: { npm_config_json: true },
@@ -289,25 +265,25 @@
 55 silly exec   'C:\\Users\\Enric\\Desktop\\Valpunk\\Valpunk-main\\valpunk\\packages\\core' ]
 56 error Error: Command failed: npm pack C:\Users\Enric\Desktop\Valpunk\Valpunk-main\valpunk\packages\core
 56 error
-56 error > @valpunk/core@0.1.24 prepublish C:/Users/Enric/Desktop/Valpunk/Valpunk-main/valpunk/packages/core
+56 error > @valpunk/core@0.1.25 prepublish C:/Users/Enric/Desktop/Valpunk/Valpunk-main/valpunk/packages/core
 56 error > npm run build
 56 error
 56 error
-56 error > @valpunk/core@0.1.24 build C:\Users\Enric\Desktop\Valpunk\Valpunk-main\valpunk\packages\core
+56 error > @valpunk/core@0.1.25 build C:\Users\Enric\Desktop\Valpunk\Valpunk-main\valpunk\packages\core
 56 error > rimraf ./dist/ && rollup -c && tsc
 56 error
 56 error {
 56 error   "error": {
 56 error     "code": "ELIFECYCLE",
-56 error     "summary": "@valpunk/core@0.1.24 build: `rimraf ./dist/ && rollup -c && tsc`\nExit status 1",
-56 error     "detail": "\nFailed at the @valpunk/core@0.1.24 build script.\nThis is probably not a problem with npm. There is likely additional logging output above."
+56 error     "summary": "@valpunk/core@0.1.25 build: `rimraf ./dist/ && rollup -c && tsc`\nExit status 1",
+56 error     "detail": "\nFailed at the @valpunk/core@0.1.25 build script.\nThis is probably not a problem with npm. There is likely additional logging output above."
 56 error   }
 56 error }
 56 error {
 56 error   "error": {
 56 error     "code": "ELIFECYCLE",
-56 error     "summary": "@valpunk/core@0.1.24 prepublish: `npm run build`\nExit status 1",
-56 error     "detail": "\nFailed at the @valpunk/core@0.1.24 prepublish script.\nThis is probably not a problem with npm. There is likely additional logging output above."
+56 error     "summary": "@valpunk/core@0.1.25 prepublish: `npm run build`\nExit status 1",
+56 error     "detail": "\nFailed at the @valpunk/core@0.1.25 prepublish script.\nThis is probably not a problem with npm. There is likely additional logging output above."
 56 error   }
 56 error }
 56 error

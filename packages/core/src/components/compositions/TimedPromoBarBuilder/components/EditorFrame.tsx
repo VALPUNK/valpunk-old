@@ -1,6 +1,5 @@
 import { TextField } from "@material-ui/core"
-import { ApolloClient } from "apollo-boost"
-import gql from "graphql-tag"
+import { ApolloClient, gql } from "apollo-boost"
 import React from "react"
 import { withApollo } from "react-apollo"
 import { Value } from "slate"
