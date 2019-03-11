@@ -14,7 +14,7 @@ interface Props {
 
   promoSlug?: string
   businessType?: BusinessType
-  status?: PromoStatusType
+  // status?: PromoStatusType
 }
 
 interface State {

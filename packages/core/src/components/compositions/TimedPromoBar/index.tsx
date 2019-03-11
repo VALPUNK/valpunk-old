@@ -16,9 +16,9 @@ import {
 interface Props {
   client: ApolloClient<any>
   uriEndpoint?: string
+  businessType?: BusinessType
 
   promoSlug?: string
-  businessType?: BusinessType
   status?: PromoStatusType
 
   backgroundColor?: string
@@ -37,7 +37,7 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      active: true,
+      active: false,
       content: Value.fromJSON(initialValue)
     }
   }
@@ -48,26 +48,12 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
         return this.setState({
           active: true
         })
-      case "ACTIVE":
-        return this.setState({
-          active: true
-        })
       case "DISABLED":
         return this.setState({
           active: false
         })
-      case "SCHEDULED":
-        return this.setState({
-          active: false
-        })
-      case "EXPIRED":
-        return this.setState({
-          active: false
-        })
       default:
-        return this.setState({
-          active: false
-        })
+        this.checkActive()
     }
   }
 
@@ -76,12 +62,13 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
     const startDate = new Date(this.state.startDate)
     const endDate = new Date(this.state.endDate)
 
-    console.log("Checking Time... Current Date: ", currentDate)
-    console.log("Start Date: ", startDate)
-    console.log("End Date: ", endDate)
+    // console.log("Checking Time... Current Date: ", currentDate)
+    // console.log("Start Date: ", startDate)
+    // console.log("End Date: ", endDate)
+
     if (this.state.startDate) {
       if (currentDate < startDate) {
-        console.log("Before Start date")
+        // console.log("Before Start date")
         return this.setState({
           active: false
         })
@@ -90,14 +77,14 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
 
     if (this.state.endDate) {
       if (currentDate > endDate) {
-        console.log("after End date")
+        // console.log("after End date")
         return this.setState({
           active: false
         })
       }
     }
 
-    console.log("between start and end dates")
+    // console.log("between start and end dates")
     return this.setState({
       active: true
     })
@@ -132,7 +119,7 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
 
     const content = this.convertValue(valueContent)
 
-    console.log("Retrieved Promo: ", result.data.getPromotion)
+    // console.log("Retrieved Promo: ", result.data.getPromotion)
     await this.setState({
       startDate,
       endDate,
@@ -143,10 +130,9 @@ class TimedPromoBar extends React.PureComponent<Props, State> {
 
   public async componentDidMount() {
     await this.retrievePromotion(this.props.promoSlug)
-    await this.checkActive()
     if (this.props.status) {
       this.checkStatus(this.props.status)
-    } else if (this.state.status) {
+    } else {
       this.checkStatus(this.state.status)
     }
   }

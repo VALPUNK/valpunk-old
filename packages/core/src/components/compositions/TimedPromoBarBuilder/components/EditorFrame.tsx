@@ -1,7 +1,15 @@
-import { TextField } from "@material-ui/core"
+import {
+  Input,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField
+} from "@material-ui/core"
 import { ApolloClient, gql } from "apollo-boost"
 import React from "react"
 import { withApollo } from "react-apollo"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import { Value } from "slate"
 import { Editor } from "slate-react"
 import { GET_PROMOTION } from "~/components/compositions/TimedPromoBar"
@@ -31,13 +39,6 @@ interface RichTextEditorProps {
   client?: ApolloClient<any>
   businessType?: BusinessType
   uriEndpoint?: string
-  contentId?: string
-  contentSlug?: string
-  value?: Value
-
-  startDate?: Date
-  endDate?: Date
-  status?: PromoStatusType
 }
 
 interface State {
@@ -45,10 +46,9 @@ interface State {
   slug?: string
   promoId?: string
   contentId?: string
-  // contentSlug?: string
   submitting?: boolean
 
-  status?: PromoStatusType
+  status?: string
   startDate?: Date
   endDate?: Date
 }
@@ -64,10 +64,7 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       promoId: "",
       contentId: "",
       submitting: false,
-      // contentSlug: "",
-      status: PromoStatusType.ENABLED
-      // startDate: new Date(),
-      // endDate: new Date()
+      status: "ENABLED"
     }
   }
 
@@ -98,6 +95,8 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       status
     } = result.data.getPromotion
 
+    const newStatus = this.statusToString(status)
+
     // console.log("ContentId: ", contentId)
     // console.log("Content itself: ", valueContent)
 
@@ -107,9 +106,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       promoId: id,
       contentId,
       slug: this.props.slug,
-      startDate,
-      endDate,
-      status,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      status: newStatus,
       value
     })
 
@@ -121,18 +120,70 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     return valueContent
   }
 
-  public componentDidMount = () => {
-    console.log("Editor Frame Props: ", this.props.value)
+  public stringToStatus = (status: string) => {
+    switch (status) {
+      case "ENABLED":
+        return PromoStatusType.ENABLED
+      case "DISABLED":
+        return PromoStatusType.DISABLED
+      default:
+        const checkedStatus = this.checkDate()
+        return checkedStatus
+    }
+  }
 
+  public statusToString = (status: PromoStatusType) => {
+    switch (status) {
+      case "ENABLED":
+        return "ENABLED"
+      case "DISABLED":
+        return "DISABLED"
+      default:
+        return "AUTO"
+    }
+  }
+
+  public checkDate = () => {
+    if (this.state.startDate || this.state.endDate) {
+      const currentDate = new Date()
+      const startDate = new Date(this.state.startDate)
+      const endDate = new Date(this.state.endDate)
+
+      console.log("Current Date: ", currentDate)
+      console.log("Start Date: ", startDate)
+      console.log("End Date: ", endDate)
+
+      if (this.state.startDate) {
+        if (currentDate < startDate) {
+          // console.log("Before Start date")
+          return PromoStatusType.SCHEDULED
+        }
+      }
+
+      if (this.state.endDate) {
+        if (currentDate > endDate) {
+          // console.log("after End date")
+          return PromoStatusType.EXPIRED
+        }
+      }
+
+      // console.log("between start and end dates")
+      return PromoStatusType.ACTIVE
+    } else {
+      return PromoStatusType.ENABLED
+    }
+  }
+
+  public componentDidMount = () => {
     if (this.props.slug) {
       this.retrievePromotion(this.props.slug)
     }
 
-    console.log("State: ", this.state)
+    // console.log("State: ", this.state)
   }
 
   public render() {
-    console.log("Editor Frame: ", this.state)
+    // console.log("Editor Frame: ", this.state)
 
     // const startDate = new Date(this.state.startDate)
     return (
@@ -146,21 +197,57 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
           />
         </div>
 
-        {/* <div>
-          <TextField
-            name="startDate"
-            label="Start Date"
-            type="datetime-local"
-            // defaultValue={this.state.startDate}
-            onChange={this.onChangeDate}
-          />
-          <TextField
-            name="endDate"
-            label="End Date"
-            type="datetime-local"
-            onChange={this.onChangeDate}
-          />
-        </div> */}
+        <div style={{ marginTop: "1em" }}>
+          <div>
+            <InputLabel>Status</InputLabel>
+          </div>
+          <div>
+            <Select
+              name="status"
+              value={this.state.status}
+              onChange={this.onChangeStatus}
+              input={<Input name="status" id="satus-selector" />}
+            >
+              <MenuItem value="AUTO">SCHEDULE</MenuItem>
+              <MenuItem value="ENABLED">ENABLED</MenuItem>
+              <MenuItem value="DISABLED">DISABLED</MenuItem>
+            </Select>
+          </div>
+        </div>
+
+        {this.state.status === "AUTO" && (
+          <div style={{ display: "flex", marginTop: "1em" }}>
+            <div>
+              <div>
+                <InputLabel>Start Date</InputLabel>
+              </div>
+              <div>
+                <DatePicker
+                  name="startDate"
+                  showTimeSelect
+                  // timeIntervals={1}
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  selected={this.state.startDate}
+                  onChange={this.onChangeDate("startDate")}
+                />
+              </div>
+            </div>
+            <div>
+              <div>
+                <InputLabel>End Date</InputLabel>
+              </div>
+              <div>
+                <DatePicker
+                  name="endDate"
+                  showTimeSelect
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  selected={this.state.endDate}
+                  onChange={this.onChangeDate("endDate")}
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         <div style={{ margin: "30px 0px" }}>
           <DestructuredEditor
@@ -203,14 +290,14 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  public onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Date: ", event.target.value)
-    console.log("Date as Date: ", event.target.valueAsDate)
-    const newDate = new Date(event.target.value)
-
-    console.log("New Date", newDate)
-    this.setState({ [event.target.name]: newDate })
+  public onChangeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setState({ [event.target.name]: event.target.value })
   }
+
+  public onChangeDate = (name: string) => (date: Date) => {
+    this.setState({ [name]: date })
+  }
+
 
   public savePromotionInfo = async () => {
     await this.setState({
@@ -254,10 +341,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       contentId: result.data.createOrConnectContent.id
     })
 
-    console.log("ContentId: ", result.data.createOrConnectContent.id)
+    // console.log("ContentId: ", result.data.createOrConnectContent.id)
 
     console.log("Content Saved.")
-    console.log("CurrentContentState: ", this.state)
   }
 
   public savePromo = async () => {
@@ -270,6 +356,9 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
     const contentSlug = this.state.slug
     const startDate = this.state.startDate
     const endDate = this.state.endDate
+    const status = this.state.status
+
+    const saveStatus = await this.stringToStatus(status)
 
     const result = await this.props.client.mutate<
       savePromotion,
@@ -282,7 +371,8 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
         businessType: this.props.businessType,
         contentSlug,
         startDate,
-        endDate
+        endDate,
+        status: saveStatus
       },
       context: {
         uri: uriEndpoint
@@ -293,10 +383,10 @@ class EditorFrame extends React.Component<RichTextEditorProps, State> {
       promoId: result.data.createOrConnectPromotion.id
     })
 
-    console.log("Promo Id: ", result.data.createOrConnectPromotion.id)
+    // console.log("Promo Id: ", result.data.createOrConnectPromotion.id)
 
     console.log("Promotion Saved.")
-    console.log("CurrentPromoState: ", this.state)
+    // console.log("CurrentPromoState: ", this.state)
   }
 }
 

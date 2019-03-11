@@ -2918,6 +2918,14 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-datepicker@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-2.0.4.tgz#44bcda0dd9ac38298af0cef01c45676063795131"
+  integrity sha512-uf0K+xbK9SG4CGuFLeCnfosgTTaSMMzxy0Fqu9L6+2mnICiJ9j9z75Lc16fBKeTb9N1DNIRSuUc931fcz34lFA==
+  dependencies:
+    "@types/react" "*"
+    popper.js "^1.14.1"
+
 "@types/react-dom@^16.0.9":
   version "16.0.11"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.11.tgz#bd10ccb0d9260343f4b9a49d4f7a8330a5c1f081"
