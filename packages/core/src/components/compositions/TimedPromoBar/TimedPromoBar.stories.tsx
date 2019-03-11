@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
-import { CenteredForStories } from "~/components/compositions"
+import { CenteredForStories } from "../../../components/compositions"
 import TimedPromoBar from '.';
 
 const httpLink = createHttpLink({
@@ -25,8 +25,8 @@ const client = new ApolloClient({
       <ApolloProvider client={client}>
         <TimedPromoBar
           // businessType="NIMBUS"
-          promoSlug="NIMBUS-time-late"
-          // promoSlug="NIMBUS-top-promo"
+          // promoSlug="NIMBUS-time-late"
+          promoSlug="NIMBUS-top-promo"
           // status="ENABLED"
           backgroundColor="blue"
           textColor="white"

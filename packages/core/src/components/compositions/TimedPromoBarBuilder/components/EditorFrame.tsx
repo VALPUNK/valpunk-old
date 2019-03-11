@@ -12,7 +12,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { Value } from "slate"
 import { Editor } from "slate-react"
-import { GET_PROMOTION } from "~/components/compositions/TimedPromoBar"
+import { GET_PROMOTION } from "../../TimedPromoBar"
 import {
   BusinessType,
   PromoStatusType

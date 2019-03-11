@@ -1,11 +1,7 @@
 import { ApolloClient } from "apollo-boost"
 import * as React from "react"
 import { withApollo } from "react-apollo"
-import { Value } from "slate"
-import {
-  BusinessType,
-  PromoStatusType
-} from "../../../../__generated__/globalTypes"
+import { BusinessType } from "../../../../__generated__/globalTypes"
 import EditorFrame from "./components/EditorFrame"
 
 interface Props {
@@ -14,12 +10,9 @@ interface Props {
 
   promoSlug?: string
   businessType?: BusinessType
-  // status?: PromoStatusType
 }
 
-interface State {
-
-}
+interface State {}
 
 class TimedPromoBarBuilder extends React.PureComponent<Props, State> {
   constructor(props: any) {

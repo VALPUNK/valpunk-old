@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache } from "apollo-boost"
 import { createHttpLink } from "apollo-link-http"
 import * as React from "react"
 import { ApolloProvider } from "react-apollo"
-import { CenteredForStories } from "~/components/compositions"
+import { CenteredForStories } from "../../../components/compositions"
 import TimedPromoBarBuilder from './index';
 
 const httpLink = createHttpLink({
