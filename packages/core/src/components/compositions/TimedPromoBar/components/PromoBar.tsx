@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Value } from "slate"
-import { DestructuredViewer } from "../../../../components/special"
+import { DestructuredViewer } from "../../../special"
 
 interface Props {
   startDate?: Date

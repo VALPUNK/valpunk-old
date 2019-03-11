@@ -2,7 +2,7 @@ import { ApolloClient, gql } from "apollo-boost"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import { Value } from "slate"
-import { initialValue } from "~/components/special/DestructuredEditor/value"
+import { initialValue } from "../../special/DestructuredEditor/value"
 import {
   BusinessType,
   PromoStatusType
