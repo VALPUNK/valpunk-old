@@ -1,7 +1,7 @@
 {
   "name": "@valpunk/core",
   "private": false,
-  "version": "0.1.23",
+  "version": "0.1.28",
   "description": "VALPUNK UI Library",
   "author": "Enrico Valbuena",
   "license": "MIT",
@@ -101,6 +101,7 @@
   ],
   "dependencies": {
     "@types/graphql": "^14.0.4",
+    "@types/react-datepicker": "^2.0.4",
     "@types/yup": "^0.26.4",
     "apollo-boost": "^0.1.23",
     "css-element-queries": "^1.1.1",
@@ -111,6 +112,7 @@
     "is-hotkey": "^0.1.4",
     "match-sorter": "^2.3.0",
     "react-apollo": "^2.3.3",
+    "react-datepicker": "^2.1.0",
     "react-emotion": "^10.0.0",
     "react-spring": "^7.2.5",
     "react-swipeable-views": "^0.13.0",
@@ -122,5 +124,5 @@
     "valpunk-ui": "^0.1.7",
     "yup": "^0.26.7"
   },
-  "gitHead": "6f00dabc9a086f3e5aaefaddc7ff69298db7028a"
+  "gitHead": "db21be831ad2b993f0826cbce50068f7ae61a16d"
 }

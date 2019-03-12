@@ -143,6 +143,7 @@ export const GET_CONTENT = gql`
     getContent(contentId: $contentId) {
       id
       title
+      slug
       author
       content
     }
