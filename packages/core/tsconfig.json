@@ -34,5 +34,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "preserveConstEnums": true
-  }
+  },
+  "exclude": [".cache", ".storybook", ".vscode", "node_modules"]
 }

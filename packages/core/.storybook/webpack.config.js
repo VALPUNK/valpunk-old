@@ -1,15 +1,16 @@
-const path = require("path");
-const TSDocgenPlugin = require("react-docgen-typescript-webpack-plugin");
-module.exports = (baseConfig, env, config) => {
+const path = require("path")
+// const TSDocgenPlugin = require("react-docgen-typescript-webpack-plugin")
+
+module.exports = async ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     loader: require.resolve("awesome-typescript-loader")
-  });
-  config.plugins.push(new TSDocgenPlugin()); // optional
-  config.resolve.extensions.push(".ts", ".tsx");
+  })
+  // config.plugins.push(new TSDocgenPlugin()) // optional
+  config.resolve.extensions.push(".ts", ".tsx")
 
   config.resolve = {
-    ...baseConfig.resolve,
+    ...config.resolve,
     alias: {
       "~/components/basic": path.resolve(__dirname, "../src/components/basic"),
       "~/components/collections": path.resolve(
@@ -34,7 +35,11 @@ module.exports = (baseConfig, env, config) => {
         __dirname,
         "../node_modules/react-final-form/dist"
       )
+      // "emotion-theming": path.resolve(
+      //   __dirname,
+      //   "../../../node_modules/emotion-theming/dist"
+      // )
     }
-  };
-  return config;
-};
+  }
+  return config
+}
