@@ -6,17 +6,19 @@ import { GraphQLError } from "graphql"
 import * as React from "react"
 import { withApollo } from "react-apollo"
 import * as Yup from "yup"
+import { BusinessType } from "../../../../__generated__/globalTypes"
 import TextInputField from "../../../components/collections/TextInputField"
 import {
   visitorSendEmail,
   visitorSendEmailVariables
 } from "./__generated__/visitorSendEmail"
-import { BusinessType } from "../../../../__generated__/globalTypes"
 
 interface Values {
   name?: string
   email?: string
   message?: string
+  phone?: string
+  referralSource?: string
 }
 
 interface ContactFormProps {
@@ -58,7 +60,8 @@ class ContactForm extends React.Component<ContactFormProps, State> {
             email: Yup.string()
               .email()
               .required("Required"),
-            message: Yup.string().required("Required")
+            message: Yup.string().required("Required"),
+            phone: Yup.number().typeError("Please Enter a Valid Phone Number")
           })}
           onSubmit={async (_values, { setSubmitting }) => {
             console.log("hi")
@@ -70,7 +73,9 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                   businessType: this.props.businessType,
                   title: `Name: ${_values.name}`,
                   from: _values.email,
-                  body: _values.message
+                  body: _values.message,
+                  phone: _values.phone,
+                  referralSource: _values.referralSource
                 },
                 context: {
                   uri: uriEndpoint
@@ -128,6 +133,20 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                   />
                 )}
               />
+              <Field
+                name="phone"
+                type="tel"
+                render={(props: any) => (
+                  <TextInputField
+                    name="phone"
+                    type="tel"
+                    label="Phone"
+                    variant="outlined"
+                    {...props}
+                  />
+                )}
+                style={{ width: "100%" }}
+              />
 
               <Field
                 name="email"
@@ -142,7 +161,19 @@ class ContactForm extends React.Component<ContactFormProps, State> {
                 )}
                 style={{ width: "100%" }}
               />
-
+              <Field
+                name="referralSource"
+                render={(props: any) => (
+                  <TextInputField
+                    name="referralSource"
+                    type="text"
+                    label="How Did You Hear About Us?"
+                    variant="outlined"
+                    {...props}
+                  />
+                )}
+                style={{ width: "100%" }}
+              />
               <Field
                 name="message"
                 render={(props: any) => (
@@ -218,12 +249,16 @@ const CONTACT_SEND_FORM = gql`
     $title: String!
     $body: String!
     $from: String!
+    $phone: String
+    $referralSource: String
   ) {
     visitorSendEmail(
       businessType: $businessType
       title: $title
       body: $body
       from: $from
+      phone: $phone
+      referralSource: $referralSource
     ) {
       body
     }

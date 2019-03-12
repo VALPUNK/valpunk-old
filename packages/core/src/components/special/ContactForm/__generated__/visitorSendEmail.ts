@@ -20,4 +20,6 @@ export interface visitorSendEmailVariables {
   title: string;
   body: string;
   from: string;
+  phone?: string | null;
+  referralSource?: string | null;
 }
