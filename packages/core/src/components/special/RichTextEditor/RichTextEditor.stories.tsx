@@ -21,9 +21,10 @@ const client = new ApolloClient({
 ;(storiesOf("Rich Text Editor", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }), withKnobs)
   .add("Rich Text Editor", () => {
-    const contentId = object("contentId", "cjrgt2vb80uvg08085czabcvl")
+    // const contentId = object("contentId", "cjrgt2vb80uvg08085czabcvl")
+    const contentId = object("contentId", "cjsv2vsok003d0816dp7d6mks")
     const uriEndpoint = object("uriEndpoint", "http://localhost:4000")
-    const businessType = object("businessType", "VALPUNK")
+    const businessType = object("businessType", "NIMBUS")
     return(
     <CenteredForStories>
       <ApolloProvider client={client}>

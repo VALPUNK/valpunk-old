@@ -13,6 +13,14 @@ export enum BusinessType {
   VALPUNK = "VALPUNK",
 }
 
+export enum PromoStatusType {
+  ACTIVE = "ACTIVE",
+  DISABLED = "DISABLED",
+  ENABLED = "ENABLED",
+  EXPIRED = "EXPIRED",
+  SCHEDULED = "SCHEDULED",
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

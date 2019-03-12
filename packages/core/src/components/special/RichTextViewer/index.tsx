@@ -81,7 +81,6 @@ class RichTextViewer extends React.Component<RichTextViewerProps, State> {
           value={this.state.value}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
-          style={{ maxWidth: 1000, minWidth: 800 }}
         />
       </div>
     )
@@ -144,6 +143,7 @@ export const GET_CONTENT = gql`
     getContent(contentId: $contentId) {
       id
       title
+      slug
       author
       content
     }

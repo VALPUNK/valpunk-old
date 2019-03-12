@@ -1,9 +1,11 @@
 variables:
   - group: netlify-group
 
-trigger:
-  - master
+trigger: ["sprint", "develop", "master"]
 
+# pr:
+#   - ["sprint", "develop", "master"]
+#
 pool:
   vmImage: "Ubuntu-16.04"
 
@@ -15,11 +17,9 @@ steps:
       versionSpec: "8.x"
     displayName: "Site deploy with $env:BRANCH_NAME"
 
-  - script: |
-      npm install
-      npm install -g netlify-cli
-      cd packages/site npm run deploy
-      netlify deploy --dir=packages/site/out --auth=$env:NETLIFY_AUTH_TOKEN --site=$env:BRANCH_NAME
-      #
-      #
+  - script: npm install -g netlify-cli
+    displayName: "Install Netlify"
+  - script: cd packages/site && npm install && npm run deploy
+    displayName: "Build Site"
+  - script: ls && netlify deploy --dir=packages/site/out --auth=$(NETLIFY_AUTH_TOKEN) --site=0a2fc4f6-a58e-4d12-9937-a367f9d7bf15 --prod
     displayName: "Deploy Netlify Site"
