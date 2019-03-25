@@ -15,9 +15,6 @@ const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache()
 })
-
-
-
 ;(storiesOf("Form", module) as any)
   .addDecorator(withInfo({ text: `Description!`, inline: true }))
   .add("Contact Form", () => (
@@ -25,8 +22,8 @@ const client = new ApolloClient({
       <ApolloProvider client={client}>
         <ContactForm
           businessType="VALPUNK"
-          // uriEndpoint="http://localhost:4000"
-          />
+          uriEndpoint="http://localhost:4000"
+        />
       </ApolloProvider>
     </CenteredForStories>
   ))

@@ -6,7 +6,6 @@ import FormatListBulleted from "@material-ui/icons/FormatListBulleted"
 import FormatListNumbered from "@material-ui/icons/FormatListNumbered"
 import FormatQuote from "@material-ui/icons/FormatQuote"
 import FormatUnderlined from "@material-ui/icons/FormatUnderlined"
-import FormatLink from "@material-ui/icons/Link"
 import LooksOne from "@material-ui/icons/LooksOne"
 import LooksTwo from "@material-ui/icons/LooksTwo"
 import { ApolloClient, gql } from "apollo-boost"
@@ -68,9 +67,8 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   }
 
   public componentDidMount = () => {
-    {
-      this.props.contentId && this.retrieveContent(this.props.contentId)
-      //hope this works
+    if (this.props.contentId) {
+      this.retrieveContent(this.props.contentId)
     }
   }
 
@@ -100,10 +98,10 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
     )
 
     this.setState({
-      title: title,
-      author: author,
+      title,
+      author,
       value: valueContent,
-      slug: slug
+      slug
     })
     // console.log(this.state)
   }
@@ -151,17 +149,17 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
   public render() {
     return (
       <div>
-        <div style={{margin: "20px 0"}}>
+        <div style={{ margin: "20px 0" }}>
           <TextField
             name="title"
             label="Title"
             variant="outlined"
             value={this.state.title}
             onChange={this.onChangeField}
-            style={{width: "100%"}}
+            style={{ width: "100%" }}
           />
         </div>
-        <div style={{margin: "20px 0"}}>
+        <div style={{ margin: "20px 0" }}>
           <TextField
             name="author"
             label="Author"
@@ -171,7 +169,7 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
           />
         </div>
 
-        <div style={{margin: "20px 0"}}>
+        <div style={{ margin: "20px 0" }}>
           <TextField
             name="slug"
             label="Slug"
@@ -183,21 +181,21 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
 
         <div style={{ margin: "30px 0" }}>
           <Toolbar>
-            {this.renderMarkButton("bold", <FormatBold/>)}
+            {this.renderMarkButton("bold", <FormatBold />)}
             {/* <FormatBold
               onClick={e => {
                 e.preventDefault()
                 this.onClickMark(e, "bold")
               }}
             /> */}
-            {this.renderMarkButton("italic", <FormatItalic/>)}
+            {this.renderMarkButton("italic", <FormatItalic />)}
             {/* <FormatItalic
               onClick={e => {
                 e.preventDefault()
                 this.onClickMark(e, "italic")
               }}
             /> */}
-            {this.renderMarkButton("underlined", <FormatUnderlined/>)}
+            {this.renderMarkButton("underlined", <FormatUnderlined />)}
             {/* <FormatUnderlined
               onClick={e => {
                 e.preventDefault()
@@ -205,42 +203,42 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
               }}
             /> */}
             {/* {this.renderMarkButton("link", <FormatLink/>)} */}
-            {this.renderMarkButton("code", <Code/>)}
+            {this.renderMarkButton("code", <Code />)}
             {/* <Code
               onClick={e => {
                 e.preventDefault()
                 this.onClickMark(e, "code")
               }}
             /> */}
-            {this.renderBlockButton("heading-one", <LooksOne/>)}
+            {this.renderBlockButton("heading-one", <LooksOne />)}
             {/* <LooksOne
               onClick={e => {
                 e.preventDefault()
                 this.onClickBlock(e, "heading-one")
               }}
             /> */}
-            {this.renderBlockButton("heading-two", <LooksTwo/>)}
+            {this.renderBlockButton("heading-two", <LooksTwo />)}
             {/* <LooksTwo
               onClick={e => {
                 e.preventDefault()
                 this.onClickBlock(e, "heading-two")
               }}
             /> */}
-            {this.renderBlockButton("block-quote", <FormatQuote/>)}
+            {this.renderBlockButton("block-quote", <FormatQuote />)}
             {/* <FormatQuote
               onClick={e => {
                 e.preventDefault()
                 this.onClickBlock(e, "block-quote")
               }}
             /> */}
-            {this.renderBlockButton("numbered-list", <FormatListNumbered/>)}
+            {this.renderBlockButton("numbered-list", <FormatListNumbered />)}
             {/* <FormatListNumbered
               onClick={e => {
                 e.preventDefault()
                 this.onClickBlock(e, "numbered-list")
               }}
             /> */}
-            {this.renderBlockButton("bulleted-list", <FormatListBulleted/>)}
+            {this.renderBlockButton("bulleted-list", <FormatListBulleted />)}
             {/* <FormatListBulleted
               onClick={e => {
                 e.preventDefault()
@@ -457,12 +455,11 @@ class RichTextEditor extends React.Component<RichTextEditorProps, State> {
 
     // console.log("Just saved all this stuff: ", result)
 
-    this.props.contentId
-      ? {}
-      : this.setState({
-          contentId: result.data.createOrConnectContent.id
-        })
-
+    if (this.props.contentId) {
+      this.setState({
+        contentId: result.data.createOrConnectContent.id
+      })
+    }
     await this.setState({
       submitting: false
     })
