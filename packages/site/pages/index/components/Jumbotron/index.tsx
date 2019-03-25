@@ -44,7 +44,7 @@ const Page = ({
 )
 
 export default class extends React.Component<
-  { height?: number },
+  { height?: any },
   { index?: number }
 > {
   public parallax = React.createRef()

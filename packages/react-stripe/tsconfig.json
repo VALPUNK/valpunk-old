@@ -36,5 +36,14 @@
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "preserveConstEnums": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "lib",
+    "dist"
+  ]
 }
