@@ -11,5 +11,7 @@ export const SALE_GREY = "#9B9B9B"
 export const CART_GREY = "#F2F0F5"
 export const PINK = "#BD2A65"
 export const DARK_PURPLE = "#403150"
-
+export const VP_RED = "#DD6B75"
+export const VP_BLUE = "#61AFEF"
+export const VP_BLACK = "#232529"
 export const cdn = "https://s3.us-east-2.amazonaws.com/saf-cdn"
