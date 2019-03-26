@@ -1,4 +1,4 @@
-import { TextInputField } from "@valpunk/core"
+import { TextInputField, Authentication } from "@valpunk/core"
 import { Field, Form, Formik } from "formik"
 import React from "react"
 import * as Yup from "yup"
@@ -44,87 +44,8 @@ export const Login = () => {
               }}
             />
           </div>
-          <div style={{ minWidth: 400, padding: 16, backgroundColor: "white" }}>
-            <Formik<Values>
-              initialValues={{}}
-              validationSchema={Yup.object().shape({
-                email: Yup.string()
-                  .email()
-                  .required("Required"),
-
-                password: Yup.string().required("Required")
-              })}
-              onSubmit={async (_values, { setSubmitting }) => {
-                setSubmitting(true)
-
-                setSubmitting(false)
-              }}
-              // render={({ submitForm, isSubmitting, error }) => (
-              render={() => (
-                <Form>
-                  <Field
-                    name="email"
-                    render={(props: any) => (
-                      <TextInputField
-                        name="email"
-                        type="email"
-                        label="Email"
-                        variant="outlined"
-                        style={{
-                          backgroundColor: "white",
-                          margin: 8,
-                          width: "90%",
-                          borderRadius: "4px"
-                        }}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <Field
-                    name="password"
-                    render={(props: any) => (
-                      <TextInputField
-                        name="password"
-                        type="password"
-                        label="Password"
-                        variant="outlined"
-                        style={{
-                          backgroundColor: "white",
-                          margin: 8,
-                          width: "90%",
-                          borderRadius: "4px"
-                        }}
-                        {...props}
-                      />
-                    )}
-                  />
-                  <div style={{ minHeight: 100 }} />
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      marginTop: 16
-                    }}
-                  >
-                    <span
-                      style={{
-                        backgroundColor: VP_RED,
-                        color: "white",
-                        fontWeight: "bold",
-                        textAlign: "center",
-                        padding: "8px 10px",
-                        width: "100%",
-                        fontSize: 24,
-                        fontFamily: "Roboto Mono, monospace",
-                        borderRadius: 5,
-                        cursor: "pointer"
-                      }}
-                    >{`<Login/>`}</span>
-                  </div>
-                </Form>
-              )}
-            />
+          <div style={{ width: 500 }}>
+            <Authentication />
           </div>
         </div>
       </div>
