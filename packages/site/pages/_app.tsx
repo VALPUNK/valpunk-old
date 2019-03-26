@@ -16,6 +16,9 @@ import withReduxStore from "../lib/withReduxStore"
 interface Props {
   apolloClient: ApolloClient<any>
   reduxStore: Store
+  Component?: {
+    Layout: React.ReactNode
+  }
 }
 
 export interface PageContext {

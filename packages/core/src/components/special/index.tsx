@@ -6,6 +6,7 @@ import DestructuredViewer from "./DestructuredViewer"
 import DestructuredEditor from "./DestructuredEditor"
 import SimpleContentEditor from "./SimpleContentEditor"
 import SimpleContentViewer from "./SimpleContentViewer"
+import Authentication from "./Authentication"
 
 export {
   ContactForm,
@@ -15,5 +16,6 @@ export {
   DestructuredEditor,
   DestructuredViewer,
   SimpleContentEditor,
-  SimpleContentViewer
+  SimpleContentViewer,
+  Authentication
 }

@@ -19,42 +19,7 @@ export const mailFolderListItems = (
       <ListItemIcon>
         <HomeIcon style={{ color: "white" }} />
       </ListItemIcon>
-      <ListItemText primary="Home" style={{ color: "white" }} />
-    </ListItem>
-    {/* </Link> */}
-    {/* <Link href="/admin/visitor"> */}
-    <ListItem onClick={() => Router.push("/admin/visitor")} button={true}>
-      <ListItemIcon>
-        <PersonPinCircleIcon style={{ color: "white" }} />
-      </ListItemIcon>
-      <ListItemText primary="Visitor Information" style={{ color: "white" }} />
-    </ListItem>
-    {/* </Link> */}
-    {/* <Link href="/admin/email"> */}
-    <ListItem onClick={() => Router.push("/admin/email")} button={true}>
-      <ListItemIcon>
-        <ContactMailIcon style={{ color: "white" }} />
-      </ListItemIcon>
-      <ListItemText primary="Email Blasts" style={{ color: "white" }} />
-    </ListItem>
-    <ListItem
-      onClick={() => Router.push("/admin/communications")}
-      button={true}
-    >
-      <ListItemIcon>
-        <EmailIcon style={{ color: "white" }} />
-      </ListItemIcon>
-      <ListItemText primary="Communications" style={{ color: "white" }} />
-    </ListItem>
-
-    <ListItem onClick={() => Router.push("/admin/BusinessCard")} button={true}>
-      <ListItemIcon>
-        <BusinessCardIcon style={{ color: "white" }} />
-      </ListItemIcon>
-      <ListItemText
-        primary="Business Card Builder"
-        style={{ color: "white" }}
-      />
+      <ListItemText primary={<span style={{ color: "white" }}>Home</span>} />
     </ListItem>
 
     {/* </Link> */}

@@ -98,7 +98,7 @@ export const Login = () => {
                       />
                     )}
                   />
-                  <div style={{ minHeight: 100 }}>{/* Message Area */}</div>
+                  <div style={{ minHeight: 100 }} />
                   <div
                     style={{
                       display: "flex",
