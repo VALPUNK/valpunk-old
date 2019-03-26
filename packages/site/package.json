@@ -1,7 +1,7 @@
 {
   "name": "@valpunk/site",
   "private": true,
-  "version": "0.1.23",
+  "version": "0.2.0",
   "author": "",
   "license": "ISC",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "@material-ui/core": "^3.7.1",
     "@material-ui/icons": "^3.0.1",
-    "@valpunk/core": "^0.1.29",
+    "@valpunk/core": "^0.2.0",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.3.1",
     "apollo-link-context": "^1.0.9",
