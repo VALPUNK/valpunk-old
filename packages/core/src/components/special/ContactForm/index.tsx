@@ -21,7 +21,7 @@ interface Values {
   referralSource?: string
 }
 
-interface ContactFormProps {
+export interface ContactFormProps {
   client: ApolloClient<any>
   uriEndpoint?: string
   businessType: BusinessType

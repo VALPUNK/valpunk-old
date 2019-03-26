@@ -14,7 +14,7 @@ import { BusinessType } from "../../../../__generated__/globalTypes"
 import { ApolloClient, gql } from "apollo-boost"
 import { withApollo } from "react-apollo"
 
-interface Props {
+export interface Props {
   client: ApolloClient<any>
   theme?: Theme
   authState?: authStateType
@@ -143,7 +143,7 @@ class Authentication extends React.Component<Props, State> {
           style={{}}
         >
           <Login
-          uriEndpoint={this.props.uriEndpoint}
+            uriEndpoint={this.props.uriEndpoint}
             client={this.props.client}
             businessType={this.props.businessType}
           />

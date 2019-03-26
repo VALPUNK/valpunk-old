@@ -35,5 +35,13 @@
     "noUnusedParameters": true,
     "preserveConstEnums": true
   },
-  "exclude": [".cache", ".storybook", ".vscode", "node_modules", ".dist", "lib"]
+  "exclude": [
+    ".cache",
+    ".storybook",
+    ".vscode",
+    "node_modules",
+    ".dist",
+    "lib",
+    "*.stories.tsx"
+  ]
 }
