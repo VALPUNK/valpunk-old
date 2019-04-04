@@ -7,6 +7,7 @@ import { ApolloProvider } from "react-apollo"
 import { CenteredForStories } from "~/components/compositions"
 import Authentication from "./index"
 import { BusinessType } from "../../../../__generated__/globalTypes"
+import Paper from "@material-ui/core/Paper"
 
 const httpLink = createHttpLink({
   uri: process.env.DATABASE
@@ -23,10 +24,21 @@ const businessType: BusinessType = BusinessType.VALPUNK
   .add("Authentication", () => (
     <CenteredForStories>
       <ApolloProvider client={client}>
-        <Authentication
-          businessType={businessType}
-          uriEndpoint="http://localhost:4000"
-        />
+        <div style={{ maxWidth: 800 }}>
+          <Paper classes={{}} style={{ marginTop: 10 }}>
+            <Authentication
+              businessType={businessType}
+              uriEndpoint="http://localhost:4000"
+              tokenName="vp-token"
+              // signUp
+              theme={{
+                main: {
+                  primary: "teal"
+                }
+              }}
+            />
+          </Paper>
+        </div>
       </ApolloProvider>
     </CenteredForStories>
   ))

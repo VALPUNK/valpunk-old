@@ -1,16 +1,19 @@
-import { TextInputField, Authentication } from "@valpunk/core"
-import { Field, Form, Formik } from "formik"
+import { Authentication } from "@valpunk/core"
 import React from "react"
-import * as Yup from "yup"
 import { Meta } from "~/components/universal"
-import { VP_BLACK, VP_BLUE, VP_RED } from "~/constants/constants"
+import { VP_BLACK, VP_BLUE } from "~/constants/constants"
+import { ApolloClient } from "apollo-boost"
 
 interface Values {
   password?: string
   email?: string
 }
 
-export const Login = () => {
+interface LoginProps {
+  client?: ApolloClient<any>
+}
+
+export const Login = (props: LoginProps) => {
   return (
     <div style={{ backgroundColor: VP_BLACK }}>
       <Meta />
@@ -45,7 +48,7 @@ export const Login = () => {
             />
           </div>
           <div style={{ width: 500 }}>
-            <Authentication />
+            <Authentication client={props.client} businessType="VALPUNK" />
           </div>
         </div>
       </div>

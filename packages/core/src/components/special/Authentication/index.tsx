@@ -15,13 +15,24 @@ import { ApolloClient, gql } from "apollo-boost"
 import { withApollo } from "react-apollo"
 
 export interface Props {
-  client: ApolloClient<any>
-  theme?: Theme
+  client?: ApolloClient<any>
+  theme?: {
+    main?: {
+      primary?: string
+      secondary?: string
+    }
+    form?: {
+      primary?: string
+      secondary?: string
+    }
+  }
   authState?: authStateType
   businessType: BusinessType
   mode?: number
   logo?: string
   uriEndpoint?: string
+  signUp?: boolean
+  tokenName: string
 }
 
 interface State {
@@ -31,29 +42,20 @@ interface State {
 
 type authStateType = "default" | "error" | "submitting"
 
-class Authentication extends React.Component<Props, State> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      authState: "default",
-      value: 0
-    }
-  }
+const Authentication = (props: Props) => {
+  // authState: "default",
+  //     value: 0
 
-  // const [value, setValue] = React.useState(props.mode)
-  // const [authState, setAuthState] = React.useState<authStateType>("default")
+  const [value, setValue] = React.useState(0)
+  const [authState, setAuthState] = React.useState<authStateType>("default")
 
-  public handleChange = (_event: React.FormEvent, v: number) => {
-    this.setState({
-      value: v
-    })
+  const handleChange = (_event: React.FormEvent, v: number) => {
+    setValue(v)
     // setValue(v)
   }
 
-  public handleChangeIndex = (index: number) => {
-    this.setState({
-      value: index
-    })
+  const handleChangeIndex = (index: number) => {
+    setValue(index)
   }
 
   // React.useEffect(() => {
@@ -66,96 +68,99 @@ class Authentication extends React.Component<Props, State> {
   //   }
   // })
 
-  public render() {
-    return (
-      <Paper classes={{}} style={{ marginTop: 10 }}>
-        <Grid
-          container={true}
-          alignItems="center"
-          justify="center"
-          style={{
-            // height: 200,
-            backgroundColor: "#007FBA"
-          }}
-        >
-          {this.state.authState === "default" && (
-            <div
-              style={{
-                backgroundColor: "white",
-                borderRadius: 300,
-                margin: "10px"
-              }}
-            >
-              {this.props.logo && (
-                <img
-                  src={this.props.logo}
-                  alt="logo"
-                  style={{
-                    padding: "15px",
-                    maxWidth: "300px",
-                    maxHeight: "300px"
-                  }}
-                />
-              )}
-            </div>
-          )}
-          {this.state.authState === "submitting" && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <CircularProgress
-                style={{ color: "white" }}
-                size={40}
-                thickness={4.0}
+  return (
+    <div>
+      <Grid
+        container={true}
+        alignItems="center"
+        justify="center"
+        style={{
+          backgroundColor: props.theme.main.primary || "dodgerblue"
+        }}
+      >
+        {authState === "default" && (
+          <div
+            style={{
+              backgroundColor: "white",
+              borderRadius: 300,
+              margin: "10px"
+            }}
+          >
+            {props.logo && (
+              <img
+                src={props.logo}
+                alt="logo"
+                style={{
+                  padding: "15px",
+                  maxWidth: "300px",
+                  maxHeight: "300px"
+                }}
               />
-            </div>
-          )}
-          {this.state.authState === "error" && (
-            <Typography
-              style={{ color: "red", backgroundColor: "white", padding: 8 }}
-              variant="subtitle2"
-            >
-              There was an error.
-            </Typography>
-          )}
+            )}
+          </div>
+        )}
+        {authState === "submitting" && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <CircularProgress
+              style={{ color: "white" }}
+              size={40}
+              thickness={4.0}
+            />
+          </div>
+        )}
+        {authState === "error" && (
+          <Typography
+            style={{ color: "red", backgroundColor: "white", padding: 8 }}
+            variant="subtitle2"
+          >
+            There was an error.
+          </Typography>
+        )}
+      </Grid>
+      <Grid container={true}>
+        <Grid item={true} xs={12}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            fullWidth={true}
+            style={{
+              backgroundColor: props.theme.main.primary || "dodgerblue"
+            }}
+            indicatorColor={props.theme.main.secondary || "tomato"}
+            // TabIndicatorProps={{
+            //   color: "orange"
+            // }}
+          >
+            <Tab label="Log In" style={{ color: "white" }} />
+            {props.signUp && <Tab label="Sign Up" style={{ color: "white" }} />}
+          </Tabs>
         </Grid>
-        <Grid container={true}>
-          <Grid item={true} xs={12}>
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              fullWidth={true}
-              style={{ backgroundColor: "#007FBA", height: 5 }}
-            >
-              <Tab label="Log In" style={{ color: "white" }} />
-              <Tab label="Sign Up" style={{ color: "white" }} />
-            </Tabs>
-          </Grid>
-        </Grid>
-        <SwipeableViews
-          axis="x"
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-          style={{}}
-        >
-          <Login
-            uriEndpoint={this.props.uriEndpoint}
-            client={this.props.client}
-            businessType={this.props.businessType}
-          />
+      </Grid>
+      <SwipeableViews axis="x" index={value} onChangeIndex={handleChangeIndex}>
+        <Login
+          uriEndpoint={props.uriEndpoint}
+          client={props.client}
+          businessType={props.businessType}
+          tokenName={props.tokenName}
+        />
+
+        {props.signUp && (
           <Signup
-            uriEndpoint={this.props.uriEndpoint}
-            client={this.props.client}
-            businessType={this.props.businessType}
+            uriEndpoint={props.uriEndpoint}
+            client={props.client}
+            businessType={props.businessType}
+            tokenName={props.tokenName}
           />
-        </SwipeableViews>
-      </Paper>
-    )
-  }
+        )}
+      </SwipeableViews>
+    </div>
+  )
 }
 
 export default withApollo(Authentication)

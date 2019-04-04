@@ -18,6 +18,7 @@ interface Props {
   client?: ApolloClient<any>
   businessType: BusinessType
   uriEndpoint?: string
+  tokenName: string
 }
 
 interface Values {
@@ -27,7 +28,7 @@ interface Values {
 
 export class Login extends React.Component<Props> {
   public saveUserData = (token: string): void => {
-    localStorage.setItem(this.props.businessType, token)
+    localStorage.setItem(this.props.tokenName, token)
   }
 
   public render() {
@@ -45,47 +46,44 @@ export class Login extends React.Component<Props> {
           )
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          console.log(
-            "Why is this having such a hard time working? I mean, this should be easy. Just click the submit button and get an onSubmit event to work. How hard could it be?"
-          )
-          setTimeout(() => {
-            setSubmitting(true)
-            console.log("Setting Timer")
-            // action("submit")(values)
-          }, 2000)
-          console.log("Logging in now...")
+          setSubmitting(true)
+
           const email = values.email
           const password = values.password
           const businessType = this.props.businessType
 
-          const result = await this.props.client.mutate<
-            LoginMutation,
-            LoginMutationVariables
-          >({
-            errorPolicy: "all",
-            mutation: LOGIN_MUTATION,
-            variables: {
-              email,
-              password,
-              businessType
-            },
-            context: this.props.uriEndpoint
-              ? this.props.uriEndpoint
-              : "https://valpunk-server.now.sh/"
-          })
-          console.log("Login results: ", result)
-          if (result.errors) {
-            alert(result.errors[0].message)
-          }
+          this.props.client
+            .mutate<LoginMutation, LoginMutationVariables>({
+              errorPolicy: "all",
+              mutation: LOGIN_MUTATION,
+              variables: {
+                email,
+                password,
+                businessType
+              },
+              context: this.props.uriEndpoint
+                ? this.props.uriEndpoint
+                : "https://valpunk-server.now.sh/"
+            })
+            .then(result => {
+              console.log("result")
+              const { token } = result.data
+                ? result.data.login
+                : null && console.log("no data in result found")
 
-          const { token } = result.data
-            ? result.data.login
-            : null && console.log("no data in result found")
-
-          await this.props.client.resetStore()
-          this.saveUserData(token)
-          // this.props.router.push("/dashboard")
-          setSubmitting(false)
+              this.props.client.resetStore()
+              this.saveUserData(token)
+              // this.props.router.push("/dashboard")
+              console.log("token", token)
+              setSubmitting(false)
+            })
+            .catch(d => {
+              console.log("Login results: ", d)
+              if (d.errors) {
+                alert(d.errors[0].message)
+              }
+              setSubmitting(false)
+            })
         }}
         render={({
           submitForm,
@@ -93,7 +91,7 @@ export class Login extends React.Component<Props> {
           // status,
           isValidating,
           // submitCount,
-          error,
+          error
           // errors
         }) => (
           <Form>
