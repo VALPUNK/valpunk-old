@@ -15,6 +15,7 @@ interface Props {
   client?: ApolloClient<any>
   businessType: BusinessType
   uriEndpoint?: string
+  tokenName: string
 }
 
 interface Values {
@@ -58,10 +59,8 @@ export class Signup extends React.Component<Props> {
       <Formik<Values>
         initialValues={{}}
         validationSchema={Yup.object().shape({
-          firstName: Yup.string()
-            .required("Required"),
-          lastName: Yup.string()
-          .required("Required"),
+          firstName: Yup.string().required("Required"),
+          lastName: Yup.string().required("Required"),
           email: Yup.string()
             .email()
             .required("Required"),
@@ -78,10 +77,7 @@ export class Signup extends React.Component<Props> {
           )
         })}
         onSubmit={async (_values, { setSubmitting }) => {
-          setTimeout(() => {
-            setSubmitting(false)
-            // action("submit")(values)
-          }, 2000)
+          setSubmitting(true)
 
           const email = _values.email
           const password = _values.password
@@ -111,9 +107,13 @@ export class Signup extends React.Component<Props> {
             await this.props.client.resetStore()
             console.log("Signup result: ", result)
             this.saveUserData(token)
+
+            setSubmitting(false)
             // this.props.router.push("/dashboard")
           } catch (e) {
             console.log(e)
+            alert(e.message)
+            setSubmitting(false)
           }
         }}
         render={({ submitForm, isSubmitting, error }) => (

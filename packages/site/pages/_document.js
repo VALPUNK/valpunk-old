@@ -1,18 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Document, { Head, Main, NextScript } from 'next/document';
-import flush from 'styled-jsx/server';
-import { ServerStyleSheet } from 'styled-components'
+import React from "react"
+import PropTypes from "prop-types"
+import Document, { Head, Main, NextScript } from "next/document"
+import flush from "styled-jsx/server"
+import { ServerStyleSheet } from "styled-components"
 
 class MyDocument extends Document {
-  static getInitialProps ({ renderPage }) {
+  static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    )
     const styleTags = sheet.getStyleElement()
     return { ...page, styleTags }
   }
   render() {
-    const { pageContext } = this.props;
+    const { pageContext } = this.props
 
     return (
       <html lang="en" dir="ltr">
@@ -26,10 +28,17 @@ class MyDocument extends Document {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
+          <meta
+            name="theme-color"
+            content={pageContext.theme.palette.primary.main}
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+            rel="stylesheet"
           />
         </Head>
         <body>
@@ -37,7 +46,7 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </html>
-    );
+    )
   }
 }
 
@@ -66,22 +75,21 @@ MyDocument.getInitialProps = ctx => {
 
   // Render app and page and get the context of the page with collected side effects.
 
-
   const sheet = new ServerStyleSheet()
 
-  let pageContext;
+  let pageContext
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
-      pageContext = props.pageContext;
-      return sheet.collectStyles(<Component {...props} />);
-    };
+      pageContext = props.pageContext
+      return sheet.collectStyles(<Component {...props} />)
+    }
 
     WrappedComponent.propTypes = {
-      pageContext: PropTypes.object.isRequired,
-    };
+      pageContext: PropTypes.object.isRequired
+    }
 
-    return WrappedComponent;
-  });
+    return WrappedComponent
+  })
   const styleTags = sheet.getStyleElement()
 
   return {
@@ -94,12 +102,14 @@ MyDocument.getInitialProps = ctx => {
         <style
           id="jss-server-side"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+          dangerouslySetInnerHTML={{
+            __html: pageContext.sheetsRegistry.toString()
+          }}
         />
         {flush() || null}
       </React.Fragment>
-    ),
-  };
-};
+    )
+  }
+}
 
-export default MyDocument;
+export default MyDocument

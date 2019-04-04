@@ -12,9 +12,9 @@ module.exports = withTypescript(
       if (options.isServer)
         config.plugins.push(new ForkTsCheckerWebpackPlugin())
 
-      config.resolve.alias = {
-        "styled-components": path.resolve("./node_modules/styled-components")
-      }
+      // config.resolve.alias = {
+      //   "styled-components": path.resolve("./node_modules/styled-components")
+      // }
       config.plugins = [
         ...config.plugins,
         new Dotenv({

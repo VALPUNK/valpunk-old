@@ -16,6 +16,9 @@ import withReduxStore from "../lib/withReduxStore"
 interface Props {
   apolloClient: ApolloClient<any>
   reduxStore: Store
+  Component?: {
+    Layout: React.ReactNode
+  }
 }
 
 export interface PageContext {
@@ -74,7 +77,20 @@ class MyApp extends App<Props> {
                 sheetsManager={this.pageContext.sheetsManager}
               >
                 <CssBaseline>
-                  <Component pageContext={this.pageContext} {...pageProps} />
+                  {// @ts-ignore
+                  Component.Layout ? (
+                    // @ts-ignore
+                    <Component.Layout>
+                      <Component
+                        pageContext={this.pageContext}
+                        {...pageProps}
+                      />
+                      {/*
+                      // @ts-ignore */}
+                    </Component.Layout>
+                  ) : (
+                    <Component pageContext={this.pageContext} {...pageProps} />
+                  )}
                 </CssBaseline>
               </MuiThemeProvider>
             </JssProvider>
